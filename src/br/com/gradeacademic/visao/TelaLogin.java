@@ -1,33 +1,29 @@
 package br.com.gradeacademic.visao;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
-import java.awt.event.KeyAdapter;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
 
 @SuppressWarnings("serial")
-
 public class TelaLogin extends JFrame {
 
 	private JTextField tCampoUsuario;
 	private JPasswordField tCampoSenha;
 	private JTextField tLogoProvisoria;
-
-	public TelaLogin() {
-		Janela();
-	}
 
 	public static void main(String[] args) {
 
@@ -41,15 +37,18 @@ public class TelaLogin extends JFrame {
 		} catch (Exception e) {
 
 		}
+
 		new TelaLogin();
 	}
 
-	
-	
+	public TelaLogin() {
+		Janela();
+	}
+
 	public void Janela() {
 
-		//Configurações da Janela
-		
+		// Configurações da Janela
+
 		setVisible(true);
 		setSize(520, 528);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -57,11 +56,11 @@ public class TelaLogin extends JFrame {
 		setResizable(false);
 		setTitle("LOGIN");
 		getContentPane().setLayout(null);
-		
+
 		JMenuBar mMenuBarLogin = new JMenuBar();
 		mMenuBarLogin.setBounds(0, 0, 514, 23);
 		getContentPane().add(mMenuBarLogin);
-		
+
 		JMenu mMenuAjuda = new JMenu("Ajuda");
 		mMenuBarLogin.add(mMenuAjuda);
 
@@ -125,7 +124,6 @@ public class TelaLogin extends JFrame {
 		tCampoUsuario.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tCampoUsuario.setColumns(10);
 		tCampoUsuario.requestFocus();
-		
 
 		tCampoSenha = new JPasswordField();
 		tCampoSenha.setBounds(148, 282, 218, 29);
