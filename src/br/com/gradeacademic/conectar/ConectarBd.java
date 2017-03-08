@@ -15,8 +15,7 @@ public class ConectarBd {
 			Class.forName("org.postgresql.Driver");
 			DriverManager.getConnection(url, usuario, senha);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e, "ERRO",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e, "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

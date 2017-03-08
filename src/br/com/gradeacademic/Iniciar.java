@@ -2,11 +2,11 @@ package br.com.gradeacademic;
 
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import br.com.gradeacademic.visao.TelaLogin;
+import br.com.gradeacademic.visao.TelaPrincipal;
 
 public class Iniciar {
-	public static void main(String[] args){
-		
+	public static void main(String[] args) {
+
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -18,8 +18,7 @@ public class Iniciar {
 
 		}
 
-		
-		TelaLogin.main(args);
+		TelaPrincipal.main(args);
 
 	}
 }

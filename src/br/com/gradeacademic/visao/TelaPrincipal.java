@@ -24,17 +24,13 @@ public class TelaPrincipal {
 
 	public static void main(String[] args) {
 
-		Principal();
-	}
-
-	public static void Principal() {
-
 		Janela();
+		TelaLogin.login();
+
 	}
 
 	public static void Janela() {
 
-		MenuBar();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension tamTela = kit.getScreenSize();
 		int larg = tamTela.width;
@@ -43,7 +39,7 @@ public class TelaPrincipal {
 		int minhaAltura = alt;
 
 		desktopPane.setBackground(SystemColor.inactiveCaption);
-		desktopPane.setBounds(0, 32, minhaLargura, minhaAltura);
+		desktopPane.setBounds(0, 32, 2000, 2000);
 		tela.getContentPane().add(desktopPane);
 
 		tela.setSize(minhaLargura, minhaAltura);
@@ -52,9 +48,10 @@ public class TelaPrincipal {
 		tela.setTitle("PROJECT GRADE ACADEMIC - ADMINISTRADOR");
 		tela.getContentPane().setLayout(null);
 		tela.setVisible(true);
+		tela.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		menuBar.setBounds(0, 0, 2021, 33);
 		tela.getContentPane().add(menuBar);
+		menuBar.setBounds(0, 0, 2021, 33);
 
 	}
 
