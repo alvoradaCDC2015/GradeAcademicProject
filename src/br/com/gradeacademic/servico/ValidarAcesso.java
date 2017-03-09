@@ -1,12 +1,14 @@
 package br.com.gradeacademic.servico;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import br.com.gradeacademic.visao.TelaLogin;
 
 public class ValidarAcesso extends TelaLogin {
 
-	public static void validar() {
+	public static void validar(JTextField tCampoUsuario, JPasswordField tCampoSenha) {
 
 		String admin = "admin";
 		String senhaAdmin = "admin";

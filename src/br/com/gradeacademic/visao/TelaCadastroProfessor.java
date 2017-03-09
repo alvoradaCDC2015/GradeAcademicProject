@@ -32,9 +32,9 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 	private static JFormattedTextField CampoCEP;
 	private static JTextField campoCidade;
 	private static JTextField campoEstado;
-	static JButton btnCancelar = new JButton("CANCELAR");
-	static JButton btnSalvar = new JButton("SALVAR");
-	static JButton btnNovo = new JButton("ADICIONAR");
+	static JButton btnCancelar = new JButton("Cancelar");
+	static JButton btnSalvar = new JButton("Salvar");
+	static JButton btnNovo = new JButton("Adicionar");
 	static JButton btnBuscar = new JButton("Buscar ");
 	private static JTextField tCampoNacionalidade;
 	private static JTextField tCampoCoordenador;
@@ -43,7 +43,8 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 
 	public static void telaCadastroUsuario() {
 
-		JInternalFrame internalCadProfessor = new JInternalFrame("Cadastrar Professor");
+		JInternalFrame internalCadProfessor = new JInternalFrame(
+				"Cadastrar Professor");
 		desktopPane.add(internalCadProfessor);
 		internalCadProfessor.setVisible(true);
 		internalCadProfessor.setBounds(100, 51, 871, 619);
@@ -51,7 +52,8 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		internalCadProfessor.setLayout(null);
 
 		panelInfoCliente = new JPanel();
-		panelInfoCliente.setBorder(new TitledBorder(null, "INFORMA\u00C7\u00D5ES DO CLIENTE", TitledBorder.LEADING,
+		panelInfoCliente.setBorder(new TitledBorder(null,
+				"INFORMA\u00C7\u00D5ES DO CLIENTE", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(59, 59, 59)));
 		panelInfoCliente.setBounds(36, 37, 789, 247);
 		internalCadProfessor.add(panelInfoCliente);
@@ -63,20 +65,21 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		panelInfoCliente.add(tCampoNome);
 		tCampoNome.setColumns(10);
 
-		JLabel lnomeCompleto = new JLabel("Nome Completo * :");
+		JLabel lnomeCompleto = new JLabel("Nome Completo*");
 		lnomeCompleto.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lnomeCompleto.setBounds(135, 55, 175, 16);
 		panelInfoCliente.add(lnomeCompleto);
 		lnomeCompleto.setHorizontalAlignment(SwingConstants.LEFT);
 
-		JLabel lNascimento = new JLabel("Data Nascimento* :");
+		JLabel lNascimento = new JLabel("Data Nascimento*");
 		lNascimento.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lNascimento.setBounds(423, 54, 127, 16);
 		panelInfoCliente.add(lNascimento);
 		lNascimento.setHorizontalAlignment(SwingConstants.LEFT);
 
 		try {
-			tCampoNascimento = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			tCampoNascimento = new JFormattedTextField(new MaskFormatter(
+					"##/##/####"));
 		} catch (ParseException e) {
 
 			e.printStackTrace();
@@ -86,7 +89,8 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		panelInfoCliente.add(tCampoNascimento);
 
 		try {
-			tCampoCpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+			tCampoCpf = new JFormattedTextField(new MaskFormatter(
+					"###.###.###-##"));
 		} catch (ParseException e) {
 
 			e.printStackTrace();
@@ -109,35 +113,37 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		lId.setBounds(58, 55, 45, 16);
 		panelInfoCliente.add(lId);
 
-		JLabel cpf = new JLabel("CPF *:");
+		JLabel cpf = new JLabel("CPF*");
 		cpf.setHorizontalAlignment(SwingConstants.LEFT);
 		cpf.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		cpf.setBounds(573, 55, 145, 16);
 		panelInfoCliente.add(cpf);
 
-		JLabel lNaturalidade = new JLabel("Naturalidade *:");
+		JLabel lNaturalidade = new JLabel("Naturalidade");
 		lNaturalidade.setHorizontalAlignment(SwingConstants.LEFT);
 		lNaturalidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lNaturalidade.setBounds(179, 127, 145, 16);
 		panelInfoCliente.add(lNaturalidade);
 
 		tCampoNaturalidade = new JTextField();
-		tCampoNaturalidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tCampoNaturalidade
+				.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tCampoNaturalidade.setBounds(179, 155, 145, 28);
 		panelInfoCliente.add(tCampoNaturalidade);
 
-		JLabel lNacionalidade = new JLabel("Nacionalidade *:");
+		JLabel lNacionalidade = new JLabel("Nacionalidade");
 		lNacionalidade.setHorizontalAlignment(SwingConstants.LEFT);
 		lNacionalidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lNacionalidade.setBounds(349, 127, 145, 16);
 		panelInfoCliente.add(lNacionalidade);
 
 		tCampoNacionalidade = new JTextField();
-		tCampoNacionalidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tCampoNacionalidade
+				.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tCampoNacionalidade.setBounds(349, 155, 145, 28);
 		panelInfoCliente.add(tCampoNacionalidade);
 
-		JLabel lCoordenador = new JLabel("Coordenador *:");
+		JLabel lCoordenador = new JLabel("Coordenador*");
 		lCoordenador.setHorizontalAlignment(SwingConstants.LEFT);
 		lCoordenador.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lCoordenador.setBounds(524, 127, 145, 16);
@@ -149,13 +155,14 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		panelInfoCliente.add(tCampoCoordenador);
 
 		tCampoSituacao = new JComboBox<String>();
-		tCampoSituacao.setModel(new DefaultComboBoxModel<String>(new String[] { "-", "Ativo", "Inativo" }));
+		tCampoSituacao.setModel(new DefaultComboBoxModel<String>(new String[] {
+				"Selecione...", "Ativo", "Inativo" }));
 		tCampoSituacao.setToolTipText("");
 		tCampoSituacao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tCampoSituacao.setBounds(59, 155, 95, 28);
 		panelInfoCliente.add(tCampoSituacao);
 
-		lSituacao = new JLabel("Situa\u00E7\u00E3o :");
+		lSituacao = new JLabel("Situação");
 		lSituacao.setHorizontalAlignment(SwingConstants.LEFT);
 		lSituacao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lSituacao.setBounds(59, 127, 95, 16);
@@ -164,8 +171,10 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (tCampoNome != null && tCampoNome.getText().equals("") == true) {
-					JOptionPane.showMessageDialog(null, "Nome é campo Obrigatório!");
+				if (tCampoNome != null
+						&& tCampoNome.getText().equals("") == true) {
+					JOptionPane.showMessageDialog(null,
+							"Nome é campo Obrigatório!");
 				} else {
 
 				}
@@ -173,20 +182,18 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		});
 		btnSalvar.setBounds(556, 510, 147, 39);
 		internalCadProfessor.add(btnSalvar);
-		btnSalvar.setFont(new Font("Roboto Condensed", Font.BOLD, 15));
 
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
-		btnCancelar.setFont(new Font("Roboto Condensed", Font.BOLD, 15));
-		btnCancelar.setBounds(715, 510, 103, 39);
-		internalCadProfessor.add(btnCancelar);
+
 
 		JPanel panelInfoEndereco = new JPanel();
-		panelInfoEndereco.setBorder(new TitledBorder(null, "INFORMA\u00C7\u00D5ES DE ENDERE\u00C7O",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelInfoEndereco.setBorder(new TitledBorder(null,
+				"INFORMA\u00C7\u00D5ES DE ENDERE\u00C7O", TitledBorder.LEADING,
+				TitledBorder.TOP, null, null));
 		panelInfoEndereco.setBounds(36, 301, 789, 197);
 		internalCadProfessor.add(panelInfoEndereco);
 		panelInfoEndereco.setLayout(null);
@@ -197,13 +204,13 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		tCampoEndereco.setBounds(56, 62, 260, 28);
 		panelInfoEndereco.add(tCampoEndereco);
 
-		JLabel lEndereco = new JLabel("Endere\u00E7o * :");
+		JLabel lEndereco = new JLabel("Endereço*");
 		lEndereco.setHorizontalAlignment(SwingConstants.LEFT);
 		lEndereco.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lEndereco.setBounds(56, 34, 175, 16);
 		panelInfoEndereco.add(lEndereco);
 
-		JLabel lblN = new JLabel("N\u00BA :");
+		JLabel lblN = new JLabel("N\u00BA");
 		lblN.setHorizontalAlignment(SwingConstants.LEFT);
 		lblN.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lblN.setBounds(347, 34, 81, 16);
@@ -221,13 +228,13 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		campoBairro.setBounds(459, 62, 122, 28);
 		panelInfoEndereco.add(campoBairro);
 
-		JLabel lblBairro = new JLabel("Bairro:");
+		JLabel lblBairro = new JLabel("Bairro");
 		lblBairro.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBairro.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lblBairro.setBounds(459, 34, 81, 16);
 		panelInfoEndereco.add(lblBairro);
 
-		JLabel lblCep = new JLabel("CEP* :");
+		JLabel lblCep = new JLabel("CEP*");
 		lblCep.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCep.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lblCep.setBounds(611, 34, 81, 16);
@@ -244,7 +251,7 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		CampoCEP.setBounds(611, 62, 122, 28);
 		panelInfoEndereco.add(CampoCEP);
 
-		JLabel lblCidade = new JLabel("Cidade * :");
+		JLabel lblCidade = new JLabel("Cidade*");
 		lblCidade.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lblCidade.setBounds(203, 102, 175, 16);
@@ -256,7 +263,7 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		campoCidade.setBounds(203, 130, 162, 28);
 		panelInfoEndereco.add(campoCidade);
 
-		JLabel lblEstado = new JLabel("Estado * :");
+		JLabel lblEstado = new JLabel("Estado*");
 		lblEstado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lblEstado.setBounds(56, 102, 94, 16);
@@ -273,20 +280,9 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 
 			}
 		});
-		btnBuscar.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
 		btnBuscar.setBounds(611, 96, 122, 28);
 		panelInfoEndereco.add(btnBuscar);
-
-		btnNovo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				camposEnabled();
-			}
-		});
-		btnNovo.setFont(new Font("Roboto Condensed", Font.BOLD, 15));
-		btnNovo.setBounds(420, 510, 124, 39);
-		internalCadProfessor.add(btnNovo);
 
 	}
 

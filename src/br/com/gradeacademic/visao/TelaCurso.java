@@ -5,44 +5,44 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class TelaCadastroCurso extends TelaPrincipal {
-
-	static JLabel jlNome;
-	static JLabel jlCod;
-	static JTextField jtCampoNome;
-	static JTextField jtCampoCod;
+public class TelaCurso extends TelaPrincipal {
 
 	public static void cadastroCurso() {
 
-		JInternalFrame InternalCadDisciplina = new JInternalFrame();
-		desktopPane.add(InternalCadDisciplina);
-		InternalCadDisciplina.setVisible(true);
-		InternalCadDisciplina.setBounds(100, 51, 300, 200);
-		InternalCadDisciplina.setLayout(null);
+		JInternalFrame internalCadastraCurso = new JInternalFrame();
+		desktopPane.add(internalCadastraCurso);
+		internalCadastraCurso.setVisible(true);
+		internalCadastraCurso.setBounds(100, 51, 871, 619);
+		internalCadastraCurso.setLayout(null);
+		internalCadastraCurso.setClosable(true);
 
-		jlNome = new JLabel("Curso: *");
-		jlNome.setHorizontalAlignment(SwingConstants.CENTER);
-		jlNome.setBounds(-270, -10, 600, 50);
-		jlNome.setVisible(true);
-		InternalCadDisciplina.add(jlNome);
+		JLabel lNomeCurso = new JLabel("Nome*");
+		lNomeCurso.setHorizontalAlignment(SwingConstants.CENTER);
+		lNomeCurso.setBounds(-270, -10, 600, 50);
+		lNomeCurso.setVisible(true);
+		internalCadastraCurso.add(lNomeCurso);
 
-		jtCampoNome = new JTextField();
-		jtCampoNome.setSize(200, 20);
-		jtCampoNome.setLocation(10, 30);
-		jtCampoNome.setVisible(true);
-		InternalCadDisciplina.add(jtCampoNome);
+		JTextField tCampoNomeCurso = new JTextField();
+		tCampoNomeCurso.setSize(200, 20);
+		tCampoNomeCurso.setLocation(10, 30);
+		tCampoNomeCurso.setVisible(true);
+		internalCadastraCurso.add(tCampoNomeCurso);
 
-		jlCod = new JLabel("Cod: ");
-		jlCod.setHorizontalAlignment(SwingConstants.CENTER);
-		jlCod.setBounds(-50, -10, 600, 50);
-		jlCod.setVisible(true);
-		InternalCadDisciplina.add(jlNome);
+		JLabel lIDCurso = new JLabel("ID");
+		lIDCurso.setHorizontalAlignment(SwingConstants.CENTER);
+		lIDCurso.setBounds(-50, -10, 600, 50);
+		lIDCurso.setVisible(true);
+		internalCadastraCurso.add(lIDCurso);
 
-		jtCampoCod = new JTextField();
-		jtCampoCod.setSize(30, 20);
-		jtCampoCod.setLocation(235, 30);
-		jtCampoCod.setVisible(true);
-		InternalCadDisciplina.add(jtCampoCod);
+		JTextField tCampoIDCurso = new JTextField();
+		tCampoIDCurso.setSize(30, 20);
+		tCampoIDCurso.setLocation(235, 30);
+		tCampoIDCurso.setVisible(true);
+		internalCadastraCurso.add(tCampoIDCurso);
+
+	}
+
+	public static void visualizarCurso() {
 
 	}
 

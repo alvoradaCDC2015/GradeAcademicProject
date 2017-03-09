@@ -3,179 +3,249 @@ package br.com.gradeacademic.visao;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
-import javax.swing.text.MaskFormatter;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JButton;
+
 import java.awt.Font;
-import java.text.ParseException;
-import javax.swing.JFormattedTextField;
+
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+
+import br.com.gradeacademic.servico.AcaoTelaLocal;
+
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
-public class TelaCadastroCidade extends TelaPrincipal {
+public class TelaLocal extends TelaPrincipal {
 
-	private static JPanel panelCadCidade;
+	public static JInternalFrame internalCadastraLocal;
 
-	private static JTextField CampoID;
-	private static JTextField tCampoCidade;
-	private static JFormattedTextField tSiglaEstado;
+	public static JTextField tCampoPais;
+	public static JTextField tCampoEstado;
+	public static JTextField tCampoCidade;
 
-	static JButton btnEditar = new JButton("EDITAR");
-	static JButton btnSalvar = new JButton("SALVAR");
-	static JButton btnAdicionar = new JButton("ADICIONAR");
-	static JButton btnRemover = new JButton("REMOVER");
-	static JButton btnPesquisar = new JButton("Buscar ");
+	public static AcaoTelaLocal acao;
 
-	private static JTextField tCampoPesquisa;
+	public static void cadastrarLocal() {
 
-	public static void cadastroCidade() {
+		internalCadastraLocal = new JInternalFrame("Cadastrar Local");
+		desktopPane.add(internalCadastraLocal);
+		internalCadastraLocal.setVisible(true);
+		internalCadastraLocal.setClosable(true);
+		internalCadastraLocal.getContentPane().setLayout(null);
+		internalCadastraLocal.setBounds(100, 51, 871, 619);
 
-		JInternalFrame internalCadastraCidade = new JInternalFrame("Cadastrar Cidade");
-		desktopPane.add(internalCadastraCidade);
-		internalCadastraCidade.setVisible(true);
-		internalCadastraCidade.setClosable(true);
-		internalCadastraCidade.setLayout(null);
-		internalCadastraCidade.setBounds(100, 51, 871, 619);
+		pais();
+		estado();
+		cidade();
 
-		panelCadCidade = new JPanel();
-		panelCadCidade.setBorder(new TitledBorder(null, "INFORMA\u00C7\u00D5ES DO CLIENTE", TitledBorder.LEADING,
-				TitledBorder.TOP, null, new Color(59, 59, 59)));
-		panelCadCidade.setBounds(36, 37, 789, 247);
-		internalCadastraCidade.add(panelCadCidade);
-		panelCadCidade.setLayout(null);
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(556, 510, 147, 39);
+		internalCadastraLocal.add(btnSalvar);
+		btnSalvar.setFont(new Font("Roboto Condensed", Font.BOLD, 15));
+		AcaoTelaLocal.botaoSalvar(btnSalvar, tCampoCidade);
+
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(715, 510, 103, 39);
+		internalCadastraLocal.add(btnCancelar);
+		btnCancelar.setFont(new Font("Roboto Condensed", Font.BOLD, 15));
+		AcaoTelaLocal.botaoCancelar(btnCancelar);
+
+	}
+
+	private static void pais() {
+
+		JPanel panelPais = new JPanel();
+		internalCadastraLocal.add(panelPais);
+		panelPais.setBorder(new TitledBorder(null, "Dados Pais", TitledBorder.LEADING, TitledBorder.TOP, null,
+				new Color(59, 59, 59)));
+		panelPais.setBounds(36, 40, 789, 150);
+		panelPais.setLayout(null);
+
+		tCampoPais = new JTextField();
+		tCampoPais.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tCampoPais.setBounds(65, 50, 260, 28);
+		panelPais.add(tCampoPais);
+
+		JLabel lNomePais = new JLabel("Nome*");
+		lNomePais.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lNomePais.setBounds(65, 23, 175, 16);
+		panelPais.add(lNomePais);
+		lNomePais.setHorizontalAlignment(SwingConstants.LEFT);
+
+		JLabel lIDPais = new JLabel("ID");
+		lIDPais.setHorizontalAlignment(SwingConstants.LEFT);
+		lIDPais.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lIDPais.setBounds(10, 23, 45, 16);
+		panelPais.add(lIDPais);
+
+		JTextField campoIDPais = new JTextField();
+		campoIDPais.setEnabled(false);
+		campoIDPais.setEditable(false);
+		campoIDPais.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		campoIDPais.setColumns(10);
+		campoIDPais.setBounds(10, 51, 45, 25);
+		panelPais.add(campoIDPais);
+
+	}
+
+	private static void estado() {
+
+		JPanel panelEstado = new JPanel();
+		internalCadastraLocal.add(panelEstado);
+		panelEstado.setBorder(new TitledBorder(null, "Dados Estado", TitledBorder.LEADING, TitledBorder.TOP, null,
+				new Color(59, 59, 59)));
+		panelEstado.setBounds(36, 200, 789, 150);
+		panelEstado.setLayout(null);
+
+		tCampoEstado = new JTextField();
+		tCampoEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tCampoEstado.setBounds(65, 50, 260, 28);
+		panelEstado.add(tCampoEstado);
+
+		JLabel lNomeEstado = new JLabel("Nome*");
+		lNomeEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lNomeEstado.setBounds(65, 23, 175, 16);
+		panelEstado.add(lNomeEstado);
+		lNomeEstado.setHorizontalAlignment(SwingConstants.LEFT);
+
+		JLabel lIDEstado = new JLabel("ID");
+		lIDEstado.setHorizontalAlignment(SwingConstants.LEFT);
+		lIDEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lIDEstado.setBounds(10, 23, 45, 16);
+		panelEstado.add(lIDEstado);
+
+		JTextField campoIDEstado = new JTextField();
+		campoIDEstado.setEnabled(false);
+		campoIDEstado.setEditable(false);
+		campoIDEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		campoIDEstado.setColumns(10);
+		campoIDEstado.setBounds(10, 51, 45, 25);
+		panelEstado.add(campoIDEstado);
+
+		JLabel lPaisPertencente = new JLabel("Pais*");
+		lPaisPertencente.setHorizontalAlignment(SwingConstants.LEFT);
+		lPaisPertencente.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lPaisPertencente.setBounds(335, 23, 145, 16);
+		panelEstado.add(lPaisPertencente);
+
+		JComboBox<String> cPaisPertencente = new JComboBox<String>();
+		cPaisPertencente.setBounds(335, 50, 87, 28);
+		panelEstado.add(cPaisPertencente);
+
+	}
+
+	private static void cidade() {
+
+		JPanel panelCidade = new JPanel();
+		internalCadastraLocal.add(panelCidade);
+		panelCidade.setBorder(new TitledBorder(null, "Dados Cidade", TitledBorder.LEADING, TitledBorder.TOP, null,
+				new Color(59, 59, 59)));
+		panelCidade.setBounds(36, 360, 789, 150);
+		panelCidade.setLayout(null);
 
 		tCampoCidade = new JTextField();
 		tCampoCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tCampoCidade.setBounds(135, 83, 260, 28);
-		panelCadCidade.add(tCampoCidade);
-		tCampoCidade.setColumns(10);
+		tCampoCidade.setBounds(65, 50, 260, 28);
+		panelCidade.add(tCampoCidade);
 
-		JLabel lnomeCidade = new JLabel("Nome Cidade :");
-		lnomeCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lnomeCidade.setBounds(135, 55, 175, 16);
-		panelCadCidade.add(lnomeCidade);
-		lnomeCidade.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel lNomeCidade = new JLabel("Nome*");
+		lNomeCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lNomeCidade.setBounds(65, 23, 175, 16);
+		panelCidade.add(lNomeCidade);
+		lNomeCidade.setHorizontalAlignment(SwingConstants.LEFT);
 
-		try {
-			tSiglaEstado = new JFormattedTextField(new MaskFormatter("##"));
-		} catch (ParseException e) {
+		JTextField campoIDCidade = new JTextField();
+		campoIDCidade.setEnabled(false);
+		campoIDCidade.setEditable(false);
+		campoIDCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		campoIDCidade.setColumns(10);
+		campoIDCidade.setBounds(10, 51, 45, 25);
+		panelCidade.add(campoIDCidade);
 
-			e.printStackTrace();
-		}
-		tSiglaEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tSiglaEstado.setBounds(573, 83, 106, 28);
-		panelCadCidade.add(tSiglaEstado);
+		JLabel lIDCidade = new JLabel("ID");
+		lIDCidade.setHorizontalAlignment(SwingConstants.LEFT);
+		lIDCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lIDCidade.setBounds(10, 23, 45, 16);
+		panelCidade.add(lIDCidade);
 
-		CampoID = new JTextField();
-		CampoID.setEnabled(false);
-		CampoID.setEditable(false);
-		CampoID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		CampoID.setColumns(10);
-		CampoID.setBounds(59, 83, 45, 28);
-		panelCadCidade.add(CampoID);
+		JLabel lEstadoPertencente = new JLabel("Estado*");
+		lEstadoPertencente.setHorizontalAlignment(SwingConstants.LEFT);
+		lEstadoPertencente.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lEstadoPertencente.setBounds(335, 23, 145, 16);
+		panelCidade.add(lEstadoPertencente);
 
-		JLabel lId = new JLabel("ID");
-		lId.setHorizontalAlignment(SwingConstants.LEFT);
-		lId.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lId.setBounds(58, 55, 45, 16);
-		panelCadCidade.add(lId);
-
-		JLabel lSiglaEstado = new JLabel("Estado:");
-		lSiglaEstado.setHorizontalAlignment(SwingConstants.LEFT);
-		lSiglaEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lSiglaEstado.setBounds(573, 55, 145, 16);
-		panelCadCidade.add(lSiglaEstado);
-
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				if (tCampoCidade != null && tCampoCidade.getText().equals("") == true) {
-					JOptionPane.showMessageDialog(null, "Isira o nome da Cidade");
-				} else {
-
-				}
-			}
-		});
-		btnSalvar.setBounds(715, 510, 103, 39);
-		internalCadastraCidade.add(btnSalvar);
-		btnSalvar.setFont(new Font("Roboto Condensed", Font.BOLD, 15));
-
-		btnEditar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		btnEditar.setFont(new Font("Roboto Condensed", Font.BOLD, 15));
-		btnEditar.setBounds(556, 510, 147, 39);
-		internalCadastraCidade.add(btnEditar);
-
-		JPanel panelPesquisaCidade = new JPanel();
-		panelPesquisaCidade.setBorder(
-				new TitledBorder(null, "PESQUISAR CIDADE", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelPesquisaCidade.setBounds(36, 301, 789, 197);
-		internalCadastraCidade.add(panelPesquisaCidade);
-		panelPesquisaCidade.setLayout(null);
-
-		tCampoPesquisa = new JTextField();
-		tCampoPesquisa.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tCampoPesquisa.setColumns(10);
-		tCampoPesquisa.setBounds(56, 62, 260, 28);
-		panelPesquisaCidade.add(tCampoPesquisa);
-
-		JLabel lPesquisarCidade = new JLabel("Pesquisar Cidade :");
-		lPesquisarCidade.setHorizontalAlignment(SwingConstants.LEFT);
-		lPesquisarCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lPesquisarCidade.setBounds(56, 34, 175, 16);
-		panelPesquisaCidade.add(lPesquisarCidade);
-
-		btnPesquisar.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-
-		btnPesquisar.setBounds(611, 96, 122, 28);
-		panelPesquisaCidade.add(btnPesquisar);
-
-		btnAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				camposEnabled();
-			}
-		});
-		btnAdicionar.setFont(new Font("Roboto Condensed", Font.BOLD, 15));
-		btnAdicionar.setBounds(420, 510, 124, 39);
-		internalCadastraCidade.add(btnAdicionar);
-	}
-
-	public void limpaCampos() {
-
-		tCampoCidade.setText("");
-		tSiglaEstado.setText("");
-		tCampoPesquisa.setText("");
-	}
-
-	public static void camposDisabled() {
-
-		tCampoCidade.setEnabled(false);
-		tSiglaEstado.setEnabled(false);
-		tCampoPesquisa.setEnabled(false);
-		btnSalvar.setEnabled(false);
-		btnAdicionar.setEnabled(true);
-		btnEditar.setEnabled(false);
-		btnPesquisar.setEnabled(false);
+		JComboBox<String> cEstadoPertencente = new JComboBox<String>();
+		cEstadoPertencente.setBounds(335, 50, 87, 28);
+		panelCidade.add(cEstadoPertencente);
 
 	}
 
-	public static void camposEnabled() {
+	public static void visualizarLocal() {
 
-		tCampoCidade.setEnabled(true);
-		tSiglaEstado.setEnabled(true);
-		tCampoPesquisa.setEnabled(true);
-		btnSalvar.setEnabled(true);
-		btnEditar.setEnabled(true);
-		btnAdicionar.setEnabled(false);
-		btnPesquisar.setEnabled(true);
+		JInternalFrame internalVizualizaLocal = new JInternalFrame("Locais");
+		internalVizualizaLocal.setClosable(true);
+		internalVizualizaLocal.setLayout(null);
+		desktopPane.add(internalVizualizaLocal);
+		internalVizualizaLocal.setVisible(true);
+		internalVizualizaLocal.setBounds(100, 51, 871, 619);
+
+		tabelaAcessos(internalVizualizaLocal);
+
+		JButton bNovoLocal = new JButton("Novo");
+		internalVizualizaLocal.add(bNovoLocal);
+		bNovoLocal.setBounds(30, 50, 147, 39);
+		AcaoTelaLocal.botaoNovoLocal(bNovoLocal);
+
+		JButton bEditarLocal = new JButton("Editar");
+		internalVizualizaLocal.add(bEditarLocal);
+		bEditarLocal.setBounds(180, 50, 147, 39);
+
+		JButton bRemoverLocal = new JButton("Remover");
+		internalVizualizaLocal.add(bRemoverLocal);
+		bRemoverLocal.setBounds(330, 50, 147, 39);
+
+		JTextField tBuscaLocal = new JTextField();
+		internalVizualizaLocal.add(tBuscaLocal);
+		tBuscaLocal.setBounds(607, 50, 147, 39);
+
+		JButton bFiltraLocal = new JButton("F");
+		internalVizualizaLocal.add(bFiltraLocal);
+		bFiltraLocal.setBounds(751, 50, 39, 39);
+
+		JButton bPesquisarLocal = new JButton("P");
+		internalVizualizaLocal.add(bPesquisarLocal);
+		bPesquisarLocal.setBounds(787, 50, 39, 39);
+
+	}
+
+	@SuppressWarnings("serial")
+	private static void tabelaAcessos(JInternalFrame internalVizualizaAcesso) {
+
+		JTable tabelaLocal = new JTable();
+		tabelaLocal.setLayout(null);
+		tabelaLocal.revalidate();
+		tabelaLocal.setBounds(0, 0, 800, 500);
+		tabelaLocal.setModel(new DefaultTableModel(new Object[] { "Pais", "Estado", "Cidade" }, 0) {
+			@Override
+			public boolean isCellEditable(int row, int col) {
+				return false;
+			}
+		});
+
+		JScrollPane scrollLocal = new JScrollPane();
+		scrollLocal.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollLocal.setBounds(0, 0, 800, 370);
+		scrollLocal.setViewportView(tabelaLocal);
+
+		JPanel panelTabelaLocal = new JPanel();
+		internalVizualizaAcesso.add(panelTabelaLocal);
+		panelTabelaLocal.add(scrollLocal);
+		panelTabelaLocal.setLayout(null);
+		panelTabelaLocal.setBounds(30, 150, 800, 370);
 
 	}
 

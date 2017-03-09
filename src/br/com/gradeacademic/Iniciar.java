@@ -1,7 +1,9 @@
 package br.com.gradeacademic;
 
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+
 import br.com.gradeacademic.visao.TelaPrincipal;
 
 public class Iniciar {
@@ -15,7 +17,7 @@ public class Iniciar {
 				}
 			}
 		} catch (Exception e) {
-
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 
 		TelaPrincipal.main(args);
