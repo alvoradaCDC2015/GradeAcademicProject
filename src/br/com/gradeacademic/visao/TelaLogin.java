@@ -35,7 +35,7 @@ public class TelaLogin extends TelaPrincipal {
 
 		JTextField tLogoProvisoria = new JTextField();
 		internalLogin.add(tLogoProvisoria);
-		tLogoProvisoria.setFont(new Font("Dialog", Font.PLAIN, 12));
+		tLogoProvisoria.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tLogoProvisoria.setBounds(143, 82, 218, 71);
 		tLogoProvisoria.setEnabled(false);
 		tLogoProvisoria.setHorizontalAlignment(SwingConstants.CENTER);
@@ -45,7 +45,7 @@ public class TelaLogin extends TelaPrincipal {
 		JLabel lUsuario = new JLabel("Usuário");
 		internalLogin.add(lUsuario);
 		lUsuario.setBounds(143, 191, 218, 17);
-		lUsuario.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lUsuario.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
 		JTextField tCampoUsuario = new JTextField();
 		internalLogin.add(tCampoUsuario);
@@ -55,7 +55,7 @@ public class TelaLogin extends TelaPrincipal {
 		JLabel lSenha = new JLabel("Senha");
 		internalLogin.add(lSenha);
 		lSenha.setBounds(143, 263, 218, 17);
-		lSenha.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lSenha.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
 		JPasswordField tCampoSenha = new JPasswordField();
 		internalLogin.add(tCampoSenha);

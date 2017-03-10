@@ -5,10 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
-import br.com.gradeacademic.visao.TelaAcessos;
-import br.com.gradeacademic.visao.TelaCadastroProfessor;
-import br.com.gradeacademic.visao.TelaCurso;
-import br.com.gradeacademic.visao.TelaLocal;
+import br.com.gradeacademic.visao.TelaCadastraAcesso;
+import br.com.gradeacademic.visao.TelaCadastraCurso;
+import br.com.gradeacademic.visao.TelaCadastraLocal;
+import br.com.gradeacademic.visao.TelaCadastraProfessor;
+import br.com.gradeacademic.visao.TelaVisualizaAcesso;
+import br.com.gradeacademic.visao.TelaVisualizaCurso;
+import br.com.gradeacademic.visao.TelaVisualizaLocal;
 
 public class AcaoTelaPrincipal {
 
@@ -27,7 +30,7 @@ public class AcaoTelaPrincipal {
 		itemCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				TelaCadastroProfessor.telaCadastroUsuario();
+				TelaCadastraProfessor.telaCadastroUsuario();
 
 			}
 		});
@@ -38,7 +41,7 @@ public class AcaoTelaPrincipal {
 		cadastrarCurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				TelaCurso.cadastroCurso();
+				TelaCadastraCurso.cadastroCurso();
 
 			}
 		});
@@ -49,7 +52,7 @@ public class AcaoTelaPrincipal {
 		criarLocal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				TelaLocal.cadastrarLocal();
+				TelaCadastraLocal.cadastrarLocal();
 
 			}
 		});
@@ -60,7 +63,7 @@ public class AcaoTelaPrincipal {
 		visualizarLocal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				TelaLocal.visualizarLocal();
+				TelaVisualizaLocal.visualizarLocal();
 
 			}
 		});
@@ -71,7 +74,7 @@ public class AcaoTelaPrincipal {
 		criarAcesso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				TelaAcessos.cadastrarAcesso();
+				TelaCadastraAcesso.cadastrarAcesso();
 
 			}
 		});
@@ -82,9 +85,20 @@ public class AcaoTelaPrincipal {
 		visualizarAcesso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				TelaAcessos.visualizarAcesso();
+				TelaVisualizaAcesso.visualizarAcesso();
 			}
 		});
+	}
+
+	public static void visualizarCurso(JMenuItem visualizaCurso) {
+
+		visualizaCurso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				TelaVisualizaCurso.visualizarCurso();
+			}
+		});
+
 	}
 
 }

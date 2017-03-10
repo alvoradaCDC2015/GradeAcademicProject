@@ -3,10 +3,12 @@ package br.com.gradeacademic.visao;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.text.MaskFormatter;
+
+import br.com.gradeacademic.servico.AcaoTelaCadastraProfessor;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.text.ParseException;
@@ -15,45 +17,55 @@ import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class TelaCadastroProfessor extends TelaPrincipal {
+public class TelaCadastraProfessor extends TelaPrincipal {
 
-	private static JTextField tCampoNome;
-	private static JPanel panelInfoCliente;
-	private static JFormattedTextField tCampoNascimento;
-	private static JFormattedTextField tCampoCpf;
-	private static JTextField CampoID;
-	private static JTextField tCampoNaturalidade;
-	private static JTextField tCampoEndereco;
-	private static JTextField tCampoNumero;
-	private static JTextField campoBairro;
-	private static JFormattedTextField CampoCEP;
-	private static JTextField campoCidade;
-	private static JTextField campoEstado;
-	static JButton btnCancelar = new JButton("Cancelar");
-	static JButton btnSalvar = new JButton("Salvar");
-	static JButton btnNovo = new JButton("Adicionar");
-	static JButton btnBuscar = new JButton("Buscar ");
-	private static JTextField tCampoNacionalidade;
-	private static JTextField tCampoCoordenador;
-	private static JComboBox<String> tCampoSituacao;
-	private static JLabel lSituacao;
+	public static JInternalFrame internalCadProfessor;
+
+	public static JTextField CampoID;
+	public static JTextField tCampoNome;
+	public static JFormattedTextField tCampoNascimento;
+	public static JFormattedTextField tCampoCpf;
+	public static JComboBox<String> tCampoSituacao;
+	public static JTextField tCampoNaturalidade;
+	public static JTextField tCampoNacionalidade;
+	public static JComboBox<String> tCampoCoordenador;
+	public static JTextField tCampoEndereco;
+	public static JTextField tCampoNumero;
+	public static JTextField campoBairro;
+	public static JFormattedTextField CampoCEP;
+	public static JTextField campoCidade;
+	public static JTextField campoEstado;
 
 	public static void telaCadastroUsuario() {
 
-		JInternalFrame internalCadProfessor = new JInternalFrame(
-				"Cadastrar Professor");
+		internalCadProfessor = new JInternalFrame("Cadastrar Professor");
 		desktopPane.add(internalCadProfessor);
 		internalCadProfessor.setVisible(true);
 		internalCadProfessor.setBounds(100, 51, 871, 619);
 		internalCadProfessor.setClosable(true);
 		internalCadProfessor.setLayout(null);
 
-		panelInfoCliente = new JPanel();
-		panelInfoCliente.setBorder(new TitledBorder(null,
-				"INFORMA\u00C7\u00D5ES DO CLIENTE", TitledBorder.LEADING,
+		informacoesCliente(internalCadProfessor);
+
+		informacoesEndereco(internalCadProfessor);
+
+		JButton btnSalvar = new JButton("Salvar");
+		internalCadProfessor.add(btnSalvar);
+		btnSalvar.setBounds(556, 510, 147, 39);
+		AcaoTelaCadastraProfessor.botaoSalvar(btnSalvar);
+
+		JButton btnCancelar = new JButton("Cancelar");
+		internalCadProfessor.add(btnCancelar);
+		btnCancelar.setBounds(715, 510, 103, 39);
+		AcaoTelaCadastraProfessor.botaoCancelar(btnCancelar);
+
+	}
+
+	private static void informacoesCliente(JInternalFrame internalCadProfessor) {
+		
+		JPanel panelInfoCliente = new JPanel();
+		panelInfoCliente.setBorder(new TitledBorder(null, "INFORMA\u00C7\u00D5ES DO CLIENTE", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(59, 59, 59)));
 		panelInfoCliente.setBounds(36, 37, 789, 247);
 		internalCadProfessor.add(panelInfoCliente);
@@ -78,8 +90,7 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		lNascimento.setHorizontalAlignment(SwingConstants.LEFT);
 
 		try {
-			tCampoNascimento = new JFormattedTextField(new MaskFormatter(
-					"##/##/####"));
+			tCampoNascimento = new JFormattedTextField(new MaskFormatter("##/##/####"));
 		} catch (ParseException e) {
 
 			e.printStackTrace();
@@ -89,8 +100,7 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		panelInfoCliente.add(tCampoNascimento);
 
 		try {
-			tCampoCpf = new JFormattedTextField(new MaskFormatter(
-					"###.###.###-##"));
+			tCampoCpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
 		} catch (ParseException e) {
 
 			e.printStackTrace();
@@ -126,8 +136,7 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		panelInfoCliente.add(lNaturalidade);
 
 		tCampoNaturalidade = new JTextField();
-		tCampoNaturalidade
-				.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tCampoNaturalidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tCampoNaturalidade.setBounds(179, 155, 145, 28);
 		panelInfoCliente.add(tCampoNaturalidade);
 
@@ -138,8 +147,7 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		panelInfoCliente.add(lNacionalidade);
 
 		tCampoNacionalidade = new JTextField();
-		tCampoNacionalidade
-				.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tCampoNacionalidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tCampoNacionalidade.setBounds(349, 155, 145, 28);
 		panelInfoCliente.add(tCampoNacionalidade);
 
@@ -149,51 +157,30 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		lCoordenador.setBounds(524, 127, 145, 16);
 		panelInfoCliente.add(lCoordenador);
 
-		tCampoCoordenador = new JTextField();
+		tCampoCoordenador = new JComboBox<>(new String[] { "Não", "Sim" });
 		tCampoCoordenador.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tCampoCoordenador.setBounds(524, 155, 145, 28);
+		tCampoCoordenador.setBounds(524, 155, 100, 28);
 		panelInfoCliente.add(tCampoCoordenador);
 
 		tCampoSituacao = new JComboBox<String>();
-		tCampoSituacao.setModel(new DefaultComboBoxModel<String>(new String[] {
-				"Selecione...", "Ativo", "Inativo" }));
+		tCampoSituacao.setModel(new DefaultComboBoxModel<String>(new String[] { "Selecione...", "Ativo", "Inativo" }));
 		tCampoSituacao.setToolTipText("");
 		tCampoSituacao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tCampoSituacao.setBounds(59, 155, 95, 28);
+		tCampoSituacao.setBounds(59, 155, 110, 28);
 		panelInfoCliente.add(tCampoSituacao);
 
-		lSituacao = new JLabel("Situação");
+		JLabel lSituacao = new JLabel("Situação");
 		lSituacao.setHorizontalAlignment(SwingConstants.LEFT);
 		lSituacao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lSituacao.setBounds(59, 127, 95, 16);
 		panelInfoCliente.add(lSituacao);
+	}
 
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				if (tCampoNome != null
-						&& tCampoNome.getText().equals("") == true) {
-					JOptionPane.showMessageDialog(null,
-							"Nome é campo Obrigatório!");
-				} else {
-
-				}
-			}
-		});
-		btnSalvar.setBounds(556, 510, 147, 39);
-		internalCadProfessor.add(btnSalvar);
-
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-
-
+	private static void informacoesEndereco(JInternalFrame internalCadProfessor) {
+		
 		JPanel panelInfoEndereco = new JPanel();
-		panelInfoEndereco.setBorder(new TitledBorder(null,
-				"INFORMA\u00C7\u00D5ES DE ENDERE\u00C7O", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
+		panelInfoEndereco.setBorder(new TitledBorder(null, "INFORMA\u00C7\u00D5ES DE ENDERE\u00C7O",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelInfoEndereco.setBounds(36, 301, 789, 197);
 		internalCadProfessor.add(panelInfoEndereco);
 		panelInfoEndereco.setLayout(null);
@@ -274,75 +261,9 @@ public class TelaCadastroProfessor extends TelaPrincipal {
 		campoEstado.setBounds(56, 130, 114, 28);
 		panelInfoEndereco.add(campoEstado);
 
-		btnBuscar.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-
+		JButton btnBuscar = new JButton("Buscar ");
 		btnBuscar.setBounds(611, 96, 122, 28);
 		panelInfoEndereco.add(btnBuscar);
-
 	}
 
-	public void limpaCampos() {
-
-		tCampoNome.setText("");
-		tCampoNascimento.setText("");
-		tCampoSituacao.setSelectedIndex(0);
-		tCampoCpf.setText("");
-		tCampoEndereco.setText("");
-		tCampoNumero.setText("");
-		campoBairro.setText("");
-		CampoCEP.setText("");
-		campoEstado.setText("");
-		campoCidade.setText("");
-
-	}
-
-	public static void camposDisabled() {
-
-		tCampoNome.setEnabled(false);
-		tCampoNascimento.setEnabled(false);
-		tCampoSituacao.setEnabled(false);
-		tCampoCpf.setEnabled(false);
-		tCampoNaturalidade.setEnabled(false);
-		tCampoCoordenador.setEnabled(false);
-		tCampoNacionalidade.setEnabled(false);
-		tCampoNaturalidade.setEnabled(false);
-		tCampoEndereco.setEnabled(false);
-		tCampoNumero.setEnabled(false);
-		campoBairro.setEnabled(false);
-		CampoCEP.setEnabled(false);
-		campoEstado.setEnabled(false);
-		campoCidade.setEnabled(false);
-		btnSalvar.setEnabled(false);
-		btnNovo.setEnabled(true);
-		btnCancelar.setEnabled(false);
-		btnBuscar.setEnabled(false);
-
-	}
-
-	public static void camposEnabled() {
-
-		tCampoNome.setEnabled(true);
-		tCampoNascimento.setEnabled(true);
-		tCampoSituacao.setEnabled(true);
-		tCampoCpf.setEnabled(true);
-		tCampoNaturalidade.setEnabled(true);
-		tCampoCoordenador.setEnabled(true);
-		tCampoNacionalidade.setEnabled(true);
-		tCampoEndereco.setEnabled(true);
-		tCampoNumero.setEnabled(true);
-		campoBairro.setEnabled(true);
-		CampoCEP.setEnabled(true);
-		campoEstado.setEnabled(true);
-		campoCidade.setEnabled(true);
-		btnSalvar.setEnabled(true);
-		btnCancelar.setEnabled(true);
-		btnNovo.setEnabled(false);
-		btnBuscar.setEnabled(true);
-
-	}
 }

@@ -59,49 +59,87 @@ public class TelaPrincipal {
 		mArquivo.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		mArquivo.setIcon(new ImageIcon("door_out.png"));
 
-		JMenuItem itemSair = new JMenuItem("Sair");
-		mArquivo.add(itemSair);
-		itemSair.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		itensArquivo(mArquivo);
 
 		JMenu mProfessor = new JMenu("Professor");
 		menuBar.add(mProfessor);
 		mProfessor.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		mProfessor.setIcon(new ImageIcon("user.png"));
 
-		JMenuItem cadastrarProfessor = new JMenuItem("Cadastrar");
-		mProfessor.add(cadastrarProfessor);
-		cadastrarProfessor.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		AcaoTelaPrincipal.cadastrarProfessor(cadastrarProfessor);
+		itensProfessor(mProfessor);
 
 		JMenu mCurso = new JMenu("Curso");
 		menuBar.add(mCurso);
 		mCurso.setIcon(new ImageIcon("page.png"));
 		mCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
-		JMenuItem cadastrarCurso = new JMenuItem("Cadastrar");
-		mCurso.add(cadastrarCurso);
-		cadastrarCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		AcaoTelaPrincipal.cadastrarCurso(cadastrarCurso);
+		itensCurso(mCurso);
 
 		JMenu mDisciplina = new JMenu("Disciplina");
 		menuBar.add(mDisciplina);
 		mDisciplina.setIcon(new ImageIcon("page.png"));
 		mDisciplina.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
-		JMenuItem cadastrarDisciplina = new JMenuItem("Cadastrar");
-		mDisciplina.add(cadastrarDisciplina);
-		cadastrarDisciplina.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		itensDisciplina(mDisciplina);
 
 		JMenu mRelatorio = new JMenu("Relatorio");
 		menuBar.add(mRelatorio);
 		mRelatorio.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		mRelatorio.setIcon(new ImageIcon("report.png"));
 
-		JMenu mLocais = new JMenu("Locais");
-		menuBar.add(mLocais);
-		mLocais.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		mLocais.setIcon(new ImageIcon("report.png"));
+		JMenu mLocal = new JMenu("Locais");
+		menuBar.add(mLocal);
+		mLocal.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		mLocal.setIcon(new ImageIcon("report.png"));
 
+		itensLocal(mLocal);
+
+		JMenu mAcesso = new JMenu("Acessos");
+		menuBar.add(mAcesso);
+		mAcesso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		mAcesso.setIcon(new ImageIcon("report.png"));
+
+		itensAcesso(mAcesso);
+
+		JMenu mSobre = new JMenu("Sobre");
+		menuBar.add(mSobre);
+		mSobre.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		mSobre.setIcon(new ImageIcon("information.png"));
+
+	}
+
+	private static void itensArquivo(JMenu mArquivo) {
+		JMenuItem itemSair = new JMenuItem("Sair");
+		mArquivo.add(itemSair);
+		itemSair.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+	}
+
+	private static void itensProfessor(JMenu mProfessor) {
+		JMenuItem cadastrarProfessor = new JMenuItem("Cadastrar");
+		mProfessor.add(cadastrarProfessor);
+		cadastrarProfessor.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		AcaoTelaPrincipal.cadastrarProfessor(cadastrarProfessor);
+	}
+
+	private static void itensCurso(JMenu mCurso) {
+		JMenuItem cadastrarCurso = new JMenuItem("Cadastrar");
+		mCurso.add(cadastrarCurso);
+		cadastrarCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		AcaoTelaPrincipal.cadastrarCurso(cadastrarCurso);
+
+		JMenuItem visualizaCurso = new JMenuItem("Visualizar");
+		mCurso.add(visualizaCurso);
+		visualizaCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		AcaoTelaPrincipal.visualizarCurso(visualizaCurso);
+	}
+
+	private static void itensDisciplina(JMenu mDisciplina) {
+		JMenuItem cadastrarDisciplina = new JMenuItem("Cadastrar");
+		mDisciplina.add(cadastrarDisciplina);
+		cadastrarDisciplina.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+	}
+
+	private static void itensLocal(JMenu mLocais) {
 		JMenuItem criarLocal = new JMenuItem("Criar");
 		mLocais.add(criarLocal);
 		criarLocal.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
@@ -111,12 +149,9 @@ public class TelaPrincipal {
 		mLocais.add(visualizarLocal);
 		visualizarLocal.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		AcaoTelaPrincipal.visualizarLocal(visualizarLocal);
+	}
 
-		JMenu mAcesso = new JMenu("Acessos");
-		menuBar.add(mAcesso);
-		mAcesso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		mAcesso.setIcon(new ImageIcon("report.png"));
-
+	private static void itensAcesso(JMenu mAcesso) {
 		JMenuItem criarAcesso = new JMenuItem("Criar");
 		mAcesso.add(criarAcesso);
 		criarAcesso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
@@ -126,11 +161,6 @@ public class TelaPrincipal {
 		mAcesso.add(visualizarAcesso);
 		visualizarAcesso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		AcaoTelaPrincipal.visualizarAcesso(visualizarAcesso);
-
-		JMenu mSobre = new JMenu("Sobre");
-		menuBar.add(mSobre);
-		mSobre.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		mSobre.setIcon(new ImageIcon("information.png"));
-
 	}
+
 }

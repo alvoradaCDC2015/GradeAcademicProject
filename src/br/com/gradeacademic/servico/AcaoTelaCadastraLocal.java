@@ -7,9 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import br.com.gradeacademic.visao.TelaLocal;
+import br.com.gradeacademic.visao.TelaCadastraLocal;
 
-public class AcaoTelaLocal extends TelaLocal {
+public class AcaoTelaCadastraLocal extends TelaCadastraLocal {
 
 	public static void botaoSalvar(JButton btnSalvar, JTextField tCampoCidade) {
 
@@ -38,18 +38,6 @@ public class AcaoTelaLocal extends TelaLocal {
 
 	}
 
-	public static void botaoNovoLocal(JButton bNovoLocal) {
 
-		bNovoLocal.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				TelaLocal.cadastrarLocal();
-
-			}
-		});
-
-	}
 
 }
