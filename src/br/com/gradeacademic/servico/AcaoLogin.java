@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class AcaoTelaLogin {
+public class AcaoLogin {
 
 	public static void botaoCancelar(JButton bCancelar) {
 		bCancelar.addActionListener(new ActionListener() {
@@ -22,25 +22,25 @@ public class AcaoTelaLogin {
 		});
 	}
 
-	public static void botaoAcessar(JButton bAcessar, JTextField tCampoUsuario, JPasswordField tCampoSenha) {
+	public static void botaoAcessar(JButton bAcessar, JTextField tUsuario, JPasswordField tSenha) {
 		bAcessar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ValidarAcesso.validar(tCampoUsuario, tCampoSenha);
+				ValidarAcesso.validar(tUsuario, tSenha);
 
 			}
 		});
 	}
 
-	public static void campoSenha(JTextField tCampoUsuario, JPasswordField tCampoSenha) {
-		tCampoSenha.addKeyListener(new KeyAdapter() {
+	public static void campoSenha(JTextField tUsuario, JPasswordField tSenha) {
+		tSenha.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent e) {
 
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-					ValidarAcesso.validar(tCampoUsuario, tCampoSenha);
+					ValidarAcesso.validar(tUsuario, tSenha);
 
 				}
 			}

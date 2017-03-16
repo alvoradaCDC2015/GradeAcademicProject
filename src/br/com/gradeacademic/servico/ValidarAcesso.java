@@ -4,9 +4,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import br.com.gradeacademic.visao.TelaLogin;
+import br.com.gradeacademic.visao.Login;
 
-public class ValidarAcesso extends TelaLogin {
+public class ValidarAcesso extends Login {
 
 	public static void validar(JTextField tCampoUsuario, JPasswordField tCampoSenha) {
 

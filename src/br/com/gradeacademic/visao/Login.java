@@ -11,13 +11,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import br.com.gradeacademic.servico.AcaoTelaLogin;
+import br.com.gradeacademic.servico.AcaoLogin;
 
-public class TelaLogin extends TelaPrincipal {
+public class Login extends Principal {
 
 	protected static JInternalFrame internalLogin;
 
-	public static void login() {
+	public static void visualizarLogin() {
 
 		internalLogin = new JInternalFrame("Login");
 		desktopPane.add(internalLogin);
@@ -33,44 +33,44 @@ public class TelaLogin extends TelaPrincipal {
 		JMenu mMenuAjuda = new JMenu("Ajuda");
 		mMenuBarLogin.add(mMenuAjuda);
 
-		JTextField tLogoProvisoria = new JTextField();
-		internalLogin.add(tLogoProvisoria);
-		tLogoProvisoria.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tLogoProvisoria.setBounds(143, 82, 218, 71);
-		tLogoProvisoria.setEnabled(false);
-		tLogoProvisoria.setHorizontalAlignment(SwingConstants.CENTER);
-		tLogoProvisoria.setText("LOGO");
-		tLogoProvisoria.setColumns(10);
+		JTextField tLogo = new JTextField();
+		internalLogin.add(tLogo);
+		tLogo.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tLogo.setBounds(143, 82, 218, 71);
+		tLogo.setEnabled(false);
+		tLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		tLogo.setText("LOGO");
+		tLogo.setColumns(10);
 
 		JLabel lUsuario = new JLabel("Usuário");
 		internalLogin.add(lUsuario);
 		lUsuario.setBounds(143, 191, 218, 17);
 		lUsuario.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
-		JTextField tCampoUsuario = new JTextField();
-		internalLogin.add(tCampoUsuario);
-		tCampoUsuario.setBounds(143, 211, 218, 29);
-		tCampoUsuario.requestFocus();
+		JTextField tUsuario = new JTextField();
+		internalLogin.add(tUsuario);
+		tUsuario.setBounds(143, 211, 218, 29);
+		tUsuario.requestFocus();
 
 		JLabel lSenha = new JLabel("Senha");
 		internalLogin.add(lSenha);
 		lSenha.setBounds(143, 263, 218, 17);
 		lSenha.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
-		JPasswordField tCampoSenha = new JPasswordField();
-		internalLogin.add(tCampoSenha);
-		tCampoSenha.setBounds(143, 282, 218, 29);
-		AcaoTelaLogin.campoSenha(tCampoUsuario, tCampoSenha);
+		JPasswordField tSenha = new JPasswordField();
+		internalLogin.add(tSenha);
+		tSenha.setBounds(143, 282, 218, 29);
+		AcaoLogin.campoSenha(tUsuario, tSenha);
 
 		JButton bAcessar = new JButton("Acessar");
 		internalLogin.add(bAcessar);
 		bAcessar.setBounds(143, 335, 119, 43);
-		AcaoTelaLogin.botaoAcessar(bAcessar, tCampoUsuario, tCampoSenha);
+		AcaoLogin.botaoAcessar(bAcessar, tUsuario, tSenha);
 
 		JButton bCancelar = new JButton("Cancelar");
 		internalLogin.add(bCancelar);
 		bCancelar.setBounds(272, 335, 88, 43);
-		AcaoTelaLogin.botaoCancelar(bCancelar);
+		AcaoLogin.botaoCancelar(bCancelar);
 
 	}
 }

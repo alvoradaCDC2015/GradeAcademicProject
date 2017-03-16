@@ -5,22 +5,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import br.com.gradeacademic.visao.TelaCadastraAcesso;
+import br.com.gradeacademic.visao.CadastraLocal;
 
-public class AcaoTelaCadastraAcesso extends TelaCadastraAcesso {
+public class AcaoCadastraLocal extends CadastraLocal {
+
+	public static void botaoSalvar(JButton bSalvar) {
+
+	}
 
 	public static void botaoCancelar(JButton btnCancelar) {
 
 		btnCancelar.addActionListener(new ActionListener() {
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				internalCadastraAcesso.dispose();
+				internalCadastro.dispose();
 
 			}
-
 		});
+
 	}
 
 }

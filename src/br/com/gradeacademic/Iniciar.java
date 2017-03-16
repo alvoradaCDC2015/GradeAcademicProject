@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import br.com.gradeacademic.visao.TelaPrincipal;
+import br.com.gradeacademic.visao.Principal;
 
 public class Iniciar {
 	public static void main(String[] args) {
@@ -20,7 +20,7 @@ public class Iniciar {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 
-		TelaPrincipal.main(args);
+		Principal.main(args);
 
 	}
 }
