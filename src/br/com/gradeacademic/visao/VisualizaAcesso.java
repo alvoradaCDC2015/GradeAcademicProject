@@ -75,6 +75,9 @@ public class VisualizaAcesso extends Principal {
 		panelTabela.add(scroll);
 		panelTabela.setLayout(null);
 		panelTabela.setBounds(30, 150, 800, 370);
+		
+		AcaoVisualizaAcesso.listarAcesso((DefaultTableModel) tabela.getModel());
+		
 	}
 
 }

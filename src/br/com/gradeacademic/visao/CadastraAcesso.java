@@ -58,7 +58,7 @@ public class CadastraAcesso extends Principal {
 		JButton bSalvar = new JButton("Salvar");
 		bSalvar.setBounds(yBound, 345, 147, 39);
 		internalCadastro.add(bSalvar);
-		AcaoCadastraAcesso.botaoSalvar(bSalvar);
+		AcaoCadastraAcesso.botaoSalvar(bSalvar, tNome, tUsuario, tSenha);
 
 		JButton bCancelar = new JButton("Cancelar");
 		bCancelar.setBounds(yBound + 150, 345, 147, 39);
