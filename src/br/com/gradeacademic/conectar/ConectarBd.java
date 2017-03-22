@@ -1,31 +1,22 @@
 package br.com.gradeacademic.conectar;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
+
+import javax.swing.JOptionPane;
 
 public class ConectarBd {
 
-	public static Connection conectar() {
+	public static void Conectar() {
 		String url = "jdbc:postgresql://localhost:5432/gradeacademic";
 		String usuario = "postgres";
-		String senha = "joao@123";
+		String senha = "123";
 
 		try {
 			Class.forName("org.postgresql.Driver");
-			return DriverManager.getConnection(url, usuario, senha);
+			DriverManager.getConnection(url, usuario, senha);
 		} catch (Exception e) {
-			throw new RuntimeException("Erro na Conexão: ", e);
+			JOptionPane.showMessageDialog(null, e, "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
-
-	}
-
-	public static void desconectar(Connection conexao) {
-		try {
-			conexao.close();
-		} catch (Exception e) {
-			throw new RuntimeException("Erro ao desconectar: ", e);
-		}
-
 	}
 
 }
