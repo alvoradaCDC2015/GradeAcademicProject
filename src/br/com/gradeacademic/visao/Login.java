@@ -26,6 +26,8 @@ public class Login extends Principal {
 		internalLogin.setLayout(null);
 		internalLogin.setBounds(100, 51, 520, 528);
 
+		AcaoLogin.fecharAplicacao(internalLogin);
+
 		JMenuBar mMenuBarLogin = new JMenuBar();
 		mMenuBarLogin.setBounds(0, 0, 514, 23);
 		internalLogin.add(mMenuBarLogin);

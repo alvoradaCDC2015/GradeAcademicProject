@@ -21,6 +21,7 @@ public class ValidarAcesso extends Login {
 			JOptionPane.showMessageDialog(null, "Logado com Sucesso!");
 
 			internalLogin.dispose();
+			
 			MenuBar();
 
 		} else {

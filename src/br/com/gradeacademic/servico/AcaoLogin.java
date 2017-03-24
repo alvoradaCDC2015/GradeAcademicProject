@@ -6,10 +6,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
-public class AcaoLogin {
+import br.com.gradeacademic.visao.Login;
+
+public class AcaoLogin extends Login {
 
 	public static void botaoCancelar(JButton bCancelar) {
 		bCancelar.addActionListener(new ActionListener() {
@@ -22,7 +28,8 @@ public class AcaoLogin {
 		});
 	}
 
-	public static void botaoAcessar(JButton bAcessar, JTextField tUsuario, JPasswordField tSenha) {
+	public static void botaoAcessar(JButton bAcessar, JTextField tUsuario,
+			JPasswordField tSenha) {
 		bAcessar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -45,6 +52,23 @@ public class AcaoLogin {
 				}
 			}
 		});
+	}
+
+	public static void fecharAplicacao(JInternalFrame internalLogin) {
+
+		internalLogin.addInternalFrameListener(new InternalFrameAdapter() {
+			public void internalFrameClosing(InternalFrameEvent e) {
+				int result = JOptionPane.showConfirmDialog(null,
+						"Deseja sair?", "Sair", JOptionPane.YES_NO_OPTION);
+
+				if (result == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+
+				internalLogin.dispose();
+			}
+		});
+
 	}
 
 }

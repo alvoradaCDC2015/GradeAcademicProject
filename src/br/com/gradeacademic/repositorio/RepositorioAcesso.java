@@ -11,8 +11,41 @@ import javax.swing.JOptionPane;
 
 import br.com.gradeacademic.conectar.ConectarBd;
 import br.com.gradeacademic.entidade.Acesso;
+import br.com.gradeacademic.visao.CadastraAcesso;
 
 public class RepositorioAcesso {
+
+	public static int ultimoId = 0;
+
+	public static void salvar(Acesso acesso) {
+
+		Connection conexao = ConectarBd.conectar();
+
+		PreparedStatement parametro = null;
+
+		ResultSet rs = null;
+
+		try {
+
+			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE id = ?");
+			parametro.setInt(1, Integer.parseInt(CadastraAcesso.tID.getText()));
+			rs = parametro.executeQuery();
+
+			if (!rs.next()) {
+				acesso.setId(retornarUltimoId());
+				criar(acesso);
+			} else {
+				acesso.setId(Integer.parseInt(CadastraAcesso.tID.getText()));
+				atualizar(acesso);
+			}
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao salvar.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+
+	}
 
 	public static void criar(Acesso acesso) {
 
@@ -22,18 +55,45 @@ public class RepositorioAcesso {
 
 		try {
 
-			parametro = conexao.prepareStatement("INSERT INTO acesso (id,nome, usuario, senha) VALUES (?,?,?,?)");
-			parametro.setInt(1, acesso.getId());
-			parametro.setString(2, acesso.getNome());
-			parametro.setString(3, acesso.getUsuario());
-			parametro.setString(4, acesso.getSenha());
+			parametro = conexao.prepareStatement("INSERT INTO acesso (nome, usuario, senha) VALUES (?,?,?)");
+			parametro.setString(1, acesso.getNome());
+			parametro.setString(2, acesso.getUsuario());
+			parametro.setString(3, acesso.getSenha());
 
 			parametro.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Acesso " + acesso.getNome() + " Salvo!");
+			JOptionPane.showMessageDialog(null, "Acesso " + retornarUltimoId() + " Criado!");
+
+			ultimoId = retornarUltimoId();
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: '" + e.getMessage() + "' ao salvar.");
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao criar.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+
+	}
+
+	public static void atualizar(Acesso acesso) {
+
+		Connection conexao = ConectarBd.conectar();
+
+		PreparedStatement parametro = null;
+
+		try {
+
+			parametro = conexao.prepareStatement("UPDATE acesso SET nome = ?, usuario = ?, senha = ? WHERE id = ?");
+			parametro.setString(1, acesso.getNome());
+			parametro.setString(2, acesso.getUsuario());
+			parametro.setString(3, acesso.getSenha());
+			parametro.setInt(4, acesso.getId());
+
+			parametro.executeUpdate();
+
+			JOptionPane.showMessageDialog(null, "Acesso " + acesso.getId() + " Atualizado!");
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao atualizar.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
@@ -65,7 +125,7 @@ public class RepositorioAcesso {
 			}
 
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro: '" + e.getMessage() + "' ao salvar.");
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao listar.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
@@ -73,35 +133,8 @@ public class RepositorioAcesso {
 		return acessos;
 
 	}
-	
-	public static void atualizar(Acesso acesso) {
 
-		Connection conexao = ConectarBd.conectar();
-
-		PreparedStatement parametro = null;
-
-		try {
-
-			parametro = conexao.prepareStatement("UPDATE acesso SET id = ?,nome = ?, usuario = ?, senha = ? WHERE id = ?");
-			parametro.setInt(1, acesso.getId());
-			parametro.setString(2, acesso.getNome());
-			parametro.setString(3, acesso.getUsuario());
-			parametro.setString(4, acesso.getSenha());
-			parametro.setInt(5, acesso.getId());
-
-			parametro.executeUpdate();
-
-			JOptionPane.showMessageDialog(null, "Acesso " + acesso.getNome() + " Atualizado!");
-
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: '" + e.getMessage() + "' ao atualizar.");
-		} finally {
-			ConectarBd.desconectar(conexao);
-		}
-
-	}
-	
-	public static void deletar(Acesso acesso) {
+	public static void deletar(int id) {
 
 		Connection conexao = ConectarBd.conectar();
 
@@ -110,17 +143,42 @@ public class RepositorioAcesso {
 		try {
 
 			parametro = conexao.prepareStatement("DELETE FROM acesso WHERE id = ?");
-			parametro.setInt(1, acesso.getId());
+			parametro.setInt(1, id);
 
 			parametro.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Acesso " + acesso.getNome() + " Excluido!");
-
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: '" + e.getMessage() + "' ao Excluir.");
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao excluir.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
+
+	}
+
+	public static int retornarUltimoId() {
+
+		Connection conexao = ConectarBd.conectar();
+
+		PreparedStatement parametro = null;
+
+		int id = 0;
+
+		try {
+
+			parametro = conexao.prepareStatement("SELECT MAX(id) FROM acesso");
+			ResultSet rs = parametro.executeQuery();
+
+			if (rs.next()) {
+				id = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Erro: " + e.getMessage() + " - ao retornar ultimo ID.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+
+		return id;
 
 	}
 
