@@ -4,12 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.table.DefaultTableModel;
 
 import br.com.gradeacademic.entidade.Acesso;
 import br.com.gradeacademic.repositorio.RepositorioAcesso;
 import br.com.gradeacademic.visao.CadastraAcesso;
-import br.com.gradeacademic.visao.VisualizaAcesso;
 
 public class AcaoCadastraAcesso extends CadastraAcesso {
 
@@ -26,14 +24,6 @@ public class AcaoCadastraAcesso extends CadastraAcesso {
 				acesso.setSenha(tSenha.getText());
 
 				RepositorioAcesso.salvar(acesso);
-
-				if (VisualizaAcesso.tabela != null) {
-					DefaultTableModel model = (DefaultTableModel) VisualizaAcesso.tabela
-							.getModel();
-					model.addRow(new Object[] { acesso.getId() + 1,
-							acesso.getNome(), acesso.getUsuario(),
-							acesso.getSenha() });
-				}
 
 				AcaoCadastraAcesso.internalCadastro.dispose();
 

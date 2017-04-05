@@ -7,7 +7,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import br.com.gradeacademic.repositorio.RepositorioAcesso;
 import br.com.gradeacademic.servico.AcaoCadastraAcesso;
 
 public class CadastraAcesso extends Principal {
@@ -30,14 +29,11 @@ public class CadastraAcesso extends Principal {
 
 		int xBound = 100;
 
-		JLabel lID = new JLabel("ID");
-		internalCadastro.add(lID);
-		lID.setBounds(100, 50, 50, 28);
-
 		tID = new JTextField();
 		internalCadastro.add(tID);
 		tID.setBounds(100, 75, 50, 28);
 		tID.setText(String.valueOf(AcaoCadastraAcesso.buscarUltimoId() + 1));
+		tID.setVisible(false);
 
 		JLabel lNome = new JLabel("Nome*");
 		internalCadastro.add(lNome);

@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import br.com.gradeacademic.conectar.ConectarBd;
 import br.com.gradeacademic.entidade.Acesso;
 import br.com.gradeacademic.visao.CadastraAcesso;
+import br.com.gradeacademic.visao.VisualizaAcesso;
 
 public class RepositorioAcesso {
 
@@ -34,9 +36,24 @@ public class RepositorioAcesso {
 			if (!rs.next()) {
 				acesso.setId(retornarUltimoId());
 				criar(acesso);
+
+				if (VisualizaAcesso.tabela != null) {
+					DefaultTableModel model = (DefaultTableModel) VisualizaAcesso.tabela.getModel();
+					model.addRow(new Object[] { acesso.getId() + 1, acesso.getNome(), acesso.getUsuario(),
+							acesso.getSenha() });
+				}
+
 			} else {
 				acesso.setId(Integer.parseInt(CadastraAcesso.tID.getText()));
 				atualizar(acesso);
+
+				if (VisualizaAcesso.tabela != null) {
+					VisualizaAcesso.tabela.setValueAt(acesso.getId() + 1, VisualizaAcesso.tabela.getSelectedRow(), 0);
+					VisualizaAcesso.tabela.setValueAt(acesso.getNome(), VisualizaAcesso.tabela.getSelectedRow(), 1);
+					VisualizaAcesso.tabela.setValueAt(acesso.getUsuario(), VisualizaAcesso.tabela.getSelectedRow(), 2);
+					VisualizaAcesso.tabela.setValueAt(acesso.getSenha(), VisualizaAcesso.tabela.getSelectedRow(), 3);
+				}
+
 			}
 
 		} catch (Exception e) {

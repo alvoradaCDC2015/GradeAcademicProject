@@ -21,7 +21,7 @@ public class AcaoVisualizaAcesso extends VisualizaAcesso {
 		List<Acesso> acessos = RepositorioAcesso.listar();
 
 		for (Acesso acesso : acessos) {
-			tabela.addRow(new Object[] { RepositorioAcesso.retornarUltimoId(), acesso.getNome(), acesso.getUsuario(), acesso.getSenha() });
+			tabela.addRow(new Object[] { acesso.getId(), acesso.getNome(), acesso.getUsuario(), acesso.getSenha() });
 		}
 
 	}
@@ -53,22 +53,6 @@ public class AcaoVisualizaAcesso extends VisualizaAcesso {
 
 				CadastraAcesso.cadastrarAcesso();
 				CadastraAcesso.setarCampos(id, nome, usuario, senha);
-
-			}
-		});
-
-	}
-
-	public static void botaoAtualizar(JButton bAtualizar) {
-
-		bAtualizar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				DefaultTableModel zerar = ((DefaultTableModel) tabela.getModel());
-				zerar.setNumRows(0);
-				listarAcesso((DefaultTableModel) tabela.getModel());
 
 			}
 		});

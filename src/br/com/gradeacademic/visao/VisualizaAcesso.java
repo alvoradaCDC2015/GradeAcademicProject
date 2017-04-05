@@ -13,11 +13,8 @@ import br.com.gradeacademic.servico.AcaoVisualizaAcesso;
 public class VisualizaAcesso extends Principal {
 
 	public static JInternalFrame internalVisualiza;
-
 	public static JTable tabela;
-
 	public static JScrollPane scroll;
-
 	public static JPanel panelTabela;
 
 	public static void visualizarAcesso() {
@@ -35,11 +32,6 @@ public class VisualizaAcesso extends Principal {
 		internalVisualiza.add(bNovo);
 		bNovo.setBounds(30, 50, 147, 39);
 		AcaoVisualizaAcesso.botaoNovo(bNovo);
-
-		JButton bAtualizar = new JButton("Atualizar");
-		internalVisualiza.add(bAtualizar);
-		bAtualizar.setBounds(30, 100, 147, 39);
-		AcaoVisualizaAcesso.botaoAtualizar(bAtualizar);
 
 		JButton bEditar = new JButton("Editar");
 		internalVisualiza.add(bEditar);
@@ -71,8 +63,7 @@ public class VisualizaAcesso extends Principal {
 		tabela.setLayout(null);
 		tabela.revalidate();
 		tabela.setBounds(0, 0, 800, 500);
-		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome",
-				"Usuário", "Senha" }, 0) {
+		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome", "Usuário", "Senha" }, 0) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;
