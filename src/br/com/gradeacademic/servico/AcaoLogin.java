@@ -14,6 +14,7 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 import br.com.gradeacademic.visao.Login;
+import br.com.gradeacademic.visao.PreCadastro;
 
 public class AcaoLogin extends Login {
 
@@ -28,8 +29,7 @@ public class AcaoLogin extends Login {
 		});
 	}
 
-	public static void botaoAcessar(JButton bAcessar, JTextField tUsuario,
-			JPasswordField tSenha) {
+	public static void botaoAcessar(JButton bAcessar, JTextField tUsuario, JPasswordField tSenha) {
 		bAcessar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -58,8 +58,7 @@ public class AcaoLogin extends Login {
 
 		internalLogin.addInternalFrameListener(new InternalFrameAdapter() {
 			public void internalFrameClosing(InternalFrameEvent e) {
-				int result = JOptionPane.showConfirmDialog(null,
-						"Deseja sair?", "Sair", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, "Deseja sair?", "Sair", JOptionPane.YES_NO_OPTION);
 
 				if (result == JOptionPane.YES_OPTION) {
 					System.exit(0);
@@ -69,6 +68,19 @@ public class AcaoLogin extends Login {
 			}
 		});
 
+	}
+
+	public static void botaoCadastrar(JButton bCadastrar) {
+		bCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tCampoUsuario.setEnabled(false);
+				tCampoSenha.setEnabled(false);
+				bAcessar.setEnabled(false);
+				bSair.setEnabled(false);
+				bCadastrar.setEnabled(false);
+				PreCadastro.JanelaPreCadastro();
+			}
+		});
 	}
 
 }
