@@ -21,7 +21,16 @@ public class AcaoVisualizaAcesso extends VisualizaAcesso {
 		List<Acesso> acessos = RepositorioAcesso.listar();
 
 		for (Acesso acesso : acessos) {
-			tabela.addRow(new Object[] { acesso.getId(), acesso.getNome(), acesso.getUsuario(), acesso.getSenha() });
+
+			String status = null;
+			if (acesso.getStatus() == 0) {
+				status = "Ativo";
+			} else {
+				status = "Inativo";
+			}
+
+			tabela.addRow(new Object[] { acesso.getId(), acesso.getNome(), acesso.getUsuario(), acesso.getSenha(),
+					acesso.getNivel(), status });
 		}
 
 	}
@@ -50,9 +59,11 @@ public class AcaoVisualizaAcesso extends VisualizaAcesso {
 				String nome = String.valueOf(tabela.getValueAt(tabela.getSelectedRow(), 1));
 				String usuario = String.valueOf(tabela.getValueAt(tabela.getSelectedRow(), 2));
 				String senha = String.valueOf(tabela.getValueAt(tabela.getSelectedRow(), 3));
+				String nivel = String.valueOf(tabela.getValueAt(tabela.getSelectedRow(), 4));
+				String status = String.valueOf((String) tabela.getValueAt(tabela.getSelectedRow(), 5));
 
 				CadastraAcesso.cadastrarAcesso();
-				CadastraAcesso.setarCampos(id, nome, usuario, senha);
+				CadastraAcesso.setarCampos(id, nome, usuario, senha, nivel, status);
 
 			}
 		});
@@ -68,30 +79,42 @@ public class AcaoVisualizaAcesso extends VisualizaAcesso {
 
 				int[] linhas = tabela.getSelectedRows();
 
-				if (tabela.getSelectedRowCount() != 0 && tabela.getSelectedRowCount() > 1) {
+				if (tabela.getSelectedRowCount() > 1) {
 
 					int desejo = JOptionPane.showConfirmDialog(null, "Deseja excluir os acessos ?", null,
 							JOptionPane.YES_NO_OPTION);
 
-					for (int i = 0; i < linhas.length; i++) {
+					if (desejo == 0) {
 
-						int ids = (int) tabela.getValueAt(linhas[i], 0);
+						for (int i = 0; i < linhas.length; i++) {
 
-						if (desejo == 0) {
-							RepositorioAcesso.deletar(ids);
+							int ids = (int) tabela.getValueAt(linhas[i], 0);
+
+							if (desejo == 0) {
+								RepositorioAcesso.deletar(ids);
+							}
+
 						}
 
 					}
 
 				} else {
-					int desejo = JOptionPane.showConfirmDialog(null,
-							"Deseja excluir os acesso do(a) " + tabela.getValueAt(tabela.getSelectedRow(), 1) + "?",
-							null, JOptionPane.YES_NO_OPTION);
 
-					if (desejo == 0) {
-						int id = (int) tabela.getValueAt(tabela.getSelectedRow(), 0);
-						RepositorioAcesso.deletar(id);
+					if (tabela.getSelectedRow() > -1) {
+
+						int desejo = JOptionPane.showConfirmDialog(null,
+								"Deseja excluir os acesso do(a) " + tabela.getValueAt(tabela.getSelectedRow(), 1) + "?",
+								null, JOptionPane.YES_NO_OPTION);
+
+						if (desejo == 0) {
+							int id = (int) tabela.getValueAt(tabela.getSelectedRow(), 0);
+							RepositorioAcesso.deletar(id);
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(null, "Selecione um acesso.");
 					}
+
 				}
 
 				for (int i = 0; i < linhas.length; i++) {

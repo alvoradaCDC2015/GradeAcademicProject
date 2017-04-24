@@ -31,14 +31,21 @@ public class RepositorioAcesso {
 			parametro.setInt(1, Integer.parseInt(CadastraAcesso.tID.getText()));
 			rs = parametro.executeQuery();
 
+			String status = null;
+			if (acesso.getStatus() == 0) {
+				status = "Ativo";
+			} else {
+				status = "Inativo";
+			}
+
 			if (!rs.next()) {
 				acesso.setId(retornarUltimoId());
 				criar(acesso);
 
 				if (VisualizaAcesso.tabela != null) {
 					DefaultTableModel model = (DefaultTableModel) VisualizaAcesso.tabela.getModel();
-					model.addRow(new Object[] { acesso.getId() + 1, acesso.getNome(), acesso.getUsuario(),
-							acesso.getSenha(), acesso.getNivel(), acesso.getStatus() });
+					model.addRow(new Object[] { retornarUltimoId(), acesso.getNome(), acesso.getUsuario(),
+							acesso.getSenha(), acesso.getNivel(), status });
 				}
 
 			} else {
@@ -51,7 +58,7 @@ public class RepositorioAcesso {
 					VisualizaAcesso.tabela.setValueAt(acesso.getUsuario(), VisualizaAcesso.tabela.getSelectedRow(), 2);
 					VisualizaAcesso.tabela.setValueAt(acesso.getSenha(), VisualizaAcesso.tabela.getSelectedRow(), 3);
 					VisualizaAcesso.tabela.setValueAt(acesso.getNivel(), VisualizaAcesso.tabela.getSelectedRow(), 4);
-					VisualizaAcesso.tabela.setValueAt(acesso.getStatus(), VisualizaAcesso.tabela.getSelectedRow(), 5);
+					VisualizaAcesso.tabela.setValueAt(status, VisualizaAcesso.tabela.getSelectedRow(), 5);
 				}
 
 			}

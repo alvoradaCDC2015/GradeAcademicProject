@@ -64,24 +64,24 @@ public class CadastraAcesso extends Principal {
 		tSenha = new JTextField();
 		internalCadastro.add(tSenha);
 		tSenha.setBounds(xBound, 235, 303, 28);
-		
+
 		JLabel lNivel = new JLabel("Nível de acesso*");
 		internalCadastro.add(lNivel);
 		lNivel.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lNivel.setBounds(xBound, 275, 303, 28);
-		
+
 		cNivel = new JComboBox<>();
 		internalCadastro.add(cNivel);
 		cNivel.setBounds(xBound, 305, 150, 28);
 		cNivel.addItem("Professor");
 		cNivel.addItem("Coordenador");
 		cNivel.addItem("Administrador");
-		
+
 		JLabel lStatus = new JLabel("Status*");
 		internalCadastro.add(lStatus);
 		lStatus.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lStatus.setBounds(xBound + 160, 275, 303, 28);
-		
+
 		cStatus = new JComboBox<>();
 		internalCadastro.add(cStatus);
 		cStatus.setBounds(xBound + 160, 305, 150, 28);
@@ -100,12 +100,28 @@ public class CadastraAcesso extends Principal {
 
 	}
 
-	public static void setarCampos(String id, String nome, String usuario, String senha) {
+	public static void setarCampos(String id, String nome, String usuario, String senha, String nivel, String status) {
+
+		int indexNivel = 0;
+
+		if (nivel.equals("Coordenador")) {
+			indexNivel = 1;
+		} else if (nivel.equals("Administrador")) {
+			indexNivel = 2;
+		}
+
+		int indexStatus = 0;
+
+		if (status.equals("Inativo")) {
+			indexStatus = 1;
+		}
 
 		tID.setText(id);
 		tNome.setText(nome);
 		tUsuario.setText(usuario);
 		tSenha.setText(senha);
+		cNivel.setSelectedIndex(indexNivel);
+		cStatus.setSelectedIndex(indexStatus);
 
 	}
 
