@@ -15,6 +15,12 @@ public class PreCadastro {
 
 	public static JFrame tela;
 
+	public static JTextField tNome;
+	public static JTextField tUsuario;
+	public static JTextField tLogin;
+	public static JPasswordField tSenha;
+	public static JPasswordField tConfirmarSenha;
+
 	public static void JanelaPreCadastro() {
 
 		try {
@@ -38,55 +44,56 @@ public class PreCadastro {
 		tela.setLayout(null);
 		tela.setVisible(true);
 
-		JLabel lnome = new JLabel("Nome");
-		lnome.setBounds(10, 0, 140, 90);
-		tela.add(lnome);
+		JLabel lNome = new JLabel("Nome");
+		lNome.setBounds(10, 0, 140, 90);
+		tela.add(lNome);
 
-		JTextField cnome = new JTextField();
-		cnome.setBounds(10, 60, 345, 30);
-		tela.add(cnome);
+		tNome = new JTextField();
+		tNome.setBounds(10, 60, 345, 30);
+		tela.add(tNome);
 
-		JLabel lsobrenome = new JLabel("Sobrenome");
-		lsobrenome.setBounds(10, 80, 140, 90);
-		tela.add(lsobrenome);
+		JLabel lUsuario = new JLabel("Usuário");
+		lUsuario.setBounds(10, 80, 140, 90);
+		tela.add(lUsuario);
 
-		JTextField csobrenome = new JTextField();
-		csobrenome.setBounds(10, 140, 345, 30);
-		tela.add(csobrenome);
+		tUsuario = new JTextField();
+		tUsuario.setBounds(10, 140, 345, 30);
+		tela.add(tUsuario);
 
-		JLabel llogin = new JLabel("Login");
-		llogin.setBounds(10, 160, 140, 90);
-		tela.add(llogin);
+		JLabel lLogin = new JLabel("Login");
+		lLogin.setBounds(10, 160, 140, 90);
+		tela.add(lLogin);
 
-		JTextField clogin = new JTextField();
-		clogin.setBounds(10, 220, 345, 30);
-		tela.add(clogin);
+		tLogin = new JTextField();
+		tLogin.setBounds(10, 220, 345, 30);
+		tela.add(tLogin);
 
-		JLabel lsenha = new JLabel("Senha");
-		lsenha.setBounds(10, 240, 150, 90);
-		tela.add(lsenha);
+		JLabel lSenha = new JLabel("Senha");
+		lSenha.setBounds(10, 240, 150, 90);
+		tela.add(lSenha);
 
-		JPasswordField csenha = new JPasswordField();
-		csenha.setBounds(10, 300, 150, 30);
-		tela.add(csenha);
+		tSenha = new JPasswordField();
+		tSenha.setBounds(10, 300, 150, 30);
+		tela.add(tSenha);
 
-		JLabel lconfirmarsenha = new JLabel("Confirmar Senha");
-		lconfirmarsenha.setBounds(200, 240, 150, 90);
-		tela.add(lconfirmarsenha);
+		JLabel lConfirmarSenha = new JLabel("Confirmar Senha");
+		lConfirmarSenha.setBounds(200, 240, 150, 90);
+		tela.add(lConfirmarSenha);
 
-		JPasswordField cconfirmarsenha = new JPasswordField();
-		cconfirmarsenha.setBounds(200, 300, 155, 30);
-		tela.add(cconfirmarsenha);
+		tConfirmarSenha = new JPasswordField();
+		tConfirmarSenha.setBounds(200, 300, 155, 30);
+		tela.add(tConfirmarSenha);
 
-		JButton bconfirmar = new JButton("Confirmar");
-		bconfirmar.setBounds(35, 400, 100, 30);
-		tela.add(bconfirmar);
+		JButton bConfirmar = new JButton("Confirmar");
+		bConfirmar.setBounds(35, 400, 100, 30);
+		AcaoPreCadastro.botaoConfirmar(bConfirmar);
+		tela.add(bConfirmar);
 
-		JButton bvoltar = new JButton("Voltar");
-		bvoltar.setBounds(230, 400, 100, 30);
-		AcaoPreCadastro.botaoVoltar(bvoltar);
-		tela.add(bvoltar);
-		
+		JButton bVoltar = new JButton("Voltar");
+		bVoltar.setBounds(230, 400, 100, 30);
+		AcaoPreCadastro.botaoVoltar(bVoltar);
+		tela.add(bVoltar);
+
 		AcaoPreCadastro.fecharFrame();
 	}
 }

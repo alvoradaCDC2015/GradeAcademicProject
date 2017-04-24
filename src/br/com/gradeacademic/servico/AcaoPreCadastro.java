@@ -7,20 +7,26 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 
+import br.com.gradeacademic.entidade.Acesso;
+import br.com.gradeacademic.repositorio.RepositorioAcesso;
 import br.com.gradeacademic.visao.Login;
 import br.com.gradeacademic.visao.PreCadastro;
 
 public class AcaoPreCadastro extends PreCadastro {
 
+	private static void habilitarCampos() {
+		Login.tCampoUsuario.setEnabled(true);
+		Login.tCampoSenha.setEnabled(true);
+		Login.bAcessar.setEnabled(true);
+		Login.bSair.setEnabled(true);
+		Login.bCadastrar.setEnabled(true);
+	}
+
 	public static void botaoVoltar(JButton bvoltar) {
 		bvoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Login.tCampoUsuario.setEnabled(true);
-				Login.tCampoSenha.setEnabled(true);
-				Login.bAcessar.setEnabled(true);
-				Login.bSair.setEnabled(true);
-				Login.bCadastrar.setEnabled(true);
+				habilitarCampos();
 
 				tela.dispose();
 
@@ -34,11 +40,31 @@ public class AcaoPreCadastro extends PreCadastro {
 			@Override
 			public void windowClosing(WindowEvent e) {
 
-				Login.tCampoUsuario.setEnabled(true);
-				Login.tCampoSenha.setEnabled(true);
-				Login.bAcessar.setEnabled(true);
-				Login.bSair.setEnabled(true);
-				Login.bCadastrar.setEnabled(true);
+				habilitarCampos();
+
+			}
+
+		});
+
+	}
+
+	public static void botaoConfirmar(JButton bConfirmar) {
+
+		bConfirmar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				Acesso acesso = new Acesso();
+				acesso.setNome(tNome.getText());
+				acesso.setUsuario(tUsuario.getText());
+				acesso.setSenha(tSenha.getPassword().toString());
+
+				RepositorioAcesso.salvar(acesso);
+
+				habilitarCampos();
+
+				tela.dispose();
 
 			}
 		});

@@ -17,8 +17,6 @@ import br.com.gradeacademic.visao.VisualizaAcesso;
 
 public class RepositorioAcesso {
 
-	public static int ultimoId = 0;
-
 	public static void salvar(Acesso acesso) {
 
 		Connection conexao = ConectarBd.conectar();
@@ -40,7 +38,7 @@ public class RepositorioAcesso {
 				if (VisualizaAcesso.tabela != null) {
 					DefaultTableModel model = (DefaultTableModel) VisualizaAcesso.tabela.getModel();
 					model.addRow(new Object[] { acesso.getId() + 1, acesso.getNome(), acesso.getUsuario(),
-							acesso.getSenha() });
+							acesso.getSenha(), acesso.getNivel(), acesso.getStatus() });
 				}
 
 			} else {
@@ -52,6 +50,8 @@ public class RepositorioAcesso {
 					VisualizaAcesso.tabela.setValueAt(acesso.getNome(), VisualizaAcesso.tabela.getSelectedRow(), 1);
 					VisualizaAcesso.tabela.setValueAt(acesso.getUsuario(), VisualizaAcesso.tabela.getSelectedRow(), 2);
 					VisualizaAcesso.tabela.setValueAt(acesso.getSenha(), VisualizaAcesso.tabela.getSelectedRow(), 3);
+					VisualizaAcesso.tabela.setValueAt(acesso.getNivel(), VisualizaAcesso.tabela.getSelectedRow(), 4);
+					VisualizaAcesso.tabela.setValueAt(acesso.getStatus(), VisualizaAcesso.tabela.getSelectedRow(), 5);
 				}
 
 			}
@@ -72,16 +72,17 @@ public class RepositorioAcesso {
 
 		try {
 
-			parametro = conexao.prepareStatement("INSERT INTO acesso (nome, usuario, senha) VALUES (?,?,?)");
+			parametro = conexao
+					.prepareStatement("INSERT INTO acesso (nome, usuario, senha, nivel, status) VALUES (?,?,?,?,?)");
 			parametro.setString(1, acesso.getNome());
 			parametro.setString(2, acesso.getUsuario());
 			parametro.setString(3, acesso.getSenha());
+			parametro.setString(4, acesso.getNivel());
+			parametro.setInt(5, acesso.getStatus());
 
 			parametro.executeUpdate();
 
 			JOptionPane.showMessageDialog(null, "Acesso " + retornarUltimoId() + " Criado!");
-
-			ultimoId = retornarUltimoId();
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao criar.");
@@ -99,11 +100,14 @@ public class RepositorioAcesso {
 
 		try {
 
-			parametro = conexao.prepareStatement("UPDATE acesso SET nome = ?, usuario = ?, senha = ? WHERE id = ?");
+			parametro = conexao.prepareStatement(
+					"UPDATE acesso SET nome = ?, usuario = ?, senha = ?, nivel = ?, status = ? WHERE id = ?");
 			parametro.setString(1, acesso.getNome());
 			parametro.setString(2, acesso.getUsuario());
 			parametro.setString(3, acesso.getSenha());
-			parametro.setInt(4, acesso.getId());
+			parametro.setString(4, acesso.getNivel());
+			parametro.setInt(5, acesso.getStatus());
+			parametro.setInt(6, acesso.getId());
 
 			parametro.executeUpdate();
 
@@ -136,6 +140,8 @@ public class RepositorioAcesso {
 				acesso.setNome(resultAcesso.getString("nome"));
 				acesso.setUsuario(resultAcesso.getString("usuario"));
 				acesso.setSenha(resultAcesso.getString("senha"));
+				acesso.setNivel(resultAcesso.getString("nivel"));
+				acesso.setStatus(Integer.parseInt(resultAcesso.getString("status")));
 
 				acessos.add(acesso);
 

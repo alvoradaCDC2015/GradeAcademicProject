@@ -22,6 +22,8 @@ public class AcaoCadastraAcesso extends CadastraAcesso {
 				acesso.setNome(tNome.getText());
 				acesso.setUsuario(tUsuario.getText());
 				acesso.setSenha(tSenha.getText());
+				acesso.setNivel((String) cNivel.getSelectedItem());
+				acesso.setStatus(cStatus.getSelectedIndex());
 
 				RepositorioAcesso.salvar(acesso);
 
@@ -48,7 +50,7 @@ public class AcaoCadastraAcesso extends CadastraAcesso {
 
 	public static int buscarUltimoId() {
 
-		return RepositorioAcesso.ultimoId;
+		return RepositorioAcesso.retornarUltimoId();
 	}
 
 }
