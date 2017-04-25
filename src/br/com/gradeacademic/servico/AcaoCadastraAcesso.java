@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.gradeacademic.entidade.Acesso;
@@ -28,45 +27,35 @@ public class AcaoCadastraAcesso extends CadastraAcesso {
 				acesso.setNivel(cNivel.getSelectedIndex());
 				acesso.setStatus(cStatus.getSelectedIndex());
 
-				boolean usuarioExiste = RepositorioAcesso.validarUsuarioExistente(acesso.getUsuario());
+				boolean criou = RepositorioAcesso.salvar(acesso);
 
-				if (!usuarioExiste) {
+				String status = ValidarAcesso.validarStatus(acesso);
+				String nivel = ValidarAcesso.validarNivelDeAcesso(acesso);
 
-					boolean criou = RepositorioAcesso.salvar(acesso);
+				if (criou) {
 
-					String status = ValidarAcesso.validarStatus(acesso);
-					String nivel = ValidarAcesso.validarNivelDeAcesso(acesso);
-
-					if (criou) {
-
-						if (VisualizaAcesso.tabela != null) {
-							DefaultTableModel model = (DefaultTableModel) VisualizaAcesso.tabela.getModel();
-							model.addRow(new Object[] { buscarUltimoId(), acesso.getNome(), acesso.getUsuario(),
-									acesso.getSenha(), nivel, status });
-						}
-
-					} else {
-
-						if (VisualizaAcesso.tabela != null && VisualizaAcesso.tabela.getSelectedRow() > 0) {
-							VisualizaAcesso.tabela.setValueAt(acesso.getId(), VisualizaAcesso.tabela.getSelectedRow(),
-									0);
-							VisualizaAcesso.tabela.setValueAt(acesso.getNome(), VisualizaAcesso.tabela.getSelectedRow(),
-									1);
-							VisualizaAcesso.tabela.setValueAt(acesso.getUsuario(),
-									VisualizaAcesso.tabela.getSelectedRow(), 2);
-							VisualizaAcesso.tabela.setValueAt(acesso.getSenha(),
-									VisualizaAcesso.tabela.getSelectedRow(), 3);
-							VisualizaAcesso.tabela.setValueAt(nivel, VisualizaAcesso.tabela.getSelectedRow(), 4);
-							VisualizaAcesso.tabela.setValueAt(status, VisualizaAcesso.tabela.getSelectedRow(), 5);
-						}
-
+					if (VisualizaAcesso.tabela != null) {
+						DefaultTableModel model = (DefaultTableModel) VisualizaAcesso.tabela.getModel();
+						model.addRow(new Object[] { buscarUltimoId(), acesso.getNome(), acesso.getUsuario(),
+								acesso.getSenha(), nivel, status });
 					}
 
-					AcaoCadastraAcesso.internalCadastro.dispose();
-
 				} else {
-					JOptionPane.showMessageDialog(null, "Usuário já existente.");
+
+					if (VisualizaAcesso.tabela != null && VisualizaAcesso.tabela.getSelectedRow() > 0) {
+						VisualizaAcesso.tabela.setValueAt(acesso.getId(), VisualizaAcesso.tabela.getSelectedRow(), 0);
+						VisualizaAcesso.tabela.setValueAt(acesso.getNome(), VisualizaAcesso.tabela.getSelectedRow(), 1);
+						VisualizaAcesso.tabela.setValueAt(acesso.getUsuario(), VisualizaAcesso.tabela.getSelectedRow(),
+								2);
+						VisualizaAcesso.tabela.setValueAt(acesso.getSenha(), VisualizaAcesso.tabela.getSelectedRow(),
+								3);
+						VisualizaAcesso.tabela.setValueAt(nivel, VisualizaAcesso.tabela.getSelectedRow(), 4);
+						VisualizaAcesso.tabela.setValueAt(status, VisualizaAcesso.tabela.getSelectedRow(), 5);
+					}
+
 				}
+
+				AcaoCadastraAcesso.internalCadastro.dispose();
 
 			}
 		});
