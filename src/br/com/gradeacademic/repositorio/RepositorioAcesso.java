@@ -177,7 +177,7 @@ public class RepositorioAcesso {
 		return id;
 	}
 
-	public static boolean validarLoginExistente(String usuario) {
+	public static boolean validarUsuarioExistente(String usuario) {
 
 		Connection conexao = ConectarBd.conectar();
 		PreparedStatement parametro = null;
@@ -223,7 +223,7 @@ public class RepositorioAcesso {
 				acesso.setNivel(Integer.parseInt(resultAcesso.getString("nivel")));
 				acesso.setStatus(Integer.parseInt(resultAcesso.getString("status")));
 
-				if (senha.equals(acesso.getSenha())) {
+				if (senha.equals(acesso.getSenha()) && acesso.getStatus() == 0) {
 					return true;
 				}
 

@@ -28,7 +28,7 @@ public class AcaoCadastraAcesso extends CadastraAcesso {
 				acesso.setNivel(cNivel.getSelectedIndex());
 				acesso.setStatus(cStatus.getSelectedIndex());
 
-				boolean usuarioExiste = RepositorioAcesso.validarLoginExistente(acesso.getUsuario());
+				boolean usuarioExiste = RepositorioAcesso.validarUsuarioExistente(acesso.getUsuario());
 
 				if (!usuarioExiste) {
 
