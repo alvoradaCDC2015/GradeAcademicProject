@@ -22,15 +22,11 @@ public class AcaoVisualizaAcesso extends VisualizaAcesso {
 
 		for (Acesso acesso : acessos) {
 
-			String status = null;
-			if (acesso.getStatus() == 0) {
-				status = "Ativo";
-			} else {
-				status = "Inativo";
-			}
+			String status = ValidarAcesso.validarStatus(acesso);
+			String nivel = ValidarAcesso.validarNivelDeAcesso(acesso);
 
 			tabela.addRow(new Object[] { acesso.getId(), acesso.getNome(), acesso.getUsuario(), acesso.getSenha(),
-					acesso.getNivel(), status });
+					nivel, status });
 		}
 
 	}
@@ -79,10 +75,10 @@ public class AcaoVisualizaAcesso extends VisualizaAcesso {
 
 				int[] linhas = tabela.getSelectedRows();
 
-				if (tabela.getSelectedRowCount() > 1) {
+				if (tabela.getSelectedRowCount() > 0) {
 
-					int desejo = JOptionPane.showConfirmDialog(null, "Deseja excluir os acessos ?", null,
-							JOptionPane.YES_NO_OPTION);
+					int desejo = JOptionPane.showConfirmDialog(null, "Deseja inativar o(s) acesso(s) ?",
+							"Inativar Acesso", JOptionPane.YES_NO_OPTION);
 
 					if (desejo == 0) {
 
@@ -91,35 +87,22 @@ public class AcaoVisualizaAcesso extends VisualizaAcesso {
 							int ids = (int) tabela.getValueAt(linhas[i], 0);
 
 							if (desejo == 0) {
-								RepositorioAcesso.deletar(ids);
+								RepositorioAcesso.inativar(ids);
 							}
 
+						}
+
+						for (int i = 0; i < linhas.length; i++) {
+							DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+							model.setValueAt("Inativo", linhas[i], 5);
 						}
 
 					}
 
 				} else {
 
-					if (tabela.getSelectedRow() > -1) {
+					JOptionPane.showMessageDialog(null, "Selecione um acesso.");
 
-						int desejo = JOptionPane.showConfirmDialog(null,
-								"Deseja excluir os acesso do(a) " + tabela.getValueAt(tabela.getSelectedRow(), 1) + "?",
-								null, JOptionPane.YES_NO_OPTION);
-
-						if (desejo == 0) {
-							int id = (int) tabela.getValueAt(tabela.getSelectedRow(), 0);
-							RepositorioAcesso.deletar(id);
-						}
-
-					} else {
-						JOptionPane.showMessageDialog(null, "Selecione um acesso.");
-					}
-
-				}
-
-				for (int i = 0; i < linhas.length; i++) {
-					DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-					model.removeRow(linhas[0]);
 				}
 
 			}

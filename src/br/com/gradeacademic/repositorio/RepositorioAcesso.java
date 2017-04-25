@@ -8,59 +8,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 import br.com.gradeacademic.conectar.ConectarBd;
 import br.com.gradeacademic.entidade.Acesso;
 import br.com.gradeacademic.visao.CadastraAcesso;
-import br.com.gradeacademic.visao.VisualizaAcesso;
 
 public class RepositorioAcesso {
 
-	public static void salvar(Acesso acesso) {
+	public static boolean salvar(Acesso acesso) {
 
 		Connection conexao = ConectarBd.conectar();
-
 		PreparedStatement parametro = null;
-
 		ResultSet rs = null;
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE id = ?");
-			parametro.setInt(1, Integer.parseInt(CadastraAcesso.tID.getText()));
-			rs = parametro.executeQuery();
+			boolean usuarioExiste = validarLoginExistente(acesso.getUsuario());
 
-			String status = null;
-			if (acesso.getStatus() == 0) {
-				status = "Ativo";
-			} else {
-				status = "Inativo";
-			}
+			if (!usuarioExiste) {
 
-			if (!rs.next()) {
-				acesso.setId(retornarUltimoId());
-				criar(acesso);
+				parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE id = ?");
+				parametro.setInt(1, Integer.parseInt(CadastraAcesso.tID.getText()));
+				rs = parametro.executeQuery();
 
-				if (VisualizaAcesso.tabela != null) {
-					DefaultTableModel model = (DefaultTableModel) VisualizaAcesso.tabela.getModel();
-					model.addRow(new Object[] { retornarUltimoId(), acesso.getNome(), acesso.getUsuario(),
-							acesso.getSenha(), acesso.getNivel(), status });
+				if (!rs.next()) {
+
+					acesso.setId(retornarUltimoId());
+					criar(acesso);
+					return true;
+
+				} else {
+
+					acesso.setId(Integer.parseInt(CadastraAcesso.tID.getText()));
+					atualizar(acesso);
 				}
 
 			} else {
-				acesso.setId(Integer.parseInt(CadastraAcesso.tID.getText()));
-				atualizar(acesso);
-
-				if (VisualizaAcesso.tabela != null) {
-					VisualizaAcesso.tabela.setValueAt(acesso.getId() + 1, VisualizaAcesso.tabela.getSelectedRow(), 0);
-					VisualizaAcesso.tabela.setValueAt(acesso.getNome(), VisualizaAcesso.tabela.getSelectedRow(), 1);
-					VisualizaAcesso.tabela.setValueAt(acesso.getUsuario(), VisualizaAcesso.tabela.getSelectedRow(), 2);
-					VisualizaAcesso.tabela.setValueAt(acesso.getSenha(), VisualizaAcesso.tabela.getSelectedRow(), 3);
-					VisualizaAcesso.tabela.setValueAt(acesso.getNivel(), VisualizaAcesso.tabela.getSelectedRow(), 4);
-					VisualizaAcesso.tabela.setValueAt(status, VisualizaAcesso.tabela.getSelectedRow(), 5);
-				}
-
+				JOptionPane.showMessageDialog(null, "Usuário já existente.");
 			}
 
 		} catch (Exception e) {
@@ -69,12 +53,12 @@ public class RepositorioAcesso {
 			ConectarBd.desconectar(conexao);
 		}
 
+		return false;
 	}
 
 	public static void criar(Acesso acesso) {
 
 		Connection conexao = ConectarBd.conectar();
-
 		PreparedStatement parametro = null;
 
 		try {
@@ -84,25 +68,22 @@ public class RepositorioAcesso {
 			parametro.setString(1, acesso.getNome());
 			parametro.setString(2, acesso.getUsuario());
 			parametro.setString(3, acesso.getSenha());
-			parametro.setString(4, acesso.getNivel());
+			parametro.setInt(4, acesso.getNivel());
 			parametro.setInt(5, acesso.getStatus());
-
 			parametro.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Acesso " + retornarUltimoId() + " Criado!");
+			JOptionPane.showMessageDialog(null, "Acesso " + retornarUltimoId() + " Salvo!");
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao criar.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
-
 	}
 
 	public static void atualizar(Acesso acesso) {
 
 		Connection conexao = ConectarBd.conectar();
-
 		PreparedStatement parametro = null;
 
 		try {
@@ -112,10 +93,9 @@ public class RepositorioAcesso {
 			parametro.setString(1, acesso.getNome());
 			parametro.setString(2, acesso.getUsuario());
 			parametro.setString(3, acesso.getSenha());
-			parametro.setString(4, acesso.getNivel());
+			parametro.setInt(4, acesso.getNivel());
 			parametro.setInt(5, acesso.getStatus());
 			parametro.setInt(6, acesso.getId());
-
 			parametro.executeUpdate();
 
 			JOptionPane.showMessageDialog(null, "Acesso " + acesso.getId() + " Atualizado!");
@@ -125,7 +105,6 @@ public class RepositorioAcesso {
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
-
 	}
 
 	public static List<Acesso> listar() {
@@ -137,7 +116,7 @@ public class RepositorioAcesso {
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT * FROM acesso");
+			parametro = conexao.prepareStatement("SELECT * FROM acesso ORDER BY id");
 			resultAcesso = parametro.executeQuery();
 
 			while (resultAcesso.next()) {
@@ -147,9 +126,8 @@ public class RepositorioAcesso {
 				acesso.setNome(resultAcesso.getString("nome"));
 				acesso.setUsuario(resultAcesso.getString("usuario"));
 				acesso.setSenha(resultAcesso.getString("senha"));
-				acesso.setNivel(resultAcesso.getString("nivel"));
+				acesso.setNivel(Integer.parseInt(resultAcesso.getString("nivel")));
 				acesso.setStatus(Integer.parseInt(resultAcesso.getString("status")));
-
 				acessos.add(acesso);
 
 			}
@@ -161,20 +139,19 @@ public class RepositorioAcesso {
 		}
 
 		return acessos;
-
 	}
 
-	public static void deletar(int id) {
+	public static void inativar(int id) {
 
 		Connection conexao = ConectarBd.conectar();
-
 		PreparedStatement parametro = null;
+		int statusInativo = 1;
 
 		try {
 
-			parametro = conexao.prepareStatement("DELETE FROM acesso WHERE id = ?");
-			parametro.setInt(1, id);
-
+			parametro = conexao.prepareStatement("UPDATE acesso SET status = ? WHERE id = ?");
+			parametro.setInt(1, statusInativo);
+			parametro.setInt(2, id);
 			parametro.executeUpdate();
 
 		} catch (Exception e) {
@@ -182,15 +159,12 @@ public class RepositorioAcesso {
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
-
 	}
 
 	public static int retornarUltimoId() {
 
 		Connection conexao = ConectarBd.conectar();
-
 		PreparedStatement parametro = null;
-
 		int id = 0;
 
 		try {
@@ -203,12 +177,73 @@ public class RepositorioAcesso {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Erro: " + e.getMessage() + " - ao retornar ultimo ID.");
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao retornar ultimo ID.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
 
 		return id;
+	}
+
+	public static boolean validarLoginExistente(String usuario) {
+
+		Connection conexao = ConectarBd.conectar();
+		PreparedStatement parametro = null;
+
+		try {
+
+			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE usuario = ?");
+			parametro.setString(1, usuario);
+			ResultSet resultAcesso = parametro.executeQuery();
+
+			if (resultAcesso.next()) {
+				return true;
+			}
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao validar login.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+
+		return false;
+
+	}
+
+	public static boolean validarLogin(String usuario, String senha) {
+
+		Connection conexao = ConectarBd.conectar();
+		PreparedStatement parametro = null;
+
+		try {
+
+			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE usuario = ?");
+			parametro.setString(1, usuario);
+			ResultSet resultAcesso = parametro.executeQuery();
+
+			if (resultAcesso.next()) {
+
+				Acesso acesso = new Acesso();
+				acesso.setId(resultAcesso.getInt("id"));
+				acesso.setNome(resultAcesso.getString("nome"));
+				acesso.setUsuario(resultAcesso.getString("usuario"));
+				acesso.setSenha(resultAcesso.getString("senha"));
+				acesso.setNivel(Integer.parseInt(resultAcesso.getString("nivel")));
+				acesso.setStatus(Integer.parseInt(resultAcesso.getString("status")));
+
+				if (senha.equals(acesso.getSenha())) {
+					return true;
+				}
+
+			}
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao validar login.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+
+		return false;
 
 	}
 

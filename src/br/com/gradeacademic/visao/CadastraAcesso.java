@@ -103,7 +103,6 @@ public class CadastraAcesso extends Principal {
 	public static void setarCampos(String id, String nome, String usuario, String senha, String nivel, String status) {
 
 		int indexNivel = 0;
-
 		if (nivel.equals("Coordenador")) {
 			indexNivel = 1;
 		} else if (nivel.equals("Administrador")) {
@@ -111,7 +110,6 @@ public class CadastraAcesso extends Principal {
 		}
 
 		int indexStatus = 0;
-
 		if (status.equals("Inativo")) {
 			indexStatus = 1;
 		}

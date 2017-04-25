@@ -38,10 +38,10 @@ public class VisualizaAcesso extends Principal {
 		bEditar.setBounds(180, 50, 147, 39);
 		AcaoVisualizaAcesso.botaoEditar(bEditar, tabela);
 
-		JButton bRemover = new JButton("Remover");
-		internalVisualiza.add(bRemover);
-		bRemover.setBounds(330, 50, 147, 39);
-		AcaoVisualizaAcesso.botaoRemover(bRemover);
+		JButton bInativar = new JButton("Inativar");
+		internalVisualiza.add(bInativar);
+		bInativar.setBounds(330, 50, 147, 39);
+		AcaoVisualizaAcesso.botaoRemover(bInativar);
 
 		JTextField tBusca = new JTextField();
 		internalVisualiza.add(tBusca);

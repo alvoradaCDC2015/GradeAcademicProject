@@ -34,7 +34,7 @@ public class AcaoLogin extends Login {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ValidarAcesso.validar(tUsuario, tSenha);
+				ValidarAcesso.validarLogin(tUsuario, tSenha);
 
 			}
 		});
@@ -47,7 +47,7 @@ public class AcaoLogin extends Login {
 
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-					ValidarAcesso.validar(tUsuario, tSenha);
+					ValidarAcesso.validarLogin(tUsuario, tSenha);
 
 				}
 			}
