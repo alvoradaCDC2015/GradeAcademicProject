@@ -23,28 +23,20 @@ public class RepositorioAcesso {
 
 		try {
 
-			boolean usuarioExiste = validarLoginExistente(acesso.getUsuario());
+			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE id = ?");
+			parametro.setInt(1, Integer.parseInt(CadastraAcesso.tID.getText()));
+			rs = parametro.executeQuery();
 
-			if (!usuarioExiste) {
+			if (!rs.next()) {
 
-				parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE id = ?");
-				parametro.setInt(1, Integer.parseInt(CadastraAcesso.tID.getText()));
-				rs = parametro.executeQuery();
-
-				if (!rs.next()) {
-
-					acesso.setId(retornarUltimoId());
-					criar(acesso);
-					return true;
-
-				} else {
-
-					acesso.setId(Integer.parseInt(CadastraAcesso.tID.getText()));
-					atualizar(acesso);
-				}
+				acesso.setId(retornarUltimoId());
+				criar(acesso);
+				return true;
 
 			} else {
-				JOptionPane.showMessageDialog(null, "Usuário já existente.");
+
+				acesso.setId(Integer.parseInt(CadastraAcesso.tID.getText()));
+				atualizar(acesso);
 			}
 
 		} catch (Exception e) {
@@ -185,7 +177,7 @@ public class RepositorioAcesso {
 		return id;
 	}
 
-	public static boolean validarLoginExistente(String usuario) {
+	public static boolean validarUsuarioExistente(String usuario) {
 
 		Connection conexao = ConectarBd.conectar();
 		PreparedStatement parametro = null;
@@ -231,7 +223,7 @@ public class RepositorioAcesso {
 				acesso.setNivel(Integer.parseInt(resultAcesso.getString("nivel")));
 				acesso.setStatus(Integer.parseInt(resultAcesso.getString("status")));
 
-				if (senha.equals(acesso.getSenha())) {
+				if (senha.equals(acesso.getSenha()) && acesso.getStatus() == 0) {
 					return true;
 				}
 

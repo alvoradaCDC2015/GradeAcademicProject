@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.gradeacademic.entidade.Acesso;
@@ -26,6 +27,14 @@ public class AcaoCadastraAcesso extends CadastraAcesso {
 				acesso.setSenha(tSenha.getText());
 				acesso.setNivel(cNivel.getSelectedIndex());
 				acesso.setStatus(cStatus.getSelectedIndex());
+
+				boolean usuarioExiste = RepositorioAcesso.validarUsuarioExistente(acesso.getUsuario());
+
+				if (!usuarioExiste) {
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Usuário já existente.");
+				}
 
 				boolean criou = RepositorioAcesso.salvar(acesso);
 

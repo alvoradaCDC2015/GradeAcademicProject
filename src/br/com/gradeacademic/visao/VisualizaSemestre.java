@@ -76,6 +76,5 @@ public class VisualizaSemestre extends Principal {
 		panelTabela.setLayout(null);
 		panelTabela.setBounds(30, 150, 800, 370);
 	}
-	
 
 }
