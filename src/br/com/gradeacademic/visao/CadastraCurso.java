@@ -22,32 +22,32 @@ public class CadastraCurso extends Principal {
 		internalCadastro.setLayout(null);
 		internalCadastro.setClosable(true);
 
-		JLabel lID = new JLabel("ID");
-		internalCadastro.add(lID);
-		lID.setBounds(58, 55, 45, 16);
-		lID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		JLabel lIDCurso = new JLabel("ID");
+		internalCadastro.add(lIDCurso);
+		lIDCurso.setBounds(58, 55, 45, 16);
+		lIDCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
-		JTextField tID = new JTextField();
-		internalCadastro.add(tID);
-		tID.setBounds(59, 83, 45, 28);
+		JTextField tIDCurso = new JTextField();
+		internalCadastro.add(tIDCurso);
+		tIDCurso.setBounds(59, 83, 45, 28);
 
-		JLabel lNome = new JLabel("Nome*");
-		internalCadastro.add(lNome);
-		lNome.setBounds(135, 55, 175, 16);
-		lNome.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		JLabel lNomeCurso = new JLabel("Nome*");
+		internalCadastro.add(lNomeCurso);
+		lNomeCurso.setBounds(135, 55, 175, 16);
+		lNomeCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
-		JTextField tNome = new JTextField();
-		internalCadastro.add(tNome);
-		tNome.setBounds(135, 83, 260, 28);
+		JTextField tNomeCurso = new JTextField();
+		internalCadastro.add(tNomeCurso);
+		tNomeCurso.setBounds(135, 83, 260, 28);
 
-		JLabel lProfessor = new JLabel("Professor/Coordenador*");
-		lProfessor.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lProfessor.setBounds(423, 54, 160, 16);
-		internalCadastro.add(lProfessor);
+		JLabel lCoordenador = new JLabel("Coordenador*");
+		lCoordenador.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lCoordenador.setBounds(423, 54, 160, 16);
+		internalCadastro.add(lCoordenador);
 
-		JTextField tProfessor = new JTextField();
-		internalCadastro.add(tProfessor);
-		tProfessor.setBounds(423, 83, 200, 28);
+		JTextField tCoordenador = new JTextField();
+		internalCadastro.add(tCoordenador);
+		tCoordenador.setBounds(423, 83, 200, 28);
 
 		JButton bSalvar = new JButton("Salvar");
 		internalCadastro.add(bSalvar);
