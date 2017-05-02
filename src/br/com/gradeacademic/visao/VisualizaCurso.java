@@ -58,7 +58,7 @@ public class VisualizaCurso extends Principal {
 		tabela.setLayout(null);
 		tabela.revalidate();
 		tabela.setBounds(0, 0, 800, 500);
-		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome", "Professor/Coordenador" }, 0) {
+		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome", "Coordenador" }, 0) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;
