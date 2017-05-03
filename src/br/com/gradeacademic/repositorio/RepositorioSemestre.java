@@ -3,59 +3,40 @@ package br.com.gradeacademic.repositorio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.List;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
-//import javax.swing.table.DefaultTableModel;
 
 import br.com.gradeacademic.conectar.ConectarBd;
 import br.com.gradeacademic.entidade.Semestre;
 import br.com.gradeacademic.visao.CadastraSemestre;
-//import br.com.gradeacademic.visao.VisualizaSemestre;
-
 
 public class RepositorioSemestre {
 
-	public static void salvar(Semestre semestre) {
+	public static boolean salvar(Semestre semestre) {
 
 		Connection conexao = ConectarBd.conectar();
-
 		PreparedStatement parametro = null;
-
 		ResultSet rs = null;
 
 		try {
-			
-			
+
 			parametro = conexao.prepareStatement("SELECT * FROM semestre WHERE id = ?");
 			parametro.setInt(1, Integer.parseInt(CadastraSemestre.tID.getText()));
 			rs = parametro.executeQuery();
 
 			if (!rs.next()) {
+
 				semestre.setId(retornarUltimoId());
 				criar(semestre);
-
-			//	if (VisualizaSemestre.tabela != null) {
-		//			DefaultTableModel model = (DefaultTableModel) VisualizaSemestre.tabela.getModel();
-		//			model.addRow(
-		//					new Object[] { semestre.getId() + 1, semestre.getDescricao(), semestre.getObservacao() });
-		//		}
-		//		
+				return true;
 
 			} else {
+
 				semestre.setId(Integer.parseInt(CadastraSemestre.tID.getText()));
 				atualizar(semestre);
-
-			//	if (visualizaSemestre.tabela != null) {
-			//		visualizaSemestre.tabela.setValueAt(semestre.getId() + 1, visualizarSemestre.tabela.getSelectedRow(), 0);
-			//		visualizarSemestre.tabela.setValueAt(semestre.getDescricao(), visualizarSemestre.tabela.getSelectedRow(),
-			//				1);
-			//		visualizarSemestre.tabela.setValueAt(semestre.getObservacao(), visualizarSemestre.tabela.getSelectedRow(),
-			//				2);
-			//	}
-
 			}
 
 		} catch (Exception e) {
@@ -64,46 +45,110 @@ public class RepositorioSemestre {
 			ConectarBd.desconectar(conexao);
 		}
 
+		return false;
 	}
 
-	private static void criar(Semestre semestre) {
+	public static void criar(Semestre semestre) {
 
 		Connection conexao = ConectarBd.conectar();
-
 		PreparedStatement parametro = null;
 
 		try {
 
-			parametro = conexao.prepareStatement("INSERT INTO acesso (Descricao, O) VALUES (?,?)");
+			parametro = conexao
+					.prepareStatement("INSERT INTO semestre (descricao, observacao) VALUES (?,?)");
 			parametro.setString(1, semestre.getDescricao());
 			parametro.setString(2, semestre.getObservacao());
-
+			
 			parametro.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Acesso " + retornarUltimoId() + " Criado!");
-			//int ultimoId = retornarUltimoId();
+			JOptionPane.showMessageDialog(null, "Semestre " + retornarUltimoId() + " Salvo!");
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao criar.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
-
 	}
-		
-	
 
-	private static void atualizar(Semestre semestre) {
+	public static void atualizar(Semestre acesso) {
 
+		Connection conexao = ConectarBd.conectar();
+		PreparedStatement parametro = null;
 
+		try {
+
+			parametro = conexao.prepareStatement(
+					"UPDATE acesso SET descricao = ?, observacao = ?");
+			parametro.setString(1, acesso.getDescricao());
+			parametro.setString(2, acesso.getObservacao());
+			parametro.setInt(6, acesso.getId());
+			parametro.executeUpdate();
+
+			JOptionPane.showMessageDialog(null, "Semestre " + acesso.getId() + " Atualizado!");
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao atualizar.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+	}
+
+	public static List<Semestre> listar() {
+
+		Connection conexao = ConectarBd.conectar();
+		PreparedStatement parametro = null;
+		ResultSet resultSemestre = null;
+		List<Semestre> semestres = new ArrayList<>();
+
+		try {
+
+			parametro = conexao.prepareStatement("SELECT * FROM acesso ORDER BY id");
+			resultSemestre = parametro.executeQuery();
+
+			while (resultSemestre.next()) {
+
+				Semestre semestre = new Semestre();
+				semestre.setId(resultSemestre.getInt("id"));
+				semestre.setDescricao(resultSemestre.getString("descricao"));
+				semestre.setObservacao(resultSemestre.getString("observacao"));
+				semestres.add(semestre);
+
+			}
+
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao listar.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+
+		return semestres;
+	}
+
+	public static void inativar(int id) {
+
+		Connection conexao = ConectarBd.conectar();
+		PreparedStatement parametro = null;
+		int statusInativo = 1;
+
+		try {
+
+			parametro = conexao.prepareStatement("UPDATE acesso SET status = ? WHERE id = ?");
+			parametro.setInt(1, statusInativo);
+			parametro.setInt(2, id);
+			parametro.executeUpdate();
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao excluir.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
 	}
 
 	public static int retornarUltimoId() {
 
 		Connection conexao = ConectarBd.conectar();
-
 		PreparedStatement parametro = null;
-
 		int id = 0;
 
 		try {
@@ -116,12 +161,74 @@ public class RepositorioSemestre {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Erro: " + e.getMessage() + " - ao retornar ultimo ID.");
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao retornar ultimo ID.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
 
 		return id;
-
 	}
+
+//	public static boolean validarUsuarioExistente(String usuario) {
+//
+//		Connection conexao = ConectarBd.conectar();
+//		PreparedStatement parametro = null;
+//
+//		try {
+//
+//			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE usuario = ?");
+//			parametro.setString(1, usuario);
+//			ResultSet resultAcesso = parametro.executeQuery();
+//
+//			if (resultAcesso.next()) {
+//				return true;
+//			}
+//
+//		} catch (Exception e) {
+//			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao validar login.");
+//		} finally {
+//			ConectarBd.desconectar(conexao);
+//		}
+//
+//		return false;
+//
+//	}
+
+//	public static boolean validarLogin(String usuario, String senha) {
+//
+//		Connection conexao = ConectarBd.conectar();
+//		PreparedStatement parametro = null;
+//
+//		try {
+//
+//			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE usuario = ?");
+//			parametro.setString(1, usuario);
+//			ResultSet resultAcesso = parametro.executeQuery();
+//
+//			if (resultAcesso.next()) {
+//
+//				Acesso acesso = new Acesso();
+//				acesso.setId(resultAcesso.getInt("id"));
+//				acesso.setNome(resultAcesso.getString("nome"));
+//				acesso.setUsuario(resultAcesso.getString("usuario"));
+//				acesso.setSenha(resultAcesso.getString("senha"));
+//				acesso.setNivel(Integer.parseInt(resultAcesso.getString("nivel")));
+//				acesso.setStatus(Integer.parseInt(resultAcesso.getString("status")));
+//
+//				if (senha.equals(acesso.getSenha()) && acesso.getStatus() == 0) {
+//					return true;
+//				}
+//
+//			}
+//
+//		} catch (Exception e) {
+//			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao validar login.");
+//		} finally {
+//			ConectarBd.desconectar(conexao);
+//		}
+//
+//		return false;
+//
+//	}
+
 }

@@ -45,12 +45,10 @@ public class CadastraSemestre extends Principal {
 		infoSemestre.add(lID);
 
 		tID = new JTextField();
-		tID.setEnabled(false);
-		tID.setEditable(false);
-		tID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tID.setColumns(10);
-		tID.setBounds(59, 83, 45, 28);
-		infoSemestre.add(tID);
+		internalCadastro.add(tID);
+		tID.setBounds(100, 75, 50, 28);
+		tID.setText(String.valueOf(AcaoCadastraSemestre.buscarUltimoId() + 1));
+		tID.setVisible(false);
 
 		JLabel lDescricao = new JLabel("Descrição do Semestre:");
 		lDescricao.setHorizontalAlignment(SwingConstants.LEFT);

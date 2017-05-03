@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import br.com.gradeacademic.entidade.Semestre;
+import br.com.gradeacademic.repositorio.RepositorioAcesso;
 import br.com.gradeacademic.repositorio.RepositorioSemestre;
 import br.com.gradeacademic.visao.CadastraSemestre;
 
@@ -42,6 +43,10 @@ public class AcaoCadastraSemestre extends CadastraSemestre {
 				internalCadastro.dispose();
 			}
 		});
+	}
+
+	public static int buscarUltimoId() {
+		return RepositorioAcesso.retornarUltimoId();
 	}
 
 }

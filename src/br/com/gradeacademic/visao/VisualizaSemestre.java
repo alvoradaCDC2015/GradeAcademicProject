@@ -13,6 +13,7 @@ import br.com.gradeacademic.servico.AcaoVisualizaSemestre;
 public class VisualizaSemestre extends Principal {
 
 	public static JInternalFrame internalVisualiza;
+	public static Object tabela;
 
 	public static void visualizarSemestre() {
 
