@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import br.com.gradeacademic.servico.AcaoLogin;
 
+
 public class Login extends Principal {
 
 	protected static JInternalFrame internalLogin;
@@ -22,6 +23,7 @@ public class Login extends Principal {
 	public static JButton bSair;
 	public static JButton bCadastrar;
 
+	
 	public static void visualizarLogin() {
 
 		internalLogin = new JInternalFrame("Login");
@@ -47,7 +49,7 @@ public class Login extends Principal {
 		tLogoProvisoria.setText("LOGO");
 		tLogoProvisoria.setColumns(10);
 
-		JLabel lUsuario = new JLabel("Usu·rio");
+		JLabel lUsuario = new JLabel("Usu√°rio");
 		internalLogin.add(lUsuario);
 		lUsuario.setBounds(143, 191, 218, 17);
 		lUsuario.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
@@ -82,5 +84,6 @@ public class Login extends Principal {
 		bCadastrar.setBounds(200, 400, 100, 30);
 		AcaoLogin.botaoCadastrar(bCadastrar);
 
+		AcaoLogin.fecharAplicacao(internalLogin);
 	}
 }
