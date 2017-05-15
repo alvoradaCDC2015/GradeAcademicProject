@@ -55,11 +55,10 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao
-					.prepareStatement("INSERT INTO semestre (descricao, observacao) VALUES (?,?)");
+			parametro = conexao.prepareStatement("INSERT INTO semestre (descricao, observacao) VALUES (?,?)");
 			parametro.setString(1, semestre.getDescricao());
 			parametro.setString(2, semestre.getObservacao());
-			
+
 			parametro.executeUpdate();
 
 			JOptionPane.showMessageDialog(null, "Semestre " + retornarUltimoId() + " Salvo!");
@@ -71,21 +70,20 @@ public class RepositorioSemestre {
 		}
 	}
 
-	public static void atualizar(Semestre acesso) {
+	public static void atualizar(Semestre semestre) {
 
 		Connection conexao = ConectarBd.conectar();
 		PreparedStatement parametro = null;
 
 		try {
 
-			parametro = conexao.prepareStatement(
-					"UPDATE acesso SET descricao = ?, observacao = ?");
-			parametro.setString(1, acesso.getDescricao());
-			parametro.setString(2, acesso.getObservacao());
-			parametro.setInt(6, acesso.getId());
+			parametro = conexao.prepareStatement("UPDATE semestre SET descricao = ?, observacao = ? WHERE id= ?");
+			parametro.setString(1, semestre.getDescricao());
+			parametro.setString(2, semestre.getObservacao());
+			parametro.setInt(3, semestre.getId());
 			parametro.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Semestre " + acesso.getId() + " Atualizado!");
+			JOptionPane.showMessageDialog(null, "Semestre " + semestre.getId() + " Atualizado!");
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao atualizar.");
@@ -103,7 +101,7 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT * FROM acesso ORDER BY id");
+			parametro = conexao.prepareStatement("SELECT * FROM semestre ORDER BY id");
 			resultSemestre = parametro.executeQuery();
 
 			while (resultSemestre.next()) {
@@ -133,7 +131,7 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("UPDATE acesso SET status = ? WHERE id = ?");
+			parametro = conexao.prepareStatement("UPDATE semestre SET status = ? WHERE id = ?");
 			parametro.setInt(1, statusInativo);
 			parametro.setInt(2, id);
 			parametro.executeUpdate();
@@ -168,67 +166,5 @@ public class RepositorioSemestre {
 
 		return id;
 	}
-
-//	public static boolean validarUsuarioExistente(String usuario) {
-//
-//		Connection conexao = ConectarBd.conectar();
-//		PreparedStatement parametro = null;
-//
-//		try {
-//
-//			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE usuario = ?");
-//			parametro.setString(1, usuario);
-//			ResultSet resultAcesso = parametro.executeQuery();
-//
-//			if (resultAcesso.next()) {
-//				return true;
-//			}
-//
-//		} catch (Exception e) {
-//			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao validar login.");
-//		} finally {
-//			ConectarBd.desconectar(conexao);
-//		}
-//
-//		return false;
-//
-//	}
-
-//	public static boolean validarLogin(String usuario, String senha) {
-//
-//		Connection conexao = ConectarBd.conectar();
-//		PreparedStatement parametro = null;
-//
-//		try {
-//
-//			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE usuario = ?");
-//			parametro.setString(1, usuario);
-//			ResultSet resultAcesso = parametro.executeQuery();
-//
-//			if (resultAcesso.next()) {
-//
-//				Acesso acesso = new Acesso();
-//				acesso.setId(resultAcesso.getInt("id"));
-//				acesso.setNome(resultAcesso.getString("nome"));
-//				acesso.setUsuario(resultAcesso.getString("usuario"));
-//				acesso.setSenha(resultAcesso.getString("senha"));
-//				acesso.setNivel(Integer.parseInt(resultAcesso.getString("nivel")));
-//				acesso.setStatus(Integer.parseInt(resultAcesso.getString("status")));
-//
-//				if (senha.equals(acesso.getSenha()) && acesso.getStatus() == 0) {
-//					return true;
-//				}
-//
-//			}
-//
-//		} catch (Exception e) {
-//			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao validar login.");
-//		} finally {
-//			ConectarBd.desconectar(conexao);
-//		}
-//
-//		return false;
-//
-//	}
 
 }

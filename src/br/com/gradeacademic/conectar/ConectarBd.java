@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class ConectarBd {
 
 	public static Connection conectar() {
-		String url = "jdbc:postgresql://fspinfo.no-ip.org:5432/gradeacademic";
+		String url = "jdbc:postgresql://localhost/gradeacademic";
 		String usuario = "postgres";
 		String senha = "admin";
 
