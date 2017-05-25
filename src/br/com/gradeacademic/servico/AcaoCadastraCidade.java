@@ -5,24 +5,23 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import br.com.gradeacademic.visao.CadastraLocal;
+import br.com.gradeacademic.visao.CadastraCidade;
 
-public class AcaoCadastraLocal extends CadastraLocal {
+public class AcaoCadastraCidade extends CadastraCidade {
 
 	public static void botaoSalvar(JButton bSalvar) {
-
+		// TODO Auto-generated method stub
+		
 	}
 
-	public static void botaoCancelar(JButton btnCancelar) {
-
-		btnCancelar.addActionListener(new ActionListener() {
+	public static void botaoCancelar(JButton bCancelar) {
+		bCancelar.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				internalCadastro.dispose();
-
 			}
 		});
-
 	}
 
 }

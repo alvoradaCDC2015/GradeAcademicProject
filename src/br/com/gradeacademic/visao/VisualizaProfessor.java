@@ -52,13 +52,15 @@ public class VisualizaProfessor extends Principal {
 
 	}
 
+
 	@SuppressWarnings("serial")
 	private static void tabela(JInternalFrame internalVizualiza) {
 		JTable tabela = new JTable();
 		tabela.setLayout(null);
 		tabela.revalidate();
 		tabela.setBounds(0, 0, 800, 500);
-		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Pais", "ID", "Estado", "ID", "Cidade" }, 0) {
+		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome", "Nascimento", "CPF", "Situação",
+				"Naturalidade", "Nacionalidade", "Endereço", "Numero", "Bairro", "CEP", "Cidade" }, 0) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;

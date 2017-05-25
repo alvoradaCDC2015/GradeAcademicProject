@@ -6,9 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 
 import br.com.gradeacademic.visao.CadastraAcesso;
+import br.com.gradeacademic.visao.CadastraCidade;
 import br.com.gradeacademic.visao.CadastraCurso;
 import br.com.gradeacademic.visao.CadastraDisciplina;
-import br.com.gradeacademic.visao.CadastraLocal;
+import br.com.gradeacademic.visao.CadastraEstado;
+import br.com.gradeacademic.visao.CadastraPais;
 import br.com.gradeacademic.visao.CadastraProfessor;
 import br.com.gradeacademic.visao.CadastraSemestre;
 import br.com.gradeacademic.visao.VisualizaAcesso;
@@ -47,17 +49,6 @@ public class AcaoPrincipal {
 			public void actionPerformed(ActionEvent e) {
 
 				CadastraCurso.cadastrarCurso();
-
-			}
-		});
-	}
-
-	public static void criarLocal(JMenuItem criarLocal) {
-
-		criarLocal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				CadastraLocal.cadastrarLocal();
 
 			}
 		});
@@ -168,6 +159,38 @@ public class AcaoPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				VisualizaProfessor.visualizarProfessor();
 
+			}
+		});
+	}
+
+	public static void criarPais(JMenuItem criarPais) {
+
+		criarPais.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				CadastraPais.cadastrarPais();
+			}
+		});
+
+	}
+
+	public static void criarEstado(JMenuItem criarEstado) {
+		criarEstado.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CadastraEstado.cadastrarEstado();
+			}
+		});
+	}
+
+	public static void criarCidade(JMenuItem criarCidade) {
+		criarCidade.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CadastraCidade.cadastrarCidade();
 			}
 		});
 	}

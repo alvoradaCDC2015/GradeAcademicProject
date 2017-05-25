@@ -8,7 +8,7 @@ public class ConectarBd {
 	public static Connection conectar() {
 		String url = "jdbc:postgresql://localhost/gradeacademic";
 		String usuario = "postgres";
-		String senha = "admin";
+		String senha = "postgres";
 
 		try {
 			Class.forName("org.postgresql.Driver");

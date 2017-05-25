@@ -177,31 +177,6 @@ public class RepositorioAcesso {
 		return id;
 	}
 
-	public static boolean validarUsuarioExistente(String usuario) {
-
-		Connection conexao = ConectarBd.conectar();
-		PreparedStatement parametro = null;
-
-		try {
-
-			parametro = conexao.prepareStatement("SELECT * FROM acesso WHERE usuario = ?");
-			parametro.setString(1, usuario);
-			ResultSet resultAcesso = parametro.executeQuery();
-
-			if (resultAcesso.next()) {
-				return true;
-			}
-
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao validar login.");
-		} finally {
-			ConectarBd.desconectar(conexao);
-		}
-
-		return false;
-
-	}
-
 	public static boolean validarLogin(String usuario, String senha) {
 
 		Connection conexao = ConectarBd.conectar();

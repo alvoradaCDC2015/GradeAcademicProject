@@ -6,9 +6,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import br.com.gradeacademic.entidade.Acesso;
-import br.com.gradeacademic.repositorio.RepositorioAcesso;
+import br.com.gradeacademic.repositorio.RespositorioPreCadastro;
 import br.com.gradeacademic.visao.Login;
 import br.com.gradeacademic.visao.PreCadastro;
 
@@ -48,24 +49,36 @@ public class AcaoPreCadastro extends PreCadastro {
 
 	}
 
-	public static void botaoConfirmar(JButton bConfirmar) {
+	public static void botaoCadastrar(JButton bCadastrar) {
 
-		bConfirmar.addActionListener(new ActionListener() {
+		bCadastrar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				Acesso acesso = new Acesso();
-				acesso.setNome(tNome.getText());
-				acesso.setUsuario(tUsuario.getText());
-				acesso.setSenha(tSenha.getPassword().toString());
+				String senha = new String(tSenha.getPassword());
+				String confirmarSenha = new String(tConfirmarSenha.getPassword());
 
-				RepositorioAcesso.salvar(acesso);
+				boolean senhaOk = ValidarAcesso.validarConfirmarSenha(senha, confirmarSenha);
 
-				habilitarCampos();
+				if (senhaOk) {
 
-				tela.dispose();
+					Acesso acesso = new Acesso();
+					acesso.setNome(tNome.getText());
+					acesso.setUsuario(tUsuario.getText());
+					acesso.setSenha(senha);
+					acesso.setNivel(0);
+					acesso.setStatus(0);
 
+					RespositorioPreCadastro.salvar(acesso);
+
+					habilitarCampos();
+
+					tela.dispose();
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Senhas não estão iguais!");
+				}
 			}
 		});
 

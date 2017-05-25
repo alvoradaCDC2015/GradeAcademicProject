@@ -25,18 +25,28 @@ public class VisualizaLocal extends Principal {
 
 		tabela(internalVisualiza);
 
-		JButton bNovo = new JButton("Novo");
-		internalVisualiza.add(bNovo);
-		bNovo.setBounds(30, 50, 147, 39);
-		AcaoVisualizaLocal.botaoNovo(bNovo);
+		JButton bNovoPais = new JButton("Novo País");
+		internalVisualiza.add(bNovoPais);
+		bNovoPais.setBounds(30, 50, 100, 39);
+		AcaoVisualizaLocal.botaoNovoPais(bNovoPais);
+
+		JButton bNovoEstado = new JButton("Novo Estado");
+		internalVisualiza.add(bNovoEstado);
+		bNovoEstado.setBounds(130, 50, 100, 39);
+		AcaoVisualizaLocal.botaoNovoEstado(bNovoEstado);
+
+		JButton bNovoCidade = new JButton("Nova Cidade");
+		internalVisualiza.add(bNovoCidade);
+		bNovoCidade.setBounds(230, 50, 100, 39);
+		AcaoVisualizaLocal.botaoNovaCidade(bNovoCidade);
 
 		JButton bEditar = new JButton("Editar");
 		internalVisualiza.add(bEditar);
-		bEditar.setBounds(180, 50, 147, 39);
+		bEditar.setBounds(340, 50, 130, 39);
 
 		JButton bRemover = new JButton("Remover");
 		internalVisualiza.add(bRemover);
-		bRemover.setBounds(330, 50, 147, 39);
+		bRemover.setBounds(470, 50, 130, 39);
 
 		JTextField tBusca = new JTextField();
 		internalVisualiza.add(tBusca);
@@ -58,8 +68,7 @@ public class VisualizaLocal extends Principal {
 		tabela.setLayout(null);
 		tabela.revalidate();
 		tabela.setBounds(0, 0, 800, 500);
-		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome", "Nascimento", "CPF", "Situação",
-				"Naturalidade", "Nacionalidade", "Endereço", "Numero", "Bairro", "CEP", "Cidade" }, 0) {
+		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Pais", "ID", "Estado", "ID", "Cidade" }, 0) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;

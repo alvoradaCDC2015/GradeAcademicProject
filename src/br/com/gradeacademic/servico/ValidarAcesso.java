@@ -54,4 +54,12 @@ public class ValidarAcesso extends Login {
 		return status;
 	}
 
+	public static boolean validarConfirmarSenha(String senha, String confirmarSenha) {
+
+		if (senha.equals(confirmarSenha)) {
+			return true;
+		}
+		return false;
+	}
+
 }

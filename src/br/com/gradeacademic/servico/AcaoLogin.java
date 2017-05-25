@@ -29,12 +29,12 @@ public class AcaoLogin extends Login {
 		});
 	}
 
-	public static void botaoAcessar(JButton bAcessar, JTextField tUsuario, JPasswordField tSenha) {
+	public static void botaoAcessar() {
 		bAcessar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ValidarAcesso.validarLogin(tUsuario, tSenha);
+				ValidarAcesso.validarLogin(tCampoUsuario, tCampoSenha);
 
 			}
 		});

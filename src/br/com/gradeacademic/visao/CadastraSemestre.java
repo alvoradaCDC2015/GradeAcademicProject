@@ -43,6 +43,7 @@ public class CadastraSemestre extends Principal {
 		lID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lID.setBounds(63, 55, 45, 16);
 		infoSemestre.add(lID);
+		lID.setVisible(false);
 
 		tID = new JTextField();
 		internalCadastro.add(tID);

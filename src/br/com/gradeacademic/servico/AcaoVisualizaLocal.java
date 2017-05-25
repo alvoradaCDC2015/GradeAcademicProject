@@ -5,19 +5,49 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import br.com.gradeacademic.visao.CadastraLocal;
+import br.com.gradeacademic.visao.CadastraCidade;
+import br.com.gradeacademic.visao.CadastraEstado;
+import br.com.gradeacademic.visao.CadastraPais;
 import br.com.gradeacademic.visao.VisualizaLocal;
 
 public class AcaoVisualizaLocal extends VisualizaLocal {
 
-	public static void botaoNovo(JButton bNovo) {
+	public static void botaoNovoPais(JButton bNovoPais) {
 
-		bNovo.addActionListener(new ActionListener() {
+		bNovoPais.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				CadastraLocal.cadastrarLocal();
+				CadastraPais.cadastrarPais();
+
+			}
+		});
+
+	}
+
+	public static void botaoNovoEstado(JButton bNovoEstado) {
+
+		bNovoEstado.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				CadastraEstado.cadastrarEstado();
+
+			}
+		});
+
+	}
+
+	public static void botaoNovaCidade(JButton bNovaCidade) {
+
+		bNovaCidade.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				CadastraCidade.cadastrarCidade();
 
 			}
 		});

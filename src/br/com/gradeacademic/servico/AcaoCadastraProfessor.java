@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import br.com.gradeacademic.visao.CadastraHorario;
 import br.com.gradeacademic.visao.CadastraProfessor;
 
 public class AcaoCadastraProfessor extends CadastraProfessor {
@@ -30,6 +31,20 @@ public class AcaoCadastraProfessor extends CadastraProfessor {
 				internalCadastro.dispose();
 			}
 		});
+	}
+
+	public static void botaoDisponibilidade(JButton bDisponibilidade) {
+
+		bDisponibilidade.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				CadastraHorario.cadastraHorario();
+
+			}
+		});
+
 	}
 
 }

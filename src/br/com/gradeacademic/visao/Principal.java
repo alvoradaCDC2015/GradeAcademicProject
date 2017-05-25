@@ -126,7 +126,7 @@ public class Principal {
 		mProfessor.add(cadastrarProfessor);
 		cadastrarProfessor.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		AcaoPrincipal.cadastrarProfessor(cadastrarProfessor);
-		
+
 		JMenuItem visualizaProfessor = new JMenuItem("Visualizar");
 		mProfessor.add(visualizaProfessor);
 		visualizaProfessor.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
@@ -171,10 +171,21 @@ public class Principal {
 	}
 
 	private static void itensLocal(JMenu mLocais) {
-		JMenuItem criarLocal = new JMenuItem("Criar");
-		mLocais.add(criarLocal);
-		criarLocal.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		AcaoPrincipal.criarLocal(criarLocal);
+
+		JMenuItem criarPais = new JMenuItem("Criar País");
+		mLocais.add(criarPais);
+		criarPais.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		AcaoPrincipal.criarPais(criarPais);
+
+		JMenuItem criarEstado = new JMenuItem("Criar Estado");
+		mLocais.add(criarEstado);
+		criarEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		AcaoPrincipal.criarEstado(criarEstado);
+
+		JMenuItem criarCidade = new JMenuItem("Criar Cidade");
+		mLocais.add(criarCidade);
+		criarCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		AcaoPrincipal.criarCidade(criarCidade);
 
 		JMenuItem visualizarLocal = new JMenuItem("Visualizar");
 		mLocais.add(visualizarLocal);

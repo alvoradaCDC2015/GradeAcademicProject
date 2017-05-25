@@ -95,7 +95,7 @@ public class Professor {
 	public void setNumero(int Numero) {
 		this.numero = Numero;
 	}
-	
+
 	public String getBairro() {
 		return bairro;
 	}
@@ -103,7 +103,7 @@ public class Professor {
 	public void setBairro(String Bairro) {
 		this.bairro = Bairro;
 	}
-	
+
 	public int getCep() {
 		return cep;
 	}
@@ -111,7 +111,7 @@ public class Professor {
 	public void setCep(int Cep) {
 		this.cep = Cep;
 	}
-	
+
 	public String getEstado() {
 		return estado;
 	}
@@ -119,7 +119,7 @@ public class Professor {
 	public void setEstado(String Estado) {
 		this.estado = Estado;
 	}
-	
+
 	public String getCidade() {
 		return cidade;
 	}
@@ -127,6 +127,5 @@ public class Professor {
 	public void setCidade(String Cidade) {
 		this.cidade = Cidade;
 	}
-
 
 }
