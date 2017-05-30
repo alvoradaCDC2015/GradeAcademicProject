@@ -93,6 +93,9 @@ public class Principal {
 		mBarraDeFerramentas.add(mRelatorio);
 		mRelatorio.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		mRelatorio.setIcon(new ImageIcon("report.png"));
+		
+
+		itensRelatorio(mRelatorio);
 
 		JMenu mLocal = new JMenu("Locais");
 		mBarraDeFerramentas.add(mLocal);
@@ -169,6 +172,16 @@ public class Principal {
 		AcaoPrincipal.visualizarDisciplina(visualizaDisciplina);
 
 	}
+	
+	@SuppressWarnings("unused")
+		private static void itensRelatorio(JMenu mRelatorio) {
+			JMenuItem visualizarRelatorio = new JMenuItem("Visualizar");
+			mRelatorio.add(visualizarRelatorio);
+			visualizarRelatorio.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+			AcaoPrincipal.visualizaRelatorio(visualizarRelatorio);
+	
+		}
+	
 
 	private static void itensLocal(JMenu mLocais) {
 

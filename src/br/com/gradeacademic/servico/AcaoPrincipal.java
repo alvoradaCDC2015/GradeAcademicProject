@@ -18,6 +18,7 @@ import br.com.gradeacademic.visao.VisualizaCurso;
 import br.com.gradeacademic.visao.VisualizaDisciplina;
 import br.com.gradeacademic.visao.VisualizaLocal;
 import br.com.gradeacademic.visao.VisualizaProfessor;
+import br.com.gradeacademic.visao.VisualizaRelatorio;
 import br.com.gradeacademic.visao.VisualizaSemestre;
 
 public class AcaoPrincipal {
@@ -106,6 +107,16 @@ public class AcaoPrincipal {
 		});
 
 	}
+	
+	public static void visualizaRelatorio(JMenuItem visualizaRelatorio) {
+		visualizaRelatorio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				VisualizaRelatorio.visualizarRelatorio();
+			}
+		});
+
+}
 
 	public static void visualizaDisciplina(JMenuItem visualizaDisciplina) {
 		visualizaDisciplina.addActionListener(new ActionListener() {
