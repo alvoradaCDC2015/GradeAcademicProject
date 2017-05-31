@@ -110,6 +110,7 @@ public class RepositorioSemestre {
 				semestre.setId(resultSemestre.getInt("id"));
 				semestre.setDescricao(resultSemestre.getString("descricao"));
 				semestre.setObservacao(resultSemestre.getString("observacao"));
+				semestre.setStatus(Integer.parseInt(resultSemestre.getString("status")));
 				semestres.add(semestre);
 
 			}
@@ -127,7 +128,7 @@ public class RepositorioSemestre {
 
 		Connection conexao = ConectarBd.conectar();
 		PreparedStatement parametro = null;
-		int statusInativo = 1;
+		int statusInativo = 0;
 
 		try {
 
@@ -137,7 +138,7 @@ public class RepositorioSemestre {
 			parametro.executeUpdate();
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao excluir.");
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao remover Semestre.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}

@@ -5,6 +5,7 @@ public class Semestre {
 	private int id;
 	private String descricao;
 	private String observacao;
+	private int status;
 
 
 	public int getId() {
@@ -29,6 +30,14 @@ public class Semestre {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+	
+	public void setStatus(int string){
+		this.status = string;
 	}
 
 	
