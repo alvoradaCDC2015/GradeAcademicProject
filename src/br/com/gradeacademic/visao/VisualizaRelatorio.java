@@ -16,6 +16,8 @@ public class VisualizaRelatorio extends Principal {
 	public static JInternalFrame internalRelatorio;
 
 	/**
+	 * @throws DocumentException 
+	 * @throws IOException 
 	 * @wbp.parser.entryPoint
 	 */
 	public static void visualizarRelatorio() {
