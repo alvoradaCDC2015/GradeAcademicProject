@@ -16,6 +16,8 @@ public class VisualizaRelatorio extends Principal {
 	public static JInternalFrame internalRelatorio;
 
 	/**
+	 * @throws DocumentException 
+	 * @throws IOException 
 	 * @wbp.parser.entryPoint
 	 */
 	public static void visualizarRelatorio() {
@@ -32,6 +34,7 @@ public class VisualizaRelatorio extends Principal {
 		JButton bGerar = new JButton("Gerar Relatorio");
 		internalRelatorio.getContentPane().add(bGerar);
 		bGerar.setBounds(633, 81, 147, 39);
+		
 		AcaoGerarRelatorio.botaoGerar(bGerar);
 		
 		@SuppressWarnings("rawtypes")
