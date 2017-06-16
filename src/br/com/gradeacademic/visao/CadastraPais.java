@@ -16,7 +16,9 @@ public class CadastraPais extends Principal {
 
 	public static JInternalFrame internalCadastro;
 
-	public static JTextField tNomePais;
+	public static JTextField tID;
+	public static JTextField tNome;
+	
 
 	public static void cadastrarPais() {
 
@@ -34,22 +36,24 @@ public class CadastraPais extends Principal {
 		pPais.setBounds(36, 40, 450, 150);
 		pPais.setLayout(null);
 
-		JTextField tIDPais = new JTextField();
-		tIDPais.setEnabled(false);
-		tIDPais.setEditable(false);
-		tIDPais.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tIDPais.setColumns(10);
-		tIDPais.setBounds(10, 51, 45, 25);
-		tIDPais.setVisible(false);
+		tID = new JTextField();
+		internalCadastro.add(tID);
+		tID.setEnabled(false);
+		tID.setEditable(false);
+		tID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tID.setColumns(10);
+		tID.setBounds(10, 51, 45, 25);
+		tID.setText(String.valueOf(AcaoCadastraPais.buscarUltimoId() + 1));
+		tID.setVisible(false);
 
-		JLabel lNomePais = new JLabel("Nome*");
-		pPais.add(lNomePais);
-		lNomePais.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lNomePais.setBounds(65, 23, 175, 16);
+		JLabel lNome = new JLabel("Nome*");
+		pPais.add(lNome);
+		lNome.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lNome.setBounds(65, 23, 175, 16);
 
-		tNomePais = new JTextField();
-		pPais.add(tNomePais);
-		tNomePais.setBounds(65, 50, 260, 28);
+		tNome = new JTextField();
+		pPais.add(tNome);
+		tNome.setBounds(65, 50, 260, 28);
 
 		JButton bSalvar = new JButton("Salvar");
 		internalCadastro.add(bSalvar);
@@ -62,5 +66,17 @@ public class CadastraPais extends Principal {
 		AcaoCadastraPais.botaoCancelar(bCancelar);
 
 	}
+	public static void setarCampos(String id, String nome) {
+		
+		/* int indexStatus = 1;
+		 if (status.equals("Inativo")) {
+		 indexStatus = 0;
+		 }*/
+		
+		tID.setText(id);
+		tNome.setText(nome);
+
+	}
+
 
 }

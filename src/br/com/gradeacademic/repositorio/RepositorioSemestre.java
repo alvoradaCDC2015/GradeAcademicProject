@@ -23,7 +23,7 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT * FROM semestre WHERE id = ?");
+			parametro = conexao.prepareStatement("SELECT * FROM PGA_SEMESTRE WHERE sem_id = ?");
 			parametro.setInt(1, Integer.parseInt(CadastraSemestre.tID.getText()));
 			rs = parametro.executeQuery();
 
@@ -55,7 +55,7 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("INSERT INTO semestre (descricao, observacao) VALUES (?,?)");
+			parametro = conexao.prepareStatement("INSERT INTO PGA_SEMESTRE (sem_descricao, sem_observacao) VALUES (?,?)");
 			parametro.setString(1, semestre.getDescricao());
 			parametro.setString(2, semestre.getObservacao());
 
@@ -77,7 +77,7 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("UPDATE semestre SET descricao = ?, observacao = ? WHERE id= ?");
+			parametro = conexao.prepareStatement("UPDATE PGA_SEMESTRE SET sem_descricao = ?, sem_observacao = ? WHERE sem_id= ?");
 			parametro.setString(1, semestre.getDescricao());
 			parametro.setString(2, semestre.getObservacao());
 			parametro.setInt(3, semestre.getId());
@@ -101,16 +101,16 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT * FROM semestre ORDER BY id");
+			parametro = conexao.prepareStatement("SELECT * FROM PGA_SEMESTRE ORDER BY sem_id");
 			resultSemestre = parametro.executeQuery();
 
 			while (resultSemestre.next()) {
 
 				Semestre semestre = new Semestre();
-				semestre.setId(resultSemestre.getInt("id"));
-				semestre.setDescricao(resultSemestre.getString("descricao"));
-				semestre.setObservacao(resultSemestre.getString("observacao"));
-				semestre.setStatus(Integer.parseInt(resultSemestre.getString("status")));
+				semestre.setId(resultSemestre.getInt("sem_id"));
+				semestre.setDescricao(resultSemestre.getString("sem_descricao"));
+				semestre.setObservacao(resultSemestre.getString("sem_observacao"));
+				semestre.setStatus(Integer.parseInt(resultSemestre.getString("sem_status")));
 				semestres.add(semestre);
 
 			}
@@ -132,7 +132,7 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("UPDATE semestre SET status = ? WHERE id = ?");
+			parametro = conexao.prepareStatement("UPDATE PGA_SEMESTRE SET sem_status = ? WHERE sem_id = ?");
 			parametro.setInt(1, statusInativo);
 			parametro.setInt(2, id);
 			parametro.executeUpdate();
@@ -152,7 +152,7 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT MAX(id) FROM semestre");
+			parametro = conexao.prepareStatement("SELECT MAX(sem_id) FROM PGA_SEMESTRE");
 			ResultSet rs = parametro.executeQuery();
 
 			if (rs.next()) {

@@ -87,11 +87,6 @@ public class CadastraSemestre extends Principal {
 	}
 
 	public static void setarCampos(String id, String descricao, String observacao) {
-		// int indexStatus = 1;
-		// if (status.equals("Inativo")) {
-		// indexStatus = 0;
-		// }
-
 		tID.setText(id);
 		tDescricao.setText(descricao);
 		tObservacao.setText(observacao);

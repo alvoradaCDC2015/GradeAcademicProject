@@ -36,8 +36,8 @@ public class Semestre {
 		return status;
 	}
 	
-	public void setStatus(int string){
-		this.status = string;
+	public void setStatus(int status){
+		this.status = status;
 	}
 
 	
