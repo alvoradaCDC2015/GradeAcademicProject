@@ -20,7 +20,7 @@ public class VisualizaRelatorio extends Principal {
 	 * @throws IOException 
 	 * @wbp.parser.entryPoint
 	 */
-	public static void visualizarRelatorio() {
+	public static void visualizarRelatorio() throws IOException, DocumentException {
 
 		internalRelatorio = new JInternalFrame("Relatorio");
 		desktopPane.add(internalRelatorio);
