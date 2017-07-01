@@ -24,9 +24,9 @@ public class RepositorioPreCadastroProfessor {
 			parametro.setString(3, professor.getCpf());
 			parametro.setString(4, professor.getSenha());
 			parametro.setInt(5, professor.getNivelAcesso());
-			parametro.setBoolean(6, professor.getAdministrador());
-			parametro.setString(7, professor.getCoordenador());
-			parametro.setString(8, professor.getStatus());
+			parametro.setInt(6, professor.getAdministrador());
+			parametro.setInt(7, professor.getCoordenador());
+			parametro.setInt(8, professor.getStatus());
 			parametro.executeUpdate();
 
 			JOptionPane.showMessageDialog(null, "Usuario Salvo! \n Entre com seu CPF e Senha cadastrado.");

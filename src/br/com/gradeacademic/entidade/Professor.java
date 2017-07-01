@@ -2,7 +2,10 @@ package br.com.gradeacademic.entidade;
 
 public class Professor {
 	private int id;
-	private int enderecoProfessor;
+	private int nivelAcesso;
+	private int status;
+	private int coordenador;
+	private int administrador;
 	private String nome;
 	private String dataNascimento;
 	private String cpf;
@@ -12,10 +15,11 @@ public class Professor {
 	private long celular;
 	private String email;
 	private String senha;
-	private int nivelAcesso;
-	private Boolean administrador;
-	private String coordenador;
-	private String status;
+	private String endEndereco;
+	private int endNumero;
+	private String endBairro;
+	private String endCep;
+	private String endCidade;
 
 	public int getId() {
 		return id;
@@ -25,12 +29,36 @@ public class Professor {
 		this.id = id;
 	}
 
-	public int getEnderecoProfessor() {
-		return enderecoProfessor;
+	public int getNivelAcesso() {
+		return nivelAcesso;
 	}
 
-	public void setEnderecoProfessor(int enderecoProcessor) {
-		this.enderecoProfessor = enderecoProcessor;
+	public void setNivelAcesso(int nivelAcesso) {
+		this.nivelAcesso = nivelAcesso;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public int getCoordenador() {
+		return coordenador;
+	}
+
+	public void setCoordenador(int coordenador) {
+		this.coordenador = coordenador;
+	}
+
+	public int getAdministrador() {
+		return administrador;
+	}
+
+	public void setAdministrador(int administrador) {
+		this.administrador = administrador;
 	}
 
 	public String getNome() {
@@ -105,36 +133,44 @@ public class Professor {
 		this.senha = senha;
 	}
 
-	public int getNivelAcesso() {
-		return nivelAcesso;
+	public String getEndEndereco() {
+		return endEndereco;
 	}
 
-	public void setNivelAcesso(int nivelAcesso) {
-		this.nivelAcesso = nivelAcesso;
+	public void setEndEndereco(String endEndereco) {
+		this.endEndereco = endEndereco;
 	}
 
-	public Boolean getAdministrador() {
-		return administrador;
+	public int getEndNumero() {
+		return endNumero;
 	}
 
-	public void setAdministrador(Boolean administrador) {
-		this.administrador = administrador;
+	public void setEndNumero(int endNumero) {
+		this.endNumero = endNumero;
 	}
 
-	public String getCoordenador() {
-		return coordenador;
+	public String getEndBairro() {
+		return endBairro;
 	}
 
-	public void setCoordenador(String coordenador) {
-		this.coordenador = coordenador;
+	public void setEndBairro(String endBairro) {
+		this.endBairro = endBairro;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getEndCep() {
+		return endCep;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setEndCep(String endCep) {
+		this.endCep = endCep;
+	}
+
+	public String getEndCidade() {
+		return endCidade;
+	}
+
+	public void setEndCidade(String endCidade) {
+		this.endCidade = endCidade;
 	}
 
 }

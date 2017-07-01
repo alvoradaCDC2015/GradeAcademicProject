@@ -35,7 +35,7 @@ public class CadastraProfessor extends Principal {
 	public static JTextField tNumero;
 	public static JTextField tBairro;
 	public static JFormattedTextField tCEP;
-	public static JComboBox<String> tCidade;
+	public static JTextField tCidade;
 	public static JComboBox<String> tEstado;
 	public static JTextField tTelefoneResidencial;
 	public static JTextField tCelular;
@@ -112,7 +112,6 @@ public class CadastraProfessor extends Principal {
 		try {
 			tNascimento = new JFormattedTextField(new MaskFormatter("##/##/####"));
 		} catch (ParseException e) {
-
 			e.printStackTrace();
 		}
 		tNascimento.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
@@ -134,7 +133,7 @@ public class CadastraProfessor extends Principal {
 		tCpf.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tCpf.setBounds(470, 63, 106, 28);
 		panelInfoCliente.add(tCpf);
-		
+
 		JLabel lSenha = new JLabel("Senha");
 		lSenha.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lSenha.setBounds(586, 35, 175, 16);
@@ -181,7 +180,7 @@ public class CadastraProfessor extends Principal {
 		panelInfoCliente.add(tCoordenador);
 
 		tSituacao = new JComboBox<String>();
-		tSituacao.setModel(new DefaultComboBoxModel<String>(new String[] { "Ativo", "Inativo" }));
+		tSituacao.setModel(new DefaultComboBoxModel<String>(new String[] { "Inativo", "Ativo" }));
 		tSituacao.setToolTipText("");
 		tSituacao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tSituacao.setBounds(59, 135, 110, 28);
@@ -259,30 +258,14 @@ public class CadastraProfessor extends Principal {
 		JLabel lblCidade = new JLabel("Cidade*");
 		lblCidade.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lblCidade.setBounds(203, 92, 175, 16);
+		lblCidade.setBounds(56, 92, 175, 16);
 		panelInfoEndereco.add(lblCidade);
 
-		JLabel lblEstado = new JLabel("Estado*");
-		lblEstado.setHorizontalAlignment(SwingConstants.LEFT);
-		lblEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lblEstado.setBounds(56, 92, 94, 16);
-		panelInfoEndereco.add(lblEstado);
-
-		tEstado = new JComboBox<String>();
-		tEstado.addItem("Escolha...");
-		tEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tEstado.setBounds(56, 120, 114, 28);
-		panelInfoEndereco.add(tEstado);
-
-		tCidade = new JComboBox<String>();
-		tCidade.addItem("Escolha...");
+		tCidade = new JTextField();
 		tCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tCidade.setBounds(203, 120, 162, 28);
+		tCidade.setBounds(56, 120, 162, 28);
 		panelInfoEndereco.add(tCidade);
 
-		JButton btnBuscar = new JButton("Buscar ");
-		btnBuscar.setBounds(611, 86, 122, 28);
-		panelInfoEndereco.add(btnBuscar);
 	}
 
 	private static void informacoesContato() {

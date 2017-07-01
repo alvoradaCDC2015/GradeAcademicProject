@@ -86,9 +86,9 @@ public class ValidarLogin extends Login {
 				professor.setCpf(resultAcesso.getString("pro_cpf"));
 				professor.setSenha(resultAcesso.getString("pro_senha"));
 				professor.setNivelAcesso(Integer.parseInt(resultAcesso.getString("pro_nivel_acesso")));
-				professor.setStatus(resultAcesso.getString("pro_status"));
+				professor.setStatus(resultAcesso.getInt("pro_status"));
 
-				if (senha.equals(professor.getSenha()) && professor.getStatus().equals("Ativo")) {
+				if (senha.equals(professor.getSenha()) && professor.getStatus() == 1) {
 					return true;
 				}
 

@@ -8,17 +8,13 @@ import javax.swing.JMenuItem;
 
 import com.itextpdf.text.DocumentException;
 
-import br.com.gradeacademic.visao.CadastraCidade;
 import br.com.gradeacademic.visao.CadastraCurso;
 import br.com.gradeacademic.visao.CadastraDisciplina;
-import br.com.gradeacademic.visao.CadastraEstado;
-import br.com.gradeacademic.visao.CadastraPais;
 import br.com.gradeacademic.visao.CadastraProfessor;
 import br.com.gradeacademic.visao.CadastraSemestre;
 import br.com.gradeacademic.visao.VisualizaCurso;
 import br.com.gradeacademic.visao.VisualizaDisciplina;
 import br.com.gradeacademic.visao.VisualizaHorario;
-import br.com.gradeacademic.visao.VisualizaLocal;
 import br.com.gradeacademic.visao.VisualizaProfessor;
 import br.com.gradeacademic.visao.VisualizaRelatorio;
 import br.com.gradeacademic.visao.VisualizaSemestre;
@@ -56,16 +52,7 @@ public class AcaoPrincipal {
 			}
 		});
 	}
-
-	public static void visualizarLocal(JMenuItem visualizarLocal) {
-
-		visualizarLocal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VisualizaLocal.visualizarLocal();
-			}
-		});
-	}
-
+	
 	public static void visualizarCurso(JMenuItem visualizaCurso) {
 
 		visualizaCurso.addActionListener(new ActionListener() {
@@ -153,38 +140,6 @@ public class AcaoPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				VisualizaProfessor.visualizarProfessor();
 
-			}
-		});
-	}
-
-	public static void criarPais(JMenuItem criarPais) {
-
-		criarPais.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				CadastraPais.cadastrarPais();
-			}
-		});
-
-	}
-
-	public static void criarEstado(JMenuItem criarEstado) {
-		criarEstado.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CadastraEstado.cadastrarEstado();
-			}
-		});
-	}
-
-	public static void criarCidade(JMenuItem criarCidade) {
-		criarCidade.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CadastraCidade.cadastrarCidade();
 			}
 		});
 	}

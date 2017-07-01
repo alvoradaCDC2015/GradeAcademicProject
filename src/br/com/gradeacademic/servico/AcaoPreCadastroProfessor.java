@@ -67,18 +67,18 @@ public class AcaoPreCadastroProfessor extends PreCadastroProfessor {
 					professor.setCpf(tCpf.getText());
 					professor.setSenha(senha);
 					professor.setNivelAcesso(0);
-					professor.setAdministrador(false);
-					professor.setCoordenador("Não");
-					professor.setStatus("Ativo");
+					professor.setAdministrador(0);
+					professor.setCoordenador(0);
+					professor.setStatus(1);
 
 					RepositorioPreCadastroProfessor.salvar(professor);
 
 					habilitarCampos();
 					tela.dispose();
 
+				} else {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 				}
-
-				JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 
 			}
 		});

@@ -1,5 +1,7 @@
 package br.com.gradeacademic.visao;
 
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -8,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import br.com.gradeacademic.entidade.Professor;
 import br.com.gradeacademic.servico.AcaoVisualizaProfessor;
 
 public class VisualizaProfessor extends Principal {
@@ -52,20 +55,26 @@ public class VisualizaProfessor extends Principal {
 
 	}
 
-
 	@SuppressWarnings("serial")
 	private static void tabela(JInternalFrame internalVizualiza) {
 		JTable tabela = new JTable();
 		tabela.setLayout(null);
 		tabela.revalidate();
 		tabela.setBounds(0, 0, 800, 500);
-		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome", "Nascimento", "CPF", "Situação",
-				"Naturalidade", "Nacionalidade", "Endereço", "Numero", "Bairro", "CEP", "Cidade" }, 0) {
+		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome", "CPF", "Email" }, 0) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;
 			}
 		});
+
+		List<Professor> professores = AcaoVisualizaProfessor.carregarProfessores();
+		for (Professor professor : professores) {
+
+			((DefaultTableModel) tabela.getModel()).addRow(
+					new Object[] { professor.getId(), professor.getNome(), professor.getCpf(), professor.getEmail() });
+
+		}
 
 		JScrollPane scroll = new JScrollPane();
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
