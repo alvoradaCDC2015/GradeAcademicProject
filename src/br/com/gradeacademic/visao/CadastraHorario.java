@@ -1,6 +1,7 @@
 package br.com.gradeacademic.visao;
 
 import br.com.gradeacademic.servico.AcaoCadastraHorario;
+import br.com.gradeacademic.repositorio.RepositorioProfessorDisponibilidade;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -13,6 +14,8 @@ import javax.swing.border.TitledBorder;
 public class CadastraHorario extends Principal {
 
 	public static JInternalFrame internalHorario;
+	
+	private static String usuarioLogado = br.com.gradeacademic.visao.Login.tCampoUsuario.getText();
 
 	public static JToggleButton segunda = new JToggleButton();
 	public static JToggleButton terca = new JToggleButton();
@@ -22,8 +25,7 @@ public class CadastraHorario extends Principal {
 	public static JToggleButton sabado = new JToggleButton();
 
 	public static void cadastraHorario() {
-
-		internalHorario = new JInternalFrame("Horarios");
+		internalHorario = new JInternalFrame("Horários");
 		internalHorario.setClosable(true);
 		internalHorario.setLayout(null);
 		desktopPane.add(internalHorario);
@@ -31,11 +33,11 @@ public class CadastraHorario extends Principal {
 		internalHorario.setBounds(125, 76, 721, 377);
 
 		JButton btnSalvar = new JButton("Salvar");
-		JButton btnCancelar = new JButton("Cancelar");
-
-		btnSalvar.setBounds(571, 270, 120, 60);
+		btnSalvar.setBounds(400, 270, 147, 39);
 		AcaoCadastraHorario.botaoSalvar(btnSalvar);
-		btnCancelar.setBounds(441, 270, 120, 60);
+
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(561, 270, 103, 39);
 		AcaoCadastraHorario.botaoCancelar(btnCancelar);
 
 		JPanel panelNomeProfessor = new JPanel();
@@ -44,7 +46,7 @@ public class CadastraHorario extends Principal {
 		panelNomeProfessor.setBounds(36, 37, 639, 50);
 		panelNomeProfessor.setLayout(null);
 
-		JLabel labelNomeProfessor = new JLabel("Meu teclado nao tem acentos");
+		JLabel labelNomeProfessor = new JLabel("Selecione os horários que você tem disponivel.");
 		labelNomeProfessor.setBounds(10, 3, 600, 40);
 
 		panelNomeProfessor.add(labelNomeProfessor);
@@ -70,6 +72,8 @@ public class CadastraHorario extends Principal {
 		diasSemana[3] = quinta;
 		diasSemana[4] = sexta;
 		diasSemana[5] = sabado;
+		
+		boolean[] diasDisponiveis = RepositorioProfessorDisponibilidade.retornarDiasDisponiveis(usuarioLogado);
 
 		for (int i = 0; i < 6; i++) {
 			if (i < 3) {
@@ -77,6 +81,7 @@ public class CadastraHorario extends Principal {
 			} else {
 				diasSemana[i].setBounds((200 * (i - 3)) + 45, 95, 147, 39);
 			}
+			diasSemana[i].setSelected(diasDisponiveis[i]);
 			panelDiasSemana.add(diasSemana[i]);
 		}
 

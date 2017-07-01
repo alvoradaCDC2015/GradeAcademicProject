@@ -2,10 +2,11 @@ package br.com.gradeacademic.entidade;
 
 public class Estado {
     private int id;
+    private int pais;
+    private String nome;
     private String descricao;
     private String sigla;
-    private String pais;
-    private int situacao;
+    private boolean status;
     
     public int getId() {
 		return id;
@@ -15,15 +16,30 @@ public class Estado {
 		this.id = Id;
 	}
 	
+	public int getPais(){
+		return pais;
+	}
+	
+	public void setPais(int Pais){
+		this.pais = Pais;
+		
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String Nome) {
+		this.nome = Nome;
+	}
+	
 	public String getDescricao(){
 		return descricao;
 	}
 	
 	public void setDescricao(String Descricao){
-		this.descricao = Descricao;
-		
+		this.descricao = Descricao;	
 	}
-    
 	
 	public String getSigla(){
 		return sigla;
@@ -33,21 +49,13 @@ public class Estado {
 		this.sigla = Sigla;
 		
 	}
-	
-	public String getPais(){
-		return pais;
+
+	public boolean getStatus() {
+		return status;
 	}
-	
-	public void setPais(String Pais){
-		this.pais = Pais;
+	public void setStatus(Boolean Status) {
+		this.status = Status;
 		
 	}
-	
-	public int getSituacao() {
-		return situacao;
-	}
 
-	public void setSituacao(int Situacao) {
-		this.situacao = Situacao;
-	}
 }

@@ -42,7 +42,6 @@ public class VisualizaSemestre extends Principal {
 		JButton bRemover = new JButton("Remover");
 		internalVisualiza.add(bRemover);
 		bRemover.setBounds(330, 50, 147, 39);
-		AcaoVisualizaSemestre.botaoRemover(bRemover);
 
 		JTextField tBusca = new JTextField();
 		internalVisualiza.add(tBusca);
@@ -64,7 +63,7 @@ public class VisualizaSemestre extends Principal {
 		tabela.setLayout(null);
 		tabela.revalidate();
 		tabela.setBounds(0, 0, 800, 500);
-		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Semestre", "Descrição", "Status" }, 0) {
+		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Semestre", "Descrição" }, 0) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;

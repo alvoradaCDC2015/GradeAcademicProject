@@ -1,17 +1,30 @@
 package br.com.gradeacademic.visao;
+import java.awt.Color;
 
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
 import br.com.gradeacademic.servico.AcaoCadastraCurso;
+
 
 public class CadastraCurso extends Principal {
 
 	public static JInternalFrame internalCadastro;
+	
+	public static JTextField tIDCurso;
+	public static JTextArea tObservacaoCurso;
+	public static JTextField tNomeCurso;
+	public static JTextField tDuracaoCurso;
+	public static JComboBox<String> cCoordenadorPertencente;
 
 	public static void cadastrarCurso() {
 
@@ -21,34 +34,71 @@ public class CadastraCurso extends Principal {
 		internalCadastro.setBounds(100, 51, 871, 619);
 		internalCadastro.setLayout(null);
 		internalCadastro.setClosable(true);
-
+		
+		JPanel infoCurso = new JPanel();
+		internalCadastro.add(infoCurso);
+		infoCurso.setBorder(new TitledBorder(null, "Informações do Semestre", TitledBorder.LEADING, TitledBorder.TOP,
+				null, new Color(59, 59, 59)));
+		infoCurso.setBounds(36, 37, 789, 400);
+		infoCurso.setLayout(null);
+		
+		
 		JLabel lIDCurso = new JLabel("ID");
 		internalCadastro.add(lIDCurso);
 		lIDCurso.setBounds(58, 55, 45, 16);
 		lIDCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lIDCurso.setVisible(false);
+		infoCurso.add(lIDCurso);
 
-		JTextField tIDCurso = new JTextField();
+		tIDCurso = new JTextField();
 		internalCadastro.add(tIDCurso);
 		tIDCurso.setBounds(59, 83, 45, 28);
+		tIDCurso.setText(String.valueOf(AcaoCadastraCurso.buscarUltimoId() + 1));
+		tIDCurso.setVisible(false);
 
-		JLabel lNomeCurso = new JLabel("Nome*");
+		JLabel lNomeCurso = new JLabel("Descrição do Semestre:*");
 		internalCadastro.add(lNomeCurso);
-		lNomeCurso.setBounds(135, 55, 175, 16);
+		lNomeCurso.setBounds(140, 55, 175, 16);
 		lNomeCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-
-		JTextField tNomeCurso = new JTextField();
+		infoCurso.add(lNomeCurso);
+		
+		tNomeCurso = new JTextField();
 		internalCadastro.add(tNomeCurso);
 		tNomeCurso.setBounds(135, 83, 260, 28);
+		infoCurso.add(tNomeCurso);
 
-		JLabel lCoordenador = new JLabel("Coordenador*");
+		JLabel lObservacao = new JLabel("Observação do Semestre:");
+		lObservacao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lObservacao.setBounds(428, 54, 180, 16);
+		infoCurso.add(lObservacao);
+		lObservacao.setHorizontalAlignment(SwingConstants.LEFT);
+
+		tObservacaoCurso = new JTextArea();
+		tObservacaoCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tObservacaoCurso.setBounds(423, 83, 300, 100);
+		infoCurso.add(tObservacaoCurso);
+		
+		JLabel lCoordenador = new JLabel("Coordenador:*");
+		lCoordenador.setHorizontalAlignment(SwingConstants.LEFT);
 		lCoordenador.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lCoordenador.setBounds(423, 54, 160, 16);
-		internalCadastro.add(lCoordenador);
+		lCoordenador.setBounds(140, 200, 175, 16);
+		infoCurso.add(lCoordenador);
 
-		JTextField tCoordenador = new JTextField();
-		internalCadastro.add(tCoordenador);
-		tCoordenador.setBounds(423, 83, 200, 28);
-
+		cCoordenadorPertencente = new JComboBox<String>();
+		infoCurso.add(cCoordenadorPertencente);
+		cCoordenadorPertencente.setBounds(135, 229, 260, 28);
+		
+		JLabel lDuracao = new JLabel("Duração do Curso (em Anos):");
+		lDuracao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lDuracao.setBounds(428, 200, 230, 16);
+		infoCurso.add(lDuracao);
+		lDuracao.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		tDuracaoCurso = new JTextField();
+		tDuracaoCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tDuracaoCurso.setBounds(423, 229, 50, 28);
+		infoCurso.add(tDuracaoCurso);
+		
 		JButton bSalvar = new JButton("Salvar");
 		internalCadastro.add(bSalvar);
 		bSalvar.setBounds(556, 510, 147, 39);

@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import br.com.gradeacademic.servico.AcaoCadastraPais;
+import br.com.gradeacademic.servico.AcaoCadastraSemestre;
 
 public class CadastraPais extends Principal {
 
@@ -18,7 +19,6 @@ public class CadastraPais extends Principal {
 
 	public static JTextField tID;
 	public static JTextField tNome;
-	
 
 	public static void cadastrarPais() {
 
@@ -29,30 +29,29 @@ public class CadastraPais extends Principal {
 		internalCadastro.getContentPane().setLayout(null);
 		internalCadastro.setBounds(100, 51, 530, 300);
 
-		JPanel pPais = new JPanel();
-		internalCadastro.add(pPais);
-		pPais.setBorder(new TitledBorder(null, "Dados Pais", TitledBorder.LEADING, TitledBorder.TOP, null,
+		JPanel infoPais = new JPanel();
+		internalCadastro.add(infoPais);
+		infoPais.setBorder(new TitledBorder(null, "Dados Pais", TitledBorder.LEADING, TitledBorder.TOP, null,
 				new Color(59, 59, 59)));
-		pPais.setBounds(36, 40, 450, 150);
-		pPais.setLayout(null);
+		infoPais.setBounds(36, 40, 450, 150);
+		infoPais.setLayout(null);
 
 		tID = new JTextField();
-		internalCadastro.add(tID);
 		tID.setEnabled(false);
 		tID.setEditable(false);
 		tID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tID.setColumns(10);
 		tID.setBounds(10, 51, 45, 25);
-		tID.setText(String.valueOf(AcaoCadastraPais.buscarUltimoId() + 1));
+		tID.setText(String.valueOf(AcaoCadastraSemestre.buscarUltimoId() + 1));
 		tID.setVisible(false);
 
 		JLabel lNome = new JLabel("Nome*");
-		pPais.add(lNome);
+		infoPais.add(lNome);
 		lNome.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lNome.setBounds(65, 23, 175, 16);
 
 		tNome = new JTextField();
-		pPais.add(tNome);
+		infoPais.add(tNome);
 		tNome.setBounds(65, 50, 260, 28);
 
 		JButton bSalvar = new JButton("Salvar");
@@ -66,17 +65,5 @@ public class CadastraPais extends Principal {
 		AcaoCadastraPais.botaoCancelar(bCancelar);
 
 	}
-	public static void setarCampos(String id, String nome) {
-		
-		/* int indexStatus = 1;
-		 if (status.equals("Inativo")) {
-		 indexStatus = 0;
-		 }*/
-		
-		tID.setText(id);
-		tNome.setText(nome);
-
-	}
-
 
 }

@@ -29,7 +29,7 @@ public class CadastraSemestre extends Principal {
 		internalCadastro.setVisible(true);
 		internalCadastro.setClosable(true);
 		internalCadastro.getContentPane().setLayout(null);
-		internalCadastro.setBounds(100, 51, 871, 619);
+		internalCadastro.setBounds(100, 51, 871, 400);
 
 		JPanel infoSemestre = new JPanel();
 		internalCadastro.add(infoSemestre);
@@ -37,13 +37,6 @@ public class CadastraSemestre extends Principal {
 				null, new Color(59, 59, 59)));
 		infoSemestre.setBounds(36, 37, 789, 247);
 		infoSemestre.setLayout(null);
-
-		JLabel lID = new JLabel("ID");
-		lID.setHorizontalAlignment(SwingConstants.LEFT);
-		lID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lID.setBounds(63, 55, 45, 16);
-		infoSemestre.add(lID);
-		lID.setVisible(false);
 
 		tID = new JTextField();
 		internalCadastro.add(tID);
@@ -54,39 +47,44 @@ public class CadastraSemestre extends Principal {
 		JLabel lDescricao = new JLabel("Descrição do Semestre:");
 		lDescricao.setHorizontalAlignment(SwingConstants.LEFT);
 		lDescricao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lDescricao.setBounds(140, 55, 175, 16);
+		lDescricao.setBounds(100, 55, 175, 16);
 		infoSemestre.add(lDescricao);
 
 		tDescricao = new JTextField();
 		tDescricao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tDescricao.setBounds(135, 83, 260, 28);
+		tDescricao.setBounds(95, 83, 260, 28);
 		tDescricao.setColumns(10);
 		infoSemestre.add(tDescricao);
 
 		JLabel lObservacao = new JLabel("Observação do Semestre:");
 		lObservacao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lObservacao.setBounds(428, 54, 180, 16);
+		lObservacao.setBounds(388, 54, 180, 16);
 		infoSemestre.add(lObservacao);
 		lObservacao.setHorizontalAlignment(SwingConstants.LEFT);
 
 		tObservacao = new JTextArea();
 		tObservacao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tObservacao.setBounds(423, 83, 300, 100);
+		tObservacao.setBounds(383, 83, 330, 100);
 		infoSemestre.add(tObservacao);
 
 		JButton bSalvar = new JButton("Salvar");
 		internalCadastro.add(bSalvar);
-		bSalvar.setBounds(556, 510, 147, 39);
+		bSalvar.setBounds(556, 300, 147, 39);
 		AcaoCadastraSemestre.botaoSalvar(bSalvar);
 
 		JButton bCancelar = new JButton("Cancelar");
 		internalCadastro.add(bCancelar);
-		bCancelar.setBounds(715, 510, 103, 39);
+		bCancelar.setBounds(715, 300, 103, 39);
 		AcaoCadastraSemestre.botaoCancelar(bCancelar);
 
 	}
 
 	public static void setarCampos(String id, String descricao, String observacao) {
+		// int indexStatus = 1;
+		// if (status.equals("Inativo")) {
+		// indexStatus = 0;
+		// }
+
 		tID.setText(id);
 		tDescricao.setText(descricao);
 		tObservacao.setText(observacao);

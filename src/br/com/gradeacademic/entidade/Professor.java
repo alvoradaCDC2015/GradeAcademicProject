@@ -2,130 +2,139 @@ package br.com.gradeacademic.entidade;
 
 public class Professor {
 	private int id;
+	private int enderecoProfessor;
 	private String nome;
-	private int dataNascimento;
-	private int cpf;
-	private int situacao;
-	private String nacionalidade;
+	private String dataNascimento;
+	private String cpf;
 	private String naturalidade;
-	private int coordenador;
-	private String endereco;
-	private int numero;
-	private String bairro;
-	private int cep;
-	private String estado;
-	private String cidade;
+	private String nacionalidade;
+	private long telefoneResidencial;
+	private long celular;
+	private String email;
+	private String senha;
+	private int nivelAcesso;
+	private Boolean administrador;
+	private String coordenador;
+	private String status;
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int Id) {
-		this.id = Id;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getEnderecoProfessor() {
+		return enderecoProfessor;
+	}
+
+	public void setEnderecoProfessor(int enderecoProcessor) {
+		this.enderecoProfessor = enderecoProcessor;
 	}
 
 	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String Nome) {
-		this.nome = Nome;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public int getDataNascimaento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(int DataNascimento) {
-		this.dataNascimento = DataNascimento;
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int Cpf) {
-		this.cpf = Cpf;
-	}
-
-	public int getSituacao() {
-		return situacao;
-	}
-
-	public void setSituacao(int Situacao) {
-		this.situacao = Situacao;
-	}
-
-	public String getNacionalidade() {
-		return nacionalidade;
-	}
-
-	public void setNacionalidade(String Nacionalidade) {
-		this.nacionalidade = Nacionalidade;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getNaturalidade() {
 		return naturalidade;
 	}
 
-	public void setNaturalidade(String Naturalidade) {
-		this.naturalidade = Naturalidade;
+	public void setNaturalidade(String naturalidade) {
+		this.naturalidade = naturalidade;
 	}
 
-	public int getCoordenador() {
+	public String getNacionalidade() {
+		return nacionalidade;
+	}
+
+	public void setNacionalidade(String nacionalidade) {
+		this.nacionalidade = nacionalidade;
+	}
+
+	public long getTelefoneResidencial() {
+		return telefoneResidencial;
+	}
+
+	public void setTelefoneResidencial(long telefoneResidencial) {
+		this.telefoneResidencial = telefoneResidencial;
+	}
+
+	public long getCelular() {
+		return celular;
+	}
+
+	public void setCelular(long celular) {
+		this.celular = celular;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public int getNivelAcesso() {
+		return nivelAcesso;
+	}
+
+	public void setNivelAcesso(int nivelAcesso) {
+		this.nivelAcesso = nivelAcesso;
+	}
+
+	public Boolean getAdministrador() {
+		return administrador;
+	}
+
+	public void setAdministrador(Boolean administrador) {
+		this.administrador = administrador;
+	}
+
+	public String getCoordenador() {
 		return coordenador;
 	}
 
-	public void setCoordenador(int Coordenador) {
-		this.coordenador = Coordenador;
+	public void setCoordenador(String coordenador) {
+		this.coordenador = coordenador;
 	}
 
-	public String getEndereco() {
-		return endereco;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setEndereco(String Endereco) {
-		this.endereco = Endereco;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int Numero) {
-		this.numero = Numero;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String Bairro) {
-		this.bairro = Bairro;
-	}
-
-	public int getCep() {
-		return cep;
-	}
-
-	public void setCep(int Cep) {
-		this.cep = Cep;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String Estado) {
-		this.estado = Estado;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String Cidade) {
-		this.cidade = Cidade;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

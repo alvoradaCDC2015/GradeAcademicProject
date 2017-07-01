@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class ConectarBd {
 
 	public static Connection conectar() {
-		String url = "jdbc:postgresql://localhost/gradeacademic";
+		String url = "jdbc:postgresql://localhost/homgradeacademic";
 		String usuario = "postgres";
 		String senha = "postgres";
 

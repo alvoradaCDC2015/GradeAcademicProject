@@ -8,6 +8,7 @@ import br.com.gradeacademic.visao.Principal;
 
 public class Iniciar {
 
+
 	public static void main(String[] args) {
 
 		try {
@@ -22,6 +23,5 @@ public class Iniciar {
 		}
 
 		Principal.main(args);
-
 	}
 }

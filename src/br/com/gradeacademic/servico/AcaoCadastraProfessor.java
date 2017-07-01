@@ -4,8 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
+import br.com.gradeacademic.entidade.Professor;
+import br.com.gradeacademic.repositorio.RepositorioProfessor;
 import br.com.gradeacademic.visao.CadastraHorario;
 import br.com.gradeacademic.visao.CadastraProfessor;
 
@@ -16,11 +17,25 @@ public class AcaoCadastraProfessor extends CadastraProfessor {
 		bSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (tNome != null && tNome.getText().equals("") == true) {
-					JOptionPane.showMessageDialog(null, "Nome é campo Obrigatório!");
-				}
+				Professor professor = new Professor();
+				professor.setNome(tNome.getText());
+				professor.setDataNascimento(tNascimento.getText());
+				professor.setCpf(tCpf.getText());
+				professor.setNaturalidade(tNaturalidade.getText());
+				professor.setNacionalidade(tNacionalidade.getText());
+				professor.setTelefoneResidencial(Long.parseLong(tTelefoneResidencial.getText()));
+				professor.setCelular(Long.parseLong(tCelular.getText()));
+				professor.setEmail(tEmail.getText());
+				professor.setSenha(tSenha.getText());
+				professor.setNivelAcesso(0);
+				professor.setStatus(tSituacao.getSelectedItem().toString());
+				professor.setCoordenador(tCoordenador.getSelectedItem().toString());
+				professor.setAdministrador(false);
+
+				RepositorioProfessor.salvarProfessor(professor);
 
 			}
+
 		});
 	}
 

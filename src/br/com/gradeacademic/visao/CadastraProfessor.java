@@ -26,6 +26,7 @@ public class CadastraProfessor extends Principal {
 	public static JTextField tNome;
 	public static JFormattedTextField tNascimento;
 	public static JFormattedTextField tCpf;
+	public static JTextField tSenha;
 	public static JComboBox<String> tSituacao;
 	public static JTextField tNaturalidade;
 	public static JTextField tNacionalidade;
@@ -34,8 +35,11 @@ public class CadastraProfessor extends Principal {
 	public static JTextField tNumero;
 	public static JTextField tBairro;
 	public static JFormattedTextField tCEP;
-	public static JTextField tCidade;
-	public static JTextField tEstado;
+	public static JComboBox<String> tCidade;
+	public static JComboBox<String> tEstado;
+	public static JTextField tTelefoneResidencial;
+	public static JTextField tCelular;
+	public static JTextField tEmail;
 
 	public static void cadastrarProfessor() {
 
@@ -51,7 +55,7 @@ public class CadastraProfessor extends Principal {
 		informacoesEndereco();
 
 		informacoesContato();
-		
+
 		JButton bDisponibilidade = new JButton("Disponibilidade");
 		internalCadastro.add(bDisponibilidade);
 		bDisponibilidade.setBounds(45, 510, 147, 39);
@@ -78,21 +82,30 @@ public class CadastraProfessor extends Principal {
 		internalCadastro.add(panelInfoCliente);
 		panelInfoCliente.setLayout(null);
 
-		tNome = new JTextField();
-		tNome.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tNome.setBounds(135, 63, 260, 28);
-		panelInfoCliente.add(tNome);
-		tNome.setColumns(10);
+		tID = new JTextField();
+		tID.setEnabled(false);
+		tID.setEditable(false);
+		tID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tID.setColumns(10);
+		tID.setBounds(59, 63, 45, 28);
+		tID.setVisible(false);
+		panelInfoCliente.add(tID);
 
 		JLabel lnomeCompleto = new JLabel("Nome Completo*");
 		lnomeCompleto.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lnomeCompleto.setBounds(135, 35, 175, 16);
+		lnomeCompleto.setBounds(59, 35, 175, 16);
 		panelInfoCliente.add(lnomeCompleto);
 		lnomeCompleto.setHorizontalAlignment(SwingConstants.LEFT);
 
+		tNome = new JTextField();
+		tNome.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tNome.setBounds(59, 63, 260, 28);
+		panelInfoCliente.add(tNome);
+		tNome.setColumns(10);
+
 		JLabel lNascimento = new JLabel("Data Nascimento*");
 		lNascimento.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lNascimento.setBounds(423, 34, 127, 16);
+		lNascimento.setBounds(323, 34, 127, 16);
 		panelInfoCliente.add(lNascimento);
 		lNascimento.setHorizontalAlignment(SwingConstants.LEFT);
 
@@ -103,8 +116,14 @@ public class CadastraProfessor extends Principal {
 			e.printStackTrace();
 		}
 		tNascimento.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tNascimento.setBounds(423, 63, 127, 28);
+		tNascimento.setBounds(323, 63, 127, 28);
 		panelInfoCliente.add(tNascimento);
+
+		JLabel cpf = new JLabel("CPF*");
+		cpf.setHorizontalAlignment(SwingConstants.LEFT);
+		cpf.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		cpf.setBounds(470, 35, 145, 16);
+		panelInfoCliente.add(cpf);
 
 		try {
 			tCpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
@@ -113,28 +132,20 @@ public class CadastraProfessor extends Principal {
 			e.printStackTrace();
 		}
 		tCpf.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tCpf.setBounds(573, 63, 106, 28);
+		tCpf.setBounds(470, 63, 106, 28);
 		panelInfoCliente.add(tCpf);
+		
+		JLabel lSenha = new JLabel("Senha");
+		lSenha.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		lSenha.setBounds(586, 35, 175, 16);
+		panelInfoCliente.add(lSenha);
+		lSenha.setHorizontalAlignment(SwingConstants.LEFT);
 
-		tID = new JTextField();
-		tID.setEnabled(false);
-		tID.setEditable(false);
-		tID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tID.setColumns(10);
-		tID.setBounds(59, 63, 45, 28);
-		panelInfoCliente.add(tID);
-
-		JLabel lId = new JLabel("ID");
-		lId.setHorizontalAlignment(SwingConstants.LEFT);
-		lId.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		lId.setBounds(58, 35, 45, 16);
-		panelInfoCliente.add(lId);
-
-		JLabel cpf = new JLabel("CPF*");
-		cpf.setHorizontalAlignment(SwingConstants.LEFT);
-		cpf.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		cpf.setBounds(573, 35, 145, 16);
-		panelInfoCliente.add(cpf);
+		tSenha = new JTextField();
+		tSenha.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tSenha.setBounds(586, 63, 106, 28);
+		panelInfoCliente.add(tSenha);
+		tSenha.setColumns(10);
 
 		JLabel lNaturalidade = new JLabel("Naturalidade");
 		lNaturalidade.setHorizontalAlignment(SwingConstants.LEFT);
@@ -204,7 +215,7 @@ public class CadastraProfessor extends Principal {
 		lEndereco.setBounds(56, 24, 175, 16);
 		panelInfoEndereco.add(lEndereco);
 
-		JLabel lblN = new JLabel("N\u00BA");
+		JLabel lblN = new JLabel("Nº");
 		lblN.setHorizontalAlignment(SwingConstants.LEFT);
 		lblN.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lblN.setBounds(347, 24, 81, 16);
@@ -251,22 +262,23 @@ public class CadastraProfessor extends Principal {
 		lblCidade.setBounds(203, 92, 175, 16);
 		panelInfoEndereco.add(lblCidade);
 
-		tCidade = new JTextField();
-		tCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tCidade.setColumns(10);
-		tCidade.setBounds(203, 120, 162, 28);
-		panelInfoEndereco.add(tCidade);
-
 		JLabel lblEstado = new JLabel("Estado*");
 		lblEstado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lblEstado.setBounds(56, 92, 94, 16);
 		panelInfoEndereco.add(lblEstado);
 
-		tEstado = new JTextField();
+		tEstado = new JComboBox<String>();
+		tEstado.addItem("Escolha...");
 		tEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tEstado.setBounds(56, 120, 114, 28);
 		panelInfoEndereco.add(tEstado);
+
+		tCidade = new JComboBox<String>();
+		tCidade.addItem("Escolha...");
+		tCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tCidade.setBounds(203, 120, 162, 28);
+		panelInfoEndereco.add(tCidade);
 
 		JButton btnBuscar = new JButton("Buscar ");
 		btnBuscar.setBounds(611, 86, 122, 28);
@@ -286,30 +298,28 @@ public class CadastraProfessor extends Principal {
 		lbTelefoneResidencial.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lbTelefoneResidencial.setBounds(40, 25, 200, 20);
 		panelInfoContato.add(lbTelefoneResidencial);
-		
-		JTextField tTelefoneResidencial = new JTextField();
+
+		tTelefoneResidencial = new JTextField();
 		tTelefoneResidencial.setBounds(40, 50, 200, 28);
 		panelInfoContato.add(tTelefoneResidencial);
-		
+
 		JLabel lbCelular = new JLabel("Celular");
 		lbCelular.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lbCelular.setBounds(240, 25, 200, 20);
 		panelInfoContato.add(lbCelular);
-		
-		JTextField tCelular = new JTextField();
+
+		tCelular = new JTextField();
 		tCelular.setBounds(240, 50, 200, 28);
 		panelInfoContato.add(tCelular);
-		
+
 		JLabel lbEmail = new JLabel("Email");
 		lbEmail.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lbEmail.setBounds(440, 25, 200, 20);
 		panelInfoContato.add(lbEmail);
-		
-		JTextField tEmail = new JTextField();
+
+		tEmail = new JTextField();
 		tEmail.setBounds(440, 50, 300, 28);
 		panelInfoContato.add(tEmail);
-
-		
 	}
 
 }

@@ -1,0 +1,122 @@
+CREATE TABLE PGA_CURSO(
+	
+	cur_id SERIAL NOT NULL PRIMARY KEY,
+	
+	cur_nome VARCHAR(150),	
+	cur_observacao VARCHAR(255),	
+	cur_duracao_anos INTEGER,	
+	cur_coordenador VARCHAR(255),
+	cur_status INT DEFAULT 1
+); 
+
+CREATE TABLE PGA_SEMESTRE (
+	sem_id SERIAL NOT NULL PRIMARY KEY,
+	sem_id_curso INTEGER,
+	sem_descricao VARCHAR (50),
+	sem_observacao VARCHAR (250),
+	sem_status INT DEFAULT 1
+);
+
+
+CREATE TABLE PGA_DISCIPLINA (
+	dis_id SERIAL NOT NULL PRIMARY KEY,
+	dis_nome VARCHAR(60) NOT NULL,
+	dis_status  BOOLEAN
+);
+
+CREATE TABLE PGA_SEMESTRE_DISCIPLINA(
+	dse_id SERIAL NOT NULL PRIMARY KEY,
+	dse_id_disciplina INTEGER,
+	dse_id_semestre INTEGER
+);
+
+CREATE TABLE PGA_PROFESSOR(
+    pro_id SERIAL NOT NULL PRIMARY KEY,
+    pro_nivel_acesso INTEGER,
+    pro_endereco INTEGER,
+    pro_nome VARCHAR(60) NOT NULL,
+    pro_data_nascimento VARCHAR,
+    pro_cpf VARCHAR NOT NULL,
+   	pro_naturalidade VARCHAR,
+   	pro_nacionalidade VARCHAR,
+   	pro_coordenador VARCHAR,
+   	pro_administrador BOOLEAN,
+   	pro_contato_telefone_residencial BIGINT,
+   	pro_contato_celular BIGINT,
+   	pro_contato_email VARCHAR NOT NULL,
+   	pro_senha VARCHAR,
+    pro_status VARCHAR
+);
+
+CREATE TABLE PGA_DISCIPLINA_PROFESSOR(
+	dpr_id SERIAL NOT NULL,
+	dpr_id_disciplina INTEGER,
+	dpr_id_professor INTEGER
+);
+
+CREATE TABLE PGA_PROFESSOR_DISPONIBILIDADE(
+	pdi_id SERIAL NOT NULL PRIMARY KEY,
+	pdi_id_professor INTEGER,
+	pdi_dia_semana VARCHAR,
+	pdi_status INTEGER
+);
+
+
+CREATE TABLE PGA_PROFESSOR_ENDERECO(
+	pre_id SERIAL NOT NULL PRIMARY KEY,
+	pre_cidade INTEGER NOT NULL,
+	pre_numero varchar(8),
+	pre_logradouro varchar(50),
+	pre_bairro VARCHAR(30),
+	pre_cep int,
+	pre_status int
+);
+
+CREATE TABLE PGA_CIDADE (
+	cid_id SERIAL NOT NULL PRIMARY KEY,
+	cid_nome VARCHAR(60) NOT NULL,
+	cid_estado INTEGER NOT NULL,
+	cid_descricao VARCHAR(255),
+	cid_status BOOLEAN
+);
+
+
+CREATE TABLE PGA_ESTADO(
+	est_id SERIAL NOT NULL PRIMARY KEY,
+	est_pais INTEGER NOT NULL,
+	est_nome VARCHAR(60) NOT NULL,
+	est_descricao VARCHAR(255),
+	est_sigla VARCHAR(5),
+	est_status BOOLEAN
+);
+
+ CREATE TABLE PGA_PAIS (
+	pais_id SERIAL NOT NULL PRIMARY KEY,
+	pais_nome VARCHAR NOT NULL,
+	pais_descricao VARCHAR (150),
+	pais_status INT DEFAULT 1
+);
+
+
+ALTER TABLE PGA_SEMESTRE
+ADD CONSTRAINT 	fk_curso FOREIGN KEY (sem_id_curso) REFERENCES PGA_CURSO(cur_id);
+
+ALTER TABLE PGA_SEMESTRE_DISCIPLINA
+ADD CONSTRAINT fk_disciplina_sem FOREIGN KEY (dse_id_disciplina) REFERENCES PGA_DISCIPLINA(dis_id),
+ADD CONSTRAINT fk_semestre_sem FOREIGN KEY (dse_id_semestre) REFERENCES PGA_SEMESTRE(sem_id);
+
+ALTER TABLE PGA_DISCIPLINA_PROFESSOR
+ADD CONSTRAINT fk_disciplina_prof FOREIGN KEY (dpr_id_disciplina) REFERENCES PGA_DISCIPLINA(dis_id),
+ADD CONSTRAINT fk_professor_prof FOREIGN KEY (dpr_id_professor) REFERENCES PGA_PROFESSOR(pro_id);
+
+ALTER TABLE PGA_PROFESSOR_DISPONIBILIDADE
+ADD CONSTRAINT fk_professor_dis FOREIGN KEY (pdi_id_professor) REFERENCES PGA_PROFESSOR(pro_id);
+
+ALTER TABLE PGA_PROFESSOR_ENDERECO
+ADD CONSTRAINT fk_cidade_end FOREIGN KEY (pre_cidade) REFERENCES PGA_CIDADE(cid_id);
+
+ALTER TABLE PGA_CIDADE
+ADD CONSTRAINT fk_estado_cid FOREIGN KEY (cid_estado) REFERENCES PGA_ESTADO(est_id);
+
+ALTER TABLE PGA_ESTADO
+ADD CONSTRAINT fk_pais_es FOREIGN KEY (est_pais) REFERENCES PGA_PAIS(pai_id);

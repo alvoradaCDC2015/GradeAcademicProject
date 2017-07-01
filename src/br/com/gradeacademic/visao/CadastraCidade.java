@@ -12,12 +12,15 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import br.com.gradeacademic.servico.AcaoCadastraCidade;
+import br.com.gradeacademic.servico.AcaoCadastraSemestre;
 
 public class CadastraCidade extends Principal {
 
 	public static JInternalFrame internalCadastro;
-
 	public static JTextField tNomeCidade;
+	public static JTextField tIDCidade;
+	public static JComboBox<String> cStatus;
+	
 
 	public static void cadastrarCidade() {
 
@@ -35,12 +38,13 @@ public class CadastraCidade extends Principal {
 		pCidade.setBounds(36, 40, 450, 150);
 		pCidade.setLayout(null);
 
-		JTextField tIDCidade = new JTextField();
+		tIDCidade = new JTextField();
 		tIDCidade.setEnabled(false);
 		tIDCidade.setEditable(false);
 		tIDCidade.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		tIDCidade.setColumns(10);
 		tIDCidade.setBounds(10, 51, 45, 25);
+		tIDCidade.setText(String.valueOf(AcaoCadastraSemestre.buscarUltimoId() + 1));
 		tIDCidade.setVisible(false);
 
 		JLabel lNomeCidade = new JLabel("Nome*");
@@ -61,6 +65,9 @@ public class CadastraCidade extends Principal {
 		JComboBox<String> cEstadoPertencente = new JComboBox<String>();
 		pCidade.add(cEstadoPertencente);
 		cEstadoPertencente.setBounds(335, 50, 87, 28);
+		
+		
+		
 
 		JButton bSalvar = new JButton("Salvar");
 		internalCadastro.add(bSalvar);

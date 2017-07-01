@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import br.com.gradeacademic.conectar.ConectarBd;
 import br.com.gradeacademic.entidade.Estado;
+import br.com.gradeacademic.visao.CadastraEstado;
 
 public class RepositorioEstado {
 	public static boolean salvar(Estado estado) {
@@ -19,10 +20,30 @@ public class RepositorioEstado {
 		PreparedStatement parametro = null;
 		ResultSet rs = null;
 
-				estado.setId(1);
+		try {
+
+			parametro = conexao.prepareStatement("SELECT * FROM pga_estado WHERE est_id = ?");
+			parametro.setInt(1, Integer.parseInt(CadastraEstado.tID.getText() + 1));
+			rs = parametro.executeQuery();
+
+			if (!rs.next()) {
+
+				estado.setId(retornarUltimoId());
 				criar(estado);
 				return true;
 
+			} else {
+
+				estado.setId(Integer.parseInt(CadastraEstado.tID.getText()));
+			}
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao salvar.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+
+		return false;
 	}
 
 	public static void criar(Estado estado) {
@@ -32,11 +53,13 @@ public class RepositorioEstado {
 
 		try {
 
-			parametro = conexao
-					.prepareStatement("INSERT INTO PGA_ESTADO (est_descricao, est_sigla, est_pais) VALUES (?,?,?)");
-			parametro.setString(1, estado.getDescricao());
-			parametro.setString(2, estado.getSigla());
-			parametro.setString(3, estado.getPais());
+			parametro = conexao.prepareStatement(
+					"INSERT INTO PGA_ESTADO (est_pais,est_nome,est_descricao, est_sigla, est_status) VALUES (?,?, ?,?,?)");
+			parametro.setInt(1, estado.getPais());
+			parametro.setString(2, estado.getNome());
+			parametro.setString(3, estado.getDescricao());
+			parametro.setString(4, estado.getSigla());
+			parametro.setBoolean(5, estado.getStatus());
 			parametro.executeUpdate();
 
 			JOptionPane.showMessageDialog(null, "Estado " + retornarUltimoId() + " Salvo!");
@@ -56,10 +79,10 @@ public class RepositorioEstado {
 		try {
 
 			parametro = conexao.prepareStatement(
-					"UPDATE PGA_ESTADO SET est_descricao = ?, est_sigla = ?, est_pais = ? WHERE id = ?");
+					"UPDATE PGA_ESTADO SET est_pais = ?,est_nome = ?, est_descricao = ?, est_sigla = ?,  WHERE est_id = ?");
 			parametro.setString(1, estado.getDescricao());
 			parametro.setString(2, estado.getSigla());
-			parametro.setString(3, estado.getPais());
+			parametro.setInt(3, estado.getPais());
 			parametro.setInt(4, estado.getId());
 			parametro.executeUpdate();
 
@@ -87,12 +110,12 @@ public class RepositorioEstado {
 			while (resultEstado.next()) {
 
 				Estado estado = new Estado();
-				estado.setId(resultEstado.getInt("id"));
-				estado.setNome(resultEstado.getString("nome"));
-				estado.setDescricao(resultEstado.getString("descricao"));
-				estado.setSigla(resultEstado.getString("sigla"));
-				estado.setStatus((resultEstado.getBoolean("status")));
-				estado.setPais((resultEstado.getString("pais")));
+				estado.setId(resultEstado.getInt("est_id"));
+				estado.setPais((resultEstado.getInt("est_pais")));
+				estado.setNome(resultEstado.getString("est_nome"));
+				estado.setDescricao(resultEstado.getString("est_descricao"));
+				estado.setSigla(resultEstado.getString("est_sigla"));
+				estado.setStatus((resultEstado.getBoolean("est_status")));
 				estados.add(estado);
 
 			}
@@ -114,7 +137,7 @@ public class RepositorioEstado {
 
 		try {
 
-			parametro = conexao.prepareStatement("UPDATE PGA_ESTADO SET status = ? WHERE id = ?");
+			parametro = conexao.prepareStatement("UPDATE PGA_ESTADO SET est_status = ? WHERE est_id = ?");
 			parametro.setInt(1, statusInativo);
 			parametro.setInt(2, id);
 			parametro.executeUpdate();
@@ -134,11 +157,11 @@ public class RepositorioEstado {
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT MAX(id) FROM PGA_ESTADO");
+			parametro = conexao.prepareStatement("SELECT MAX(est_id) FROM pga_estado");
 			ResultSet rs = parametro.executeQuery();
 
 			if (rs.next()) {
-				id = rs.getInt(1);
+				id = rs.getInt("max");
 			}
 
 		} catch (Exception e) {
@@ -150,4 +173,4 @@ public class RepositorioEstado {
 		return id;
 	}
 
-	}
+}

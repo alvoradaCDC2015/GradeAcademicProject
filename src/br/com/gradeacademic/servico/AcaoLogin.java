@@ -14,7 +14,7 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 import br.com.gradeacademic.visao.Login;
-import br.com.gradeacademic.visao.PreCadastro;
+import br.com.gradeacademic.visao.PreCadastroProfessor;
 
 public class AcaoLogin extends Login {
 
@@ -34,7 +34,7 @@ public class AcaoLogin extends Login {
 
 			public void actionPerformed(ActionEvent e) {
 
-				ValidarAcesso.validarLogin(tCampoUsuario, tCampoSenha);
+				ValidarLogin.validarLogin(tCampoUsuario, tCampoSenha);
 
 			}
 		});
@@ -47,7 +47,7 @@ public class AcaoLogin extends Login {
 
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-					ValidarAcesso.validarLogin(tUsuario, tSenha);
+					ValidarLogin.validarLogin(tUsuario, tSenha);
 
 				}
 			}
@@ -78,7 +78,7 @@ public class AcaoLogin extends Login {
 				bAcessar.setEnabled(false);
 				bSair.setEnabled(false);
 				bCadastrar.setEnabled(false);
-				PreCadastro.JanelaPreCadastro();
+				PreCadastroProfessor.JanelaPreCadastro();
 			}
 		});
 	}

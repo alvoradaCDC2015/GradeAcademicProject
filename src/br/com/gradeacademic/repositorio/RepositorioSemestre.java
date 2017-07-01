@@ -23,7 +23,7 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT * FROM PGA_SEMESTRE WHERE sem_id = ?");
+			parametro = conexao.prepareStatement("SELECT * FROM pga_semestre WHERE sem_id = ?");
 			parametro.setInt(1, Integer.parseInt(CadastraSemestre.tID.getText()));
 			rs = parametro.executeQuery();
 
@@ -55,7 +55,8 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("INSERT INTO PGA_SEMESTRE (sem_descricao, sem_observacao) VALUES (?,?)");
+			parametro = conexao
+					.prepareStatement("INSERT INTO pga_semestre (sem_descricao, sem_observacao) VALUES (?,?)");
 			parametro.setString(1, semestre.getDescricao());
 			parametro.setString(2, semestre.getObservacao());
 
@@ -77,7 +78,8 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("UPDATE PGA_SEMESTRE SET sem_descricao = ?, sem_observacao = ? WHERE sem_id= ?");
+			parametro = conexao
+					.prepareStatement("UPDATE pga_semestre SET sem_descricao = ?, sem_observacao = ? WHERE sem_id= ?");
 			parametro.setString(1, semestre.getDescricao());
 			parametro.setString(2, semestre.getObservacao());
 			parametro.setInt(3, semestre.getId());
@@ -101,7 +103,7 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT * FROM PGA_SEMESTRE ORDER BY sem_id");
+			parametro = conexao.prepareStatement("SELECT * FROM pga_semestre ORDER BY sem_id");
 			resultSemestre = parametro.executeQuery();
 
 			while (resultSemestre.next()) {
@@ -110,7 +112,6 @@ public class RepositorioSemestre {
 				semestre.setId(resultSemestre.getInt("sem_id"));
 				semestre.setDescricao(resultSemestre.getString("sem_descricao"));
 				semestre.setObservacao(resultSemestre.getString("sem_observacao"));
-				semestre.setStatus(Integer.parseInt(resultSemestre.getString("sem_status")));
 				semestres.add(semestre);
 
 			}
@@ -128,17 +129,17 @@ public class RepositorioSemestre {
 
 		Connection conexao = ConectarBd.conectar();
 		PreparedStatement parametro = null;
-		int statusInativo = 0;
+		int statusInativo = 1;
 
 		try {
 
-			parametro = conexao.prepareStatement("UPDATE PGA_SEMESTRE SET sem_status = ? WHERE sem_id = ?");
+			parametro = conexao.prepareStatement("UPDATE pga_semestre SET sem_status = ? WHERE sem_id = ?");
 			parametro.setInt(1, statusInativo);
 			parametro.setInt(2, id);
 			parametro.executeUpdate();
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao remover Semestre.");
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao excluir.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
@@ -152,11 +153,11 @@ public class RepositorioSemestre {
 
 		try {
 
-			parametro = conexao.prepareStatement("SELECT MAX(sem_id) FROM PGA_SEMESTRE");
+			parametro = conexao.prepareStatement("SELECT MAX(sem_id) FROM pga_semestre");
 			ResultSet rs = parametro.executeQuery();
 
-			if (rs.next()) {
-				id = rs.getInt(1);
+			if (!rs.next()) {
+				id = rs.getInt("sem_id");
 			}
 
 		} catch (Exception e) {

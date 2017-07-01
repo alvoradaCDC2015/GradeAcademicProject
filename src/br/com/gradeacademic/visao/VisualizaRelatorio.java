@@ -1,15 +1,20 @@
 package br.com.gradeacademic.visao;
 
-import javax.swing.JInternalFrame;
-import br.com.gradeacademic.servico.AcaoGerarRelatorio;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
+
+import com.itextpdf.text.DocumentException;
+
+import br.com.gradeacademic.servico.AcaoGerarRelatorio;
 
 public class VisualizaRelatorio extends Principal {
 

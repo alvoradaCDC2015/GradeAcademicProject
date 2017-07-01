@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import br.com.gradeacademic.entidade.Pais;
 import br.com.gradeacademic.repositorio.RepositorioPais;
 import br.com.gradeacademic.visao.CadastraPais;
+import br.com.gradeacademic.visao.VisualizaLocal;
 
 
 public class AcaoCadastraPais extends CadastraPais {
@@ -24,7 +25,8 @@ public class AcaoCadastraPais extends CadastraPais {
 
 				RepositorioPais.salvar(pais);
 
-				AcaoCadastraPais.internalCadastro.dispose();
+				AcaoCadastraPais.internalCadastro.dispose();		
+				VisualizaLocal.visualizarLocal();
 			}
 		});
 

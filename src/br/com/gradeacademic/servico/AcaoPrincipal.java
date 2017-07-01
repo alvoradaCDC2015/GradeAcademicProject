@@ -2,10 +2,12 @@ package br.com.gradeacademic.servico;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JMenuItem;
 
-import br.com.gradeacademic.visao.CadastraAcesso;
+import com.itextpdf.text.DocumentException;
+
 import br.com.gradeacademic.visao.CadastraCidade;
 import br.com.gradeacademic.visao.CadastraCurso;
 import br.com.gradeacademic.visao.CadastraDisciplina;
@@ -13,9 +15,9 @@ import br.com.gradeacademic.visao.CadastraEstado;
 import br.com.gradeacademic.visao.CadastraPais;
 import br.com.gradeacademic.visao.CadastraProfessor;
 import br.com.gradeacademic.visao.CadastraSemestre;
-import br.com.gradeacademic.visao.VisualizaAcesso;
 import br.com.gradeacademic.visao.VisualizaCurso;
 import br.com.gradeacademic.visao.VisualizaDisciplina;
+import br.com.gradeacademic.visao.VisualizaHorario;
 import br.com.gradeacademic.visao.VisualizaLocal;
 import br.com.gradeacademic.visao.VisualizaProfessor;
 import br.com.gradeacademic.visao.VisualizaRelatorio;
@@ -59,30 +61,7 @@ public class AcaoPrincipal {
 
 		visualizarLocal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				VisualizaLocal.visualizarLocal();
-
-			}
-		});
-	}
-
-	public static void criarAcesso(JMenuItem criarAcesso) {
-
-		criarAcesso.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				CadastraAcesso.cadastrarAcesso();
-
-			}
-		});
-	}
-
-	public static void visualizarAcesso(JMenuItem visualizarAcesso) {
-
-		visualizarAcesso.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				VisualizaAcesso.visualizarAcesso();
 			}
 		});
 	}
@@ -107,21 +86,26 @@ public class AcaoPrincipal {
 		});
 
 	}
-	
+
 	public static void visualizaRelatorio(JMenuItem visualizaRelatorio) {
 		visualizaRelatorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				VisualizaRelatorio.visualizarRelatorio();
+				try {
+					VisualizaRelatorio.visualizarRelatorio();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (DocumentException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 
-}
+	}
 
 	public static void visualizaDisciplina(JMenuItem visualizaDisciplina) {
 		visualizaDisciplina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				VisualizaDisciplina.visualizarDisciplina();
 			}
 		});
@@ -157,7 +141,6 @@ public class AcaoPrincipal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				VisualizaDisciplina.visualizarDisciplina();
 			}
 		});
@@ -204,6 +187,16 @@ public class AcaoPrincipal {
 				CadastraCidade.cadastrarCidade();
 			}
 		});
+	}
+
+	public static void visualizaHorario(JMenuItem visualizaRelatorio) {
+		visualizaRelatorio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				VisualizaHorario.visualizaHorario();
+			}
+		});
+
 	}
 
 }

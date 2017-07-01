@@ -11,13 +11,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import br.com.gradeacademic.entidade.Pais;
 import br.com.gradeacademic.servico.AcaoCadastraEstado;
+import br.com.gradeacademic.servico.AcaoCadastraSemestre;
 
 public class CadastraEstado extends Principal {
 
 	public static JInternalFrame internalCadastro;
 
+	public static JTextField tID;
 	public static JTextField tNomeEstado;
+	public static JComboBox<String> cPaisPertencente;
 
 	public static void cadastrarEstado() {
 
@@ -35,14 +39,15 @@ public class CadastraEstado extends Principal {
 		pEstado.setBounds(36, 40, 450, 150);
 		pEstado.setLayout(null);
 
-		JTextField tIDEstado = new JTextField();
-		tIDEstado.setEnabled(false);
-		tIDEstado.setEditable(false);
-		tIDEstado.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		tIDEstado.setColumns(10);
-		tIDEstado.setBounds(10, 51, 45, 25);
-		tIDEstado.setVisible(false);
-		pEstado.add(tIDEstado);
+		tID = new JTextField();
+		tID.setEnabled(false);
+		tID.setEditable(false);
+		tID.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		tID.setColumns(10);
+		tID.setBounds(10, 51, 45, 25);
+		tID.setText(String.valueOf(AcaoCadastraEstado.buscarUltimoId() + 1));
+		tID.setVisible(false);
+		pEstado.add(tID);
 
 		JLabel lNomeEstado = new JLabel("Nome*");
 		pEstado.add(lNomeEstado);
@@ -59,9 +64,10 @@ public class CadastraEstado extends Principal {
 		lPaisPertencente.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lPaisPertencente.setBounds(335, 23, 145, 16);
 
-		JComboBox<String> cPaisPertencente = new JComboBox<String>();
+		cPaisPertencente = new JComboBox<String>();
 		pEstado.add(cPaisPertencente);
 		cPaisPertencente.setBounds(335, 50, 87, 28);
+		AcaoCadastraEstado.listarPaises();
 
 		JButton bSalvar = new JButton("Salvar");
 		internalCadastro.add(bSalvar);

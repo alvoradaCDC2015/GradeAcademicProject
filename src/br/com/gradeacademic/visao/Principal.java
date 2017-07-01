@@ -93,7 +93,6 @@ public class Principal {
 		mBarraDeFerramentas.add(mRelatorio);
 		mRelatorio.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		mRelatorio.setIcon(new ImageIcon("report.png"));
-		
 
 		itensRelatorio(mRelatorio);
 
@@ -103,13 +102,6 @@ public class Principal {
 		mLocal.setIcon(new ImageIcon("report.png"));
 
 		itensLocal(mLocal);
-
-		JMenu mAcesso = new JMenu("Acessos");
-		mBarraDeFerramentas.add(mAcesso);
-		mAcesso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		mAcesso.setIcon(new ImageIcon("report.png"));
-
-		itensAcesso(mAcesso);
 
 		JMenu mSobre = new JMenu("Sobre");
 		mBarraDeFerramentas.add(mSobre);
@@ -172,16 +164,19 @@ public class Principal {
 		AcaoPrincipal.visualizarDisciplina(visualizaDisciplina);
 
 	}
-	
-	@SuppressWarnings("unused")
-		private static void itensRelatorio(JMenu mRelatorio) {
-			JMenuItem visualizarRelatorio = new JMenuItem("Visualizar");
-			mRelatorio.add(visualizarRelatorio);
-			visualizarRelatorio.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-			AcaoPrincipal.visualizaRelatorio(visualizarRelatorio);
-	
-		}
-	
+
+	private static void itensRelatorio(JMenu mRelatorio) {
+		JMenuItem visualizarRelatorio = new JMenuItem("Visualizar");
+		mRelatorio.add(visualizarRelatorio);
+		visualizarRelatorio.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		AcaoPrincipal.visualizaRelatorio(visualizarRelatorio);
+
+		JMenuItem visualizarHorario = new JMenuItem("Horários");
+		mRelatorio.add(visualizarHorario);
+		visualizarHorario.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		AcaoPrincipal.visualizaHorario(visualizarHorario);
+
+	}
 
 	private static void itensLocal(JMenu mLocais) {
 
@@ -205,17 +200,4 @@ public class Principal {
 		visualizarLocal.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		AcaoPrincipal.visualizarLocal(visualizarLocal);
 	}
-
-	private static void itensAcesso(JMenu mAcesso) {
-		JMenuItem criarAcesso = new JMenuItem("Criar");
-		mAcesso.add(criarAcesso);
-		criarAcesso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		AcaoPrincipal.criarAcesso(criarAcesso);
-
-		JMenuItem visualizarAcesso = new JMenuItem("Visualizar");
-		mAcesso.add(visualizarAcesso);
-		visualizarAcesso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		AcaoPrincipal.visualizarAcesso(visualizarAcesso);
-	}
-
 }

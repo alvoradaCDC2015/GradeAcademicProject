@@ -34,6 +34,7 @@ public class AcaoVisualizaLocal extends VisualizaLocal {
 			public void actionPerformed(ActionEvent arg0) {
 
 				CadastraEstado.cadastrarEstado();
+				AcaoCadastraEstado.listarPaises();
 
 			}
 		});

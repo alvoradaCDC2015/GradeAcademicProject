@@ -47,7 +47,7 @@ public class Login extends Principal {
 		tLogoProvisoria.setText("LOGO");
 		tLogoProvisoria.setColumns(10);
 
-		JLabel lUsuario = new JLabel("Usuário");
+		JLabel lUsuario = new JLabel("CPF");
 		internalLogin.add(lUsuario);
 		lUsuario.setBounds(143, 191, 218, 17);
 		lUsuario.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
