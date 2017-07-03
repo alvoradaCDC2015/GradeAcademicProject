@@ -22,7 +22,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class AcaoGerarRelatorio {
 
-	public static String sDestino = ("C:/Users/aluno/Desktop/permissao/relatorio.pdf"); // TROCAR
+	public static String sDestino = ("relatorios/relatorio.pdf"); // TROCAR
 
 	public static void botaoGerar(JButton bGerar) throws IOException, DocumentException {
 		bGerar.addActionListener(new ActionListener() {
@@ -31,7 +31,6 @@ public class AcaoGerarRelatorio {
 				try {
 					criarDocumento();
 				} catch (IOException | DocumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -62,7 +61,7 @@ public class AcaoGerarRelatorio {
 
 		PdfTemplate template = writer.getDirectContent().createTemplate(1000, 80); // TAMANHO
 
-		int a = 0; // NÃO APAGAR OS IF'S VAZIOS
+		int a = 0; // NÃƒO APAGAR OS IF'S VAZIOS
 		if (a == 0) {
 			tTabela.addCell("     DIA");
 		}
@@ -70,16 +69,16 @@ public class AcaoGerarRelatorio {
 			tTabela.addCell("    HORÁRIO");
 		}
 		if (a == 0) {
-			tTabela.addCell(" CC-1° / CC-2°");
+			tTabela.addCell(" CC-1º / CC-2º");
 		}
 		if (a == 0) {
-			tTabela.addCell(" CC-3° / CC-4°");
+			tTabela.addCell(" CC-3º / CC-4º");
 		}
 		if (a == 0) {
-			tTabela.addCell(" CC-5° / CC-6°");
+			tTabela.addCell(" CC-5º / CC-6º");
 		}
 		if (a == 0) {
-			tTabela.addCell(" CC-7° / CC-8°");
+			tTabela.addCell(" CC-7º / CC-8º");
 		}
 		if (a == 0) {
 			tTabela.addCell("SEGUNDA");
@@ -88,25 +87,25 @@ public class AcaoGerarRelatorio {
 			tTabela.addCell(" 19:15H / 22:00H");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Estatística - Meibi Regina");
+			tTabela.addCell(" EstatÃ­stica - Meibi Regina");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Análise Vetorial - Priscila Andujar");
+			tTabela.addCell(" AnÃ¡lise Vetorial - Priscila Andujar");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Computação Gráfica - Marcio Marins");
+			tTabela.addCell(" ComputaÃ§Ã£o GrÃ¡fica - Marcio Marins");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Processamento de Imagens - André Oka");
+			tTabela.addCell(" Processamento de Imagens - AndrÃ© Oka");
 		}
 		if (a == 0) {
-			tTabela.addCell("TERÇA");
+			tTabela.addCell("TERÃ‡A");
 		}
 		if (a == 0) {
 			tTabela.addCell(" 19:15H / 22:00H");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Comunicação de Dados e Redes I - Marcelo Weihmayr");
+			tTabela.addCell(" ComunicaÃ§Ã£o de Dados e Redes I - Marcelo Weihmayr");
 		}
 		if (a == 0) {
 			tTabela.addCell(" Estrutura de Dados I (Listas/Pilhas/Filas) - Altieres Matos");
@@ -124,16 +123,16 @@ public class AcaoGerarRelatorio {
 			tTabela.addCell(" 19:15H / 22:00H");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Ingles Técnico e Instrumental - ???");
+			tTabela.addCell(" Ingles TÃ©cnico e Instrumental - ???");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Sistemas Lineares de Automação e Controle - Daniel Mantovani");
+			tTabela.addCell(" Sistemas Lineares de AutomaÃ§Ã£o e Controle - Daniel Mantovani");
 		}
 		if (a == 0) {
 			tTabela.addCell(" Pesquisa Operacional - Alexandre Locci (tronco com ADM)");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Interface Homem e Máquina - Marcelo Weihmayr");
+			tTabela.addCell(" Interface Homem e MÃ¡quina - Marcelo Weihmayr");
 		}
 		if (a == 0) {
 			tTabela.addCell("QUINTA");
@@ -142,16 +141,16 @@ public class AcaoGerarRelatorio {
 			tTabela.addCell(" 19:15H / 22:00H");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Arquitetura de Computadore - André Oka");
+			tTabela.addCell(" Arquitetura de Computadore - AndrÃ© Oka");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Algoritimo e Lógica de Programação III (introdução a O.O.) - Alexandre Locci");
+			tTabela.addCell(" Algoritimo e LÃ³gica de ProgramaÃ§Ã£o III (introduÃ§Ã£o a O.O.) - Alexandre Locci");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Estética e Probabilidade - Angélica Sanches");
+			tTabela.addCell(" EstÃ©tica e Probabilidade - AngÃ©lica Sanches");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Economia e Cenários Globalizados - Claudia Moura");
+			tTabela.addCell(" Economia e CenÃ¡rios Globalizados - Claudia Moura");
 		}
 		if (a == 0) {
 			tTabela.addCell("SEXTA");
@@ -160,19 +159,19 @@ public class AcaoGerarRelatorio {
 			tTabela.addCell(" 19:15H / 22:00H");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Algoritimo e Lógica de Programação I - Alexandre Locci");
+			tTabela.addCell(" Algoritimo e LÃ³gica de ProgramaÃ§Ã£o I - Alexandre Locci");
 		}
 		if (a == 0) {
 			tTabela.addCell(" Engenharia de Software I - Marcelo Weihmayr");
 		}
 		if (a == 0) {
-			tTabela.addCell(" Linguagens Formais, Automatos e Computabilidade - André Oka");
+			tTabela.addCell(" Linguagens Formais, Automatos e Computabilidade - AndrÃ© Oka");
 		}
 		if (a == 0) {
 			tTabela.addCell("");
 		}
 		if (a == 0) {
-			tTabela.addCell("SÁBADO");
+			tTabela.addCell("SÃ�BADO");
 		}
 		if (a == 0) {
 			tTabela.addCell(" 08:10H / 09:40H");

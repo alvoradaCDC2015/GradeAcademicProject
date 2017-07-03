@@ -14,7 +14,7 @@ import javax.swing.border.TitledBorder;
 public class CadastraHorario extends Principal {
 
 	public static JInternalFrame internalHorario;
-	
+
 	private static String usuarioLogado = br.com.gradeacademic.visao.Login.tCampoUsuario.getText();
 
 	public static JToggleButton segunda = new JToggleButton();
@@ -23,6 +23,8 @@ public class CadastraHorario extends Principal {
 	public static JToggleButton quinta = new JToggleButton();
 	public static JToggleButton sexta = new JToggleButton();
 	public static JToggleButton sabado = new JToggleButton();
+
+	public static JToggleButton[] diasSemana;
 
 	public static void cadastraHorario() {
 		internalHorario = new JInternalFrame("Horários");
@@ -64,7 +66,7 @@ public class CadastraHorario extends Principal {
 		sexta.setText("Sexta");
 		sabado.setText("Sabado");
 
-		JToggleButton[] diasSemana = new JToggleButton[6];
+		diasSemana = new JToggleButton[6];
 
 		diasSemana[0] = segunda;
 		diasSemana[1] = terca;
@@ -72,7 +74,7 @@ public class CadastraHorario extends Principal {
 		diasSemana[3] = quinta;
 		diasSemana[4] = sexta;
 		diasSemana[5] = sabado;
-		
+
 		boolean[] diasDisponiveis = RepositorioProfessorDisponibilidade.retornarDiasDisponiveis(usuarioLogado);
 
 		for (int i = 0; i < 6; i++) {

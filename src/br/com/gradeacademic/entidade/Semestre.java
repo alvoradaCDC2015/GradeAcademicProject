@@ -1,11 +1,10 @@
 package br.com.gradeacademic.entidade;
 
 public class Semestre {
-	
+
 	private int id;
 	private String descricao;
 	private String observacao;
-
 
 	public int getId() {
 		return id;
@@ -31,5 +30,4 @@ public class Semestre {
 		this.observacao = observacao;
 	}
 
-	
 }

@@ -11,12 +11,11 @@ import javax.swing.table.DefaultTableModel;
 import br.com.gradeacademic.servico.AcaoVisualizaSemestre;
 
 public class VisualizaSemestre extends Principal {
-	
+
 	public static JInternalFrame internalVisualiza;
 	public static JTable tabela;
 	public static JScrollPane scroll;
 	public static JPanel panelTabela;
-	
 
 	public static void visualizarSemestre() {
 
@@ -39,9 +38,10 @@ public class VisualizaSemestre extends Principal {
 		bEditar.setBounds(180, 50, 147, 39);
 		AcaoVisualizaSemestre.botaoEditar(bEditar, tabela);
 
-		JButton bRemover = new JButton("Remover");
-		internalVisualiza.add(bRemover);
-		bRemover.setBounds(330, 50, 147, 39);
+		JButton bExcluir = new JButton("Remover");
+		internalVisualiza.add(bExcluir);
+		bExcluir.setBounds(330, 50, 147, 39);
+		AcaoVisualizaSemestre.botaoExcluir(bExcluir);
 
 		JTextField tBusca = new JTextField();
 		internalVisualiza.add(tBusca);
@@ -81,8 +81,6 @@ public class VisualizaSemestre extends Principal {
 		panelTabela.setLayout(null);
 		panelTabela.setBounds(30, 150, 800, 370);
 
-		AcaoVisualizaSemestre.listarSemestre((DefaultTableModel) tabela.getModel());
 	}
-	
 
 }

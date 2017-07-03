@@ -41,6 +41,8 @@ public class CadastraProfessor extends Principal {
 	public static JTextField tCelular;
 	public static JTextField tEmail;
 
+	public static int editando;
+
 	public static void cadastrarProfessor() {
 
 		internalCadastro = new JInternalFrame("Cadastrar Professor");
@@ -127,7 +129,6 @@ public class CadastraProfessor extends Principal {
 		try {
 			tCpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
 		} catch (ParseException e) {
-
 			e.printStackTrace();
 		}
 		tCpf.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));

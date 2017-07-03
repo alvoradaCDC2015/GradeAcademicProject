@@ -9,7 +9,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import br.com.gradeacademic.conectar.ConectarBd;
-import br.com.gradeacademic.entidade.Acesso;
 import br.com.gradeacademic.entidade.Professor;
 import br.com.gradeacademic.visao.Login;
 
@@ -39,24 +38,6 @@ public class ValidarLogin extends Login {
 
 		}
 
-	}
-
-	public static String validarNivelDeAcesso(Acesso acesso) {
-		String nivel = "Professor";
-		if (acesso.getNivel() == 1) {
-			nivel = "Coordenador";
-		} else if (acesso.getNivel() == 2) {
-			nivel = "Administrador";
-		}
-		return nivel;
-	}
-
-	public static String validarStatus(Acesso acesso) {
-		String status = "Ativo";
-		if (acesso.getStatus() == 1) {
-			status = "Inativo";
-		}
-		return status;
 	}
 
 	public static boolean validarConfirmarSenha(String senha, String confirmarSenha) {

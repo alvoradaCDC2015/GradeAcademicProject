@@ -13,6 +13,8 @@ import br.com.gradeacademic.servico.AcaoVisualizaDisciplina;
 public class VisualizaDisciplina extends Principal {
 
 	public static JInternalFrame internalVisualiza;
+	
+	public static JTable tabela;
 
 	public static void visualizarDisciplina() {
 
@@ -33,10 +35,12 @@ public class VisualizaDisciplina extends Principal {
 		JButton bEditar = new JButton("Editar");
 		internalVisualiza.add(bEditar);
 		bEditar.setBounds(180, 50, 147, 39);
+		AcaoVisualizaDisciplina.botaoEditar(bEditar);
 
 		JButton bRemover = new JButton("Remover");
 		internalVisualiza.add(bRemover);
 		bRemover.setBounds(330, 50, 147, 39);
+		AcaoVisualizaDisciplina.botaoExcluir(bRemover);
 
 		JTextField tBusca = new JTextField();
 		internalVisualiza.add(tBusca);
@@ -54,17 +58,19 @@ public class VisualizaDisciplina extends Principal {
 
 	@SuppressWarnings("serial")
 	private static void tabela(JInternalFrame internalVizualiza) {
-		JTable tabela = new JTable();
+		tabela = new JTable();
 		tabela.setLayout(null);
 		tabela.revalidate();
 		tabela.setBounds(0, 0, 800, 500);
-		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome", "Professor" }, 0) {
+		tabela.setModel(new DefaultTableModel(new Object[] { "ID", "Nome" }, 0) {
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				return false;
 			}
 		});
 
+		AcaoVisualizaDisciplina.listarDisciplinas();
+		
 		JScrollPane scroll = new JScrollPane();
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setBounds(0, 0, 800, 370);

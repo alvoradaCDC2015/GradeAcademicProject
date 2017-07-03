@@ -22,6 +22,8 @@ public class CadastraSemestre extends Principal {
 	public static JTextField tDescricao;
 	public static JTextArea tObservacao;
 
+	public static int editando;
+
 	public static void cadastrarSemestre() {
 
 		internalCadastro = new JInternalFrame("Cadastrar Semestre");
@@ -76,18 +78,6 @@ public class CadastraSemestre extends Principal {
 		internalCadastro.add(bCancelar);
 		bCancelar.setBounds(715, 300, 103, 39);
 		AcaoCadastraSemestre.botaoCancelar(bCancelar);
-
-	}
-
-	public static void setarCampos(String id, String descricao, String observacao) {
-		// int indexStatus = 1;
-		// if (status.equals("Inativo")) {
-		// indexStatus = 0;
-		// }
-
-		tID.setText(id);
-		tDescricao.setText(descricao);
-		tObservacao.setText(observacao);
 
 	}
 

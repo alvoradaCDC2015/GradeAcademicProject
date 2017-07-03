@@ -11,42 +11,8 @@ import javax.swing.JOptionPane;
 
 import br.com.gradeacademic.conectar.ConectarBd;
 import br.com.gradeacademic.entidade.Semestre;
-import br.com.gradeacademic.visao.CadastraSemestre;
 
 public class RepositorioSemestre {
-
-	public static boolean salvar(Semestre semestre) {
-
-		Connection conexao = ConectarBd.conectar();
-		PreparedStatement parametro = null;
-		ResultSet rs = null;
-
-		try {
-
-			parametro = conexao.prepareStatement("SELECT * FROM pga_semestre WHERE sem_id = ?");
-			parametro.setInt(1, Integer.parseInt(CadastraSemestre.tID.getText()));
-			rs = parametro.executeQuery();
-
-			if (!rs.next()) {
-
-				semestre.setId(retornarUltimoId());
-				criar(semestre);
-				return true;
-
-			} else {
-
-				semestre.setId(Integer.parseInt(CadastraSemestre.tID.getText()));
-				atualizar(semestre);
-			}
-
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao salvar.");
-		} finally {
-			ConectarBd.desconectar(conexao);
-		}
-
-		return false;
-	}
 
 	public static void criar(Semestre semestre) {
 
@@ -156,8 +122,8 @@ public class RepositorioSemestre {
 			parametro = conexao.prepareStatement("SELECT MAX(sem_id) FROM pga_semestre");
 			ResultSet rs = parametro.executeQuery();
 
-			if (!rs.next()) {
-				id = rs.getInt("sem_id");
+			if (rs.next()) {
+				id = rs.getInt("MAX");
 			}
 
 		} catch (Exception e) {
@@ -167,6 +133,27 @@ public class RepositorioSemestre {
 		}
 
 		return id;
+	}
+
+	public static void excluir(int id) {
+
+		Connection conexao = ConectarBd.conectar();
+		PreparedStatement parametro = null;
+
+		try {
+
+			parametro = conexao.prepareStatement("DELETE FROM pga_semestre WHERE sem_id = ?");
+			parametro.setInt(1, id);
+			parametro.executeUpdate();
+
+			JOptionPane.showMessageDialog(null, "Semestre " + id + " Excluido!");
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao atualizar.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+
 	}
 
 }

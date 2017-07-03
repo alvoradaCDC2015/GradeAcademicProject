@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JMenuItem;
+import javax.swing.table.DefaultTableModel;
 
 import com.itextpdf.text.DocumentException;
 
@@ -52,12 +53,12 @@ public class AcaoPrincipal {
 			}
 		});
 	}
-	
+
 	public static void visualizarCurso(JMenuItem visualizaCurso) {
 
 		visualizaCurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				CadastraDisciplina.editando = 0;
 				VisualizaCurso.visualizarCurso();
 			}
 		});
@@ -67,7 +68,7 @@ public class AcaoPrincipal {
 	public static void cadastraDisciplina(JMenuItem cadastrarDisciplina) {
 		cadastrarDisciplina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 				CadastraDisciplina.cadastrarDisciplina();
 			}
 		});
@@ -94,6 +95,7 @@ public class AcaoPrincipal {
 		visualizaDisciplina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VisualizaDisciplina.visualizarDisciplina();
+				AcaoVisualizaDisciplina.listarDisciplinas();
 			}
 		});
 
@@ -105,6 +107,7 @@ public class AcaoPrincipal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CadastraSemestre.editando = 0;
 				CadastraSemestre.cadastrarSemestre();
 			}
 		});
@@ -118,6 +121,7 @@ public class AcaoPrincipal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VisualizaSemestre.visualizarSemestre();
+				AcaoVisualizaSemestre.listarSemestre((DefaultTableModel) VisualizaSemestre.tabela.getModel());
 			}
 		});
 	}
@@ -139,7 +143,7 @@ public class AcaoPrincipal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VisualizaProfessor.visualizarProfessor();
-
+				AcaoVisualizaProfessor.adicionaProfessoresNaTabela();
 			}
 		});
 	}

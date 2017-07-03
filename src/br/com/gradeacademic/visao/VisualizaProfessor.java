@@ -1,7 +1,5 @@
 package br.com.gradeacademic.visao;
 
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -10,12 +8,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.gradeacademic.entidade.Professor;
 import br.com.gradeacademic.servico.AcaoVisualizaProfessor;
 
 public class VisualizaProfessor extends Principal {
 
 	public static JInternalFrame internalVisualiza;
+	public static JTable tabela;
 
 	public static void visualizarProfessor() {
 
@@ -36,10 +34,12 @@ public class VisualizaProfessor extends Principal {
 		JButton bEditar = new JButton("Editar");
 		internalVisualiza.add(bEditar);
 		bEditar.setBounds(180, 50, 147, 39);
+		AcaoVisualizaProfessor.botaoEditar(bEditar);
 
-		JButton bRemover = new JButton("Remover");
-		internalVisualiza.add(bRemover);
-		bRemover.setBounds(330, 50, 147, 39);
+		JButton bExcluir = new JButton("Remover");
+		internalVisualiza.add(bExcluir);
+		bExcluir.setBounds(330, 50, 147, 39);
+		AcaoVisualizaProfessor.botaoExcluir(bExcluir);
 
 		JTextField tBusca = new JTextField();
 		internalVisualiza.add(tBusca);
@@ -57,7 +57,7 @@ public class VisualizaProfessor extends Principal {
 
 	@SuppressWarnings("serial")
 	private static void tabela(JInternalFrame internalVizualiza) {
-		JTable tabela = new JTable();
+		tabela = new JTable();
 		tabela.setLayout(null);
 		tabela.revalidate();
 		tabela.setBounds(0, 0, 800, 500);
@@ -68,13 +68,7 @@ public class VisualizaProfessor extends Principal {
 			}
 		});
 
-		List<Professor> professores = AcaoVisualizaProfessor.carregarProfessores();
-		for (Professor professor : professores) {
-
-			((DefaultTableModel) tabela.getModel()).addRow(
-					new Object[] { professor.getId(), professor.getNome(), professor.getCpf(), professor.getEmail() });
-
-		}
+		AcaoVisualizaProfessor.adicionaProfessoresNaTabela();
 
 		JScrollPane scroll = new JScrollPane();
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

@@ -4,10 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
-import br.com.gradeacademic.visao.CadastraHorario;
 import br.com.gradeacademic.repositorio.RepositorioProfessorDisponibilidade;
+import br.com.gradeacademic.visao.CadastraHorario;
 
 public class AcaoCadastraHorario extends CadastraHorario {
+	
 	private static String usuarioLogado = br.com.gradeacademic.visao.Login.tCampoUsuario.getText();
 
 	public static void botaoCancelar(JButton bCancelar) {

@@ -1,30 +1,34 @@
 package br.com.gradeacademic.repositorio;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
 
 import br.com.gradeacademic.conectar.ConectarBd;
+import br.com.gradeacademic.servico.AcaoCadastraHorario;
 
-public class RepositorioProfessorDisponibilidade {
+public class RepositorioProfessorDisponibilidade extends AcaoCadastraHorario {
 
 	public static boolean[] retornarDiasDisponiveis(String cpfProfessor) {
 		/*
 		 * Retorna num array os dias disponiveis ativos da um professor
 		 */
-		
-		Connection conexao = ConectarBd.conectar();	
+
+		Connection conexao = ConectarBd.conectar();
 		boolean[] diasSemana = new boolean[7];
-		
+
 		try {
 			Statement st = conexao.createStatement();
-			
-			ResultSet rs = st.executeQuery
-					("SELECT pdi_dia_semana FROM pga_professor_disponibilidade d WHERE d.pdi_id_professor = "
-							+ "(SELECT pro_id FROM pga_professor WHERE pro_cpf = '" + cpfProfessor + "' ) AND d.pdi_status = 1");
-			
+
+			ResultSet rs = st.executeQuery(
+					"SELECT pdi_dia_semana FROM pga_professor_disponibilidade d WHERE d.pdi_id_professor = "
+							+ "(SELECT pro_id FROM pga_professor WHERE pro_cpf = '" + cpfProfessor
+							+ "' ) AND d.pdi_status = 1");
+
 			while (rs.next()) {
 				if (rs.getString(1).contains("segunda")) {
 					diasSemana[0] = true;
@@ -50,63 +54,89 @@ public class RepositorioProfessorDisponibilidade {
 			}
 			rs.close();
 			st.close();
-			
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao verificar disponibilidade.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
-		
+
 		return diasSemana;
 	}
-	
+
 	public static void definirDiaDisponivel(String dia, String cpfProfessor) {
 		Connection conexao = ConectarBd.conectar();
-		
+
 		try {
 			Statement st = conexao.createStatement();
-			
-			ResultSet rs = st.executeQuery
-					("SELECT pdi_status FROM pga_professor_disponibilidade d WHERE d.pdi_id_professor = "
+
+			ResultSet rs = st
+					.executeQuery("SELECT pdi_status FROM pga_professor_disponibilidade d WHERE d.pdi_id_professor = "
 							+ "(SELECT pro_id FROM pga_professor WHERE pro_cpf = '" + cpfProfessor + "' ) "
 							+ "AND d.pdi_dia_semana = '" + dia + "'");
-			if(rs.next()) {
-				if(rs.getString(1).contains("0")) {
+			if (rs.next()) {
+				if (rs.getString(1).contains("0")) {
 					st.execute("UPDATE pga_professor_disponibilidade d SET pdi_status = '1' WHERE d.pdi_id_professor = "
 							+ "(SELECT pro_id FROM pga_professor WHERE pro_cpf = '" + cpfProfessor + "' ) "
 							+ "AND d.pdi_dia_semana = '" + dia + "' ");
-				} 
+				}
 			} else {
-				st.execute("INSERT INTO pga_professor_disponibilidade "
-						+ "(pdi_id_professor, pdi_dia_semana, pdi_status) "
-						+ "VALUES ((SELECT pro_id FROM pga_professor WHERE pro_cpf = '" + cpfProfessor + "' ), '" + dia + "', 1)");
-			}	
+				st.execute(
+						"INSERT INTO pga_professor_disponibilidade " + "(pdi_id_professor, pdi_dia_semana, pdi_status) "
+								+ "VALUES ((SELECT pro_id FROM pga_professor WHERE pro_cpf = '" + cpfProfessor
+								+ "' ), '" + dia + "', 1)");
+			}
 			rs.close();
 			st.close();
-			
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao definir dia disponivel.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
 	}
-	
+
 	public static void removerDiaDisponivel(String dia, String cpfProfessor) {
 		Connection conexao = ConectarBd.conectar();
-		
+
 		try {
 			Statement st = conexao.createStatement();
-			
+
 			st.execute("UPDATE pga_professor_disponibilidade d SET pdi_status = '0' WHERE d.pdi_id_professor = "
 					+ "(SELECT pro_id FROM pga_professor WHERE pro_cpf = '" + cpfProfessor + "' ) "
-					+ "AND d.pdi_dia_semana = '" + dia + "' ");			
+					+ "AND d.pdi_dia_semana = '" + dia + "' ");
 			st.close();
-			
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao remover dia disponivel.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
+	}
+
+	public static void salvarDiasDaSemana(int idProfessor) {
+
+		Connection conexao = ConectarBd.conectar();
+		PreparedStatement parametro = null;
+
+		try {
+
+			for (JToggleButton diaSemana : diasSemana) {
+
+				parametro = conexao.prepareStatement("INSERT INTO pga_professor_disponibilidade "
+						+ "(pdi_id_professor, pdi_dia_semana, pdi_status)  VALUES (?,?,?)");
+				parametro.setInt(1, idProfessor);
+				parametro.setString(2, diaSemana.getText());
+				parametro.setInt(2, 1);
+				parametro.executeUpdate();
+			}
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao adicionar disponibilidade.");
+		} finally {
+			ConectarBd.desconectar(conexao);
+		}
+
 	}
 
 }

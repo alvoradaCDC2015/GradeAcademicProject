@@ -68,12 +68,12 @@ public class Principal {
 
 		itensProfessor(mProfessor);
 
-		JMenu mCurso = new JMenu("Curso");
-		mBarraDeFerramentas.add(mCurso);
-		mCurso.setIcon(new ImageIcon("page.png"));
-		mCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		JMenu mDisciplina = new JMenu("Disciplina");
+		mBarraDeFerramentas.add(mDisciplina);
+		mDisciplina.setIcon(new ImageIcon("page.png"));
+		mDisciplina.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
-		itensCurso(mCurso);
+		itensDisciplina(mDisciplina);
 
 		JMenu mSemestre = new JMenu("Semestre");
 		mBarraDeFerramentas.add(mSemestre);
@@ -82,12 +82,12 @@ public class Principal {
 
 		itensSemestre(mSemestre);
 
-		JMenu mDisciplina = new JMenu("Disciplina");
-		mBarraDeFerramentas.add(mDisciplina);
-		mDisciplina.setIcon(new ImageIcon("page.png"));
-		mDisciplina.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
+		JMenu mCurso = new JMenu("Curso");
+		mBarraDeFerramentas.add(mCurso);
+		mCurso.setIcon(new ImageIcon("page.png"));
+		mCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 
-		itensDisciplina(mDisciplina);
+		itensCurso(mCurso);
 
 		JMenu mRelatorio = new JMenu("Relatorio");
 		mBarraDeFerramentas.add(mRelatorio);
@@ -95,11 +95,6 @@ public class Principal {
 		mRelatorio.setIcon(new ImageIcon("report.png"));
 
 		itensRelatorio(mRelatorio);
-
-		JMenu mSobre = new JMenu("Sobre");
-		mBarraDeFerramentas.add(mSobre);
-		mSobre.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
-		mSobre.setIcon(new ImageIcon("information.png"));
 
 	}
 
