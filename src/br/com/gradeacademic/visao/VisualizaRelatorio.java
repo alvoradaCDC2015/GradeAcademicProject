@@ -30,7 +30,7 @@ public class VisualizaRelatorio extends Principal {
 	 */
 	public static void visualizarRelatorio() throws IOException, DocumentException {
 
-		internalRelatorio = new JInternalFrame("Relatorio");
+		internalRelatorio = new JInternalFrame("Relatrio");
 		desktopPane.add(internalRelatorio);
 		internalRelatorio.setVisible(true);
 		internalRelatorio.setBounds(100, 51, 871, 619);
@@ -79,7 +79,7 @@ public class VisualizaRelatorio extends Principal {
 		tTableRelatorio.setBounds(0, 0, 800, 500);
 		tTableRelatorio.setRowHeight(1, 90);
 		tTableRelatorio.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "#", "SEGUNDA", "TER\u00C7A", "QUARTA", "QUINTA", "SEXTA" }));
+				new String[] { "#", "SEGUNDA", "TERÇA", "QUARTA", "QUINTA", "SEXTA" }));
 
 		tTableRelatorio.getColumnModel().getColumn(0).setResizable(false);
 		tTableRelatorio.getColumnModel().getColumn(0).setPreferredWidth(45);

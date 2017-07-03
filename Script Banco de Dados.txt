@@ -69,11 +69,8 @@ CREATE TABLE PGA_HORARIO (
     hor_curso VARCHAR(60) NOT NULL,
     hor_semestre VARCHAR(60) NOT NULL,
     hor_dia VARCHAR(60) NOT NULL,
-    hor_disciplina VARCHAR(60) NOT NULL,
-	
+    hor_disciplina VARCHAR(60) NOT NULL
 );
-
-
 
 ALTER TABLE PGA_SEMESTRE
 ADD CONSTRAINT 	fk_curso FOREIGN KEY (sem_id_curso) REFERENCES PGA_CURSO(cur_id);

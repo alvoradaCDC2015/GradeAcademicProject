@@ -62,6 +62,8 @@ public class AcaoLogin extends Login {
 
 				if (result == JOptionPane.YES_OPTION) {
 					System.exit(0);
+				} else {
+					visualizarLogin();
 				}
 
 				internalLogin.dispose();

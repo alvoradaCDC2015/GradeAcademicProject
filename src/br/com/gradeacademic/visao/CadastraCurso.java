@@ -37,7 +37,7 @@ public class CadastraCurso extends Principal {
 		
 		JPanel infoCurso = new JPanel();
 		internalCadastro.add(infoCurso);
-		infoCurso.setBorder(new TitledBorder(null, "Informações do Semestre", TitledBorder.LEADING, TitledBorder.TOP,
+		infoCurso.setBorder(new TitledBorder(null, "Informações de Curso", TitledBorder.LEADING, TitledBorder.TOP,
 				null, new Color(59, 59, 59)));
 		infoCurso.setBounds(36, 37, 789, 400);
 		infoCurso.setLayout(null);
@@ -56,7 +56,7 @@ public class CadastraCurso extends Principal {
 		tIDCurso.setText(String.valueOf(AcaoCadastraCurso.buscarUltimoId() + 1));
 		tIDCurso.setVisible(false);
 
-		JLabel lNomeCurso = new JLabel("Descrição do Semestre:*");
+		JLabel lNomeCurso = new JLabel("Descrição do Curso:*");
 		internalCadastro.add(lNomeCurso);
 		lNomeCurso.setBounds(140, 55, 175, 16);
 		lNomeCurso.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
@@ -67,7 +67,7 @@ public class CadastraCurso extends Principal {
 		tNomeCurso.setBounds(135, 83, 260, 28);
 		infoCurso.add(tNomeCurso);
 
-		JLabel lObservacao = new JLabel("Observação do Semestre:");
+		JLabel lObservacao = new JLabel("Observação do Curso:");
 		lObservacao.setFont(new Font("Roboto Condensed", Font.PLAIN, 14));
 		lObservacao.setBounds(428, 54, 180, 16);
 		infoCurso.add(lObservacao);
@@ -109,6 +109,16 @@ public class CadastraCurso extends Principal {
 		bCancelar.setBounds(715, 510, 103, 39);
 		AcaoCadastraCurso.botaoCancelar(bCancelar);
 
+	}
+
+	public static void setarCampos(String id, String nome, String observacao, String duracao) {
+		
+		tIDCurso.setText(id);
+		tNomeCurso.setText(nome);
+		tObservacaoCurso.setText(observacao);
+		tDuracaoCurso.setText(duracao);
+		
+		
 	}
 
 }

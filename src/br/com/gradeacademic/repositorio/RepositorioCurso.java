@@ -14,8 +14,11 @@ import br.com.gradeacademic.entidade.Curso;
 import br.com.gradeacademic.visao.CadastraCurso;
 
 
+
 public class RepositorioCurso {
 
+
+		
 	public static boolean salvar(Curso curso) {
 
 		Connection conexao = ConectarBd.conectar();
@@ -57,11 +60,12 @@ public class RepositorioCurso {
 		try {
 
 			parametro = conexao
-					.prepareStatement("INSERT INTO PGA_CURSO (cur_nome, cur_observacao, cur_duracao_anos, cur_coordenador) VALUES (?,?, ?, ?)");
+					.prepareStatement("INSERT INTO PGA_CURSO (cur_nome, cur_observacao, cur_duracao_anos, cur_coordenador, cur_status) VALUES (?, ?, ?, ?, ?)");
 			parametro.setString(1, curso.getNome());
 			parametro.setString(2, curso.getObservacao());
 			parametro.setInt(3, curso.getDuracao());
 			parametro.setString(4, curso.getCoordenador());
+			parametro.setInt(5, 1);
 			
 
 			parametro.executeUpdate();
@@ -69,7 +73,7 @@ public class RepositorioCurso {
 			JOptionPane.showMessageDialog(null, "Curso " + retornarUltimoId() + " Salvo!");
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao criar.");
+			JOptionPane.showMessageDialog(null, "Erro: " + e + " - ao criar.");
 		} finally {
 			ConectarBd.desconectar(conexao);
 		}
@@ -111,7 +115,9 @@ public class RepositorioCurso {
 
 			parametro = conexao.prepareStatement("SELECT * FROM PGA_CURSO ORDER BY cur_id");
 			resultCurso = parametro.executeQuery();
-
+			
+			
+			
 			while (resultCurso.next()) {
 
 				Curso curso = new Curso();
@@ -121,10 +127,11 @@ public class RepositorioCurso {
 				curso.setCoordenador(resultCurso.getString("cur_coordenador"));
 				curso.setDuracao(resultCurso.getInt("cur_duracao_anos"));
 				curso.setStatus(Integer.parseInt(resultCurso.getString("cur_status")));
+				
 				cursos.add(curso);
 
 			}
-
+			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao listar.");
 		} finally {

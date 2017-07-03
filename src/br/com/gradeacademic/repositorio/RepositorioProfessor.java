@@ -28,7 +28,9 @@ public class RepositorioProfessor {
 					+ "pro_bairro, " + "pro_cep, " + "pro_cidade ) " + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			parametro.setString(1, professor.getNome());
 			parametro.setString(2, professor.getEmail());
-			parametro.setString(3, professor.getCpf());
+			String cpf = professor.getCpf().replace(".", "");
+			cpf = cpf.replace("-", "");
+			parametro.setString(3, cpf);
 			parametro.setString(4, professor.getSenha());
 			parametro.setInt(5, professor.getNivelAcesso());
 			parametro.setInt(6, professor.getAdministrador());
@@ -75,6 +77,7 @@ public class RepositorioProfessor {
 				professor.setNome(resultProfessor.getString("pro_nome"));
 				professor.setCpf(resultProfessor.getString("pro_cpf"));
 				professor.setEmail(resultProfessor.getString("pro_contato_email"));
+				professor.setCoordenador(resultProfessor.getInt("pro_coordenador"));
 
 				professores.add(professor);
 

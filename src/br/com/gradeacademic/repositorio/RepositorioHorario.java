@@ -27,7 +27,7 @@ public class RepositorioHorario extends VisualizaHorario {
 
 			parametro.executeUpdate();
 
-			JOptionPane.showMessageDialog(null, "Semestre Salvo!");
+			JOptionPane.showMessageDialog(null, "Horário Salvo!");
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage() + " - ao criar.");

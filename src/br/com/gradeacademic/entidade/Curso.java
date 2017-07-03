@@ -7,6 +7,7 @@ public class Curso {
 	private int duracao;
 	private String coordenador;
 	private int status;
+	private String nomeCoordenador;
 
 
 	public int getId() {
@@ -54,5 +55,13 @@ public class Curso {
 	
 	public void setStatus(int status){
 		this.status = status;
+	}
+
+	public String getNomeCoordenador() {
+		return nomeCoordenador;
+	}
+
+	public void setNomeCoordenador(String nomeCoordenador) {
+		this.nomeCoordenador = nomeCoordenador;
 	}
 }
